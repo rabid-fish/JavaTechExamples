@@ -1,13 +1,13 @@
 package com.github.rabid_fish.example4
 
-import com.github.rabid_fish.MathResult;
+import com.github.rabid_fish.Number;
 
 rule "Stateful Multiple Items Example Less Than 5"
 	when
-        result : MathResult( result.value < 5 )
+        number : Number( number.value < 5 )
 
 	then
 		System.out.println( "Value is less than 5" );
-		modify( result ) { setValue( result.getValue() + 1 ) };
+		modify( number ) { addOneToValue() };
 	
 end
