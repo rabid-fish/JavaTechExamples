@@ -14,6 +14,10 @@ Each of the examples is run through Java and is hooked up via maven.  Simply run
 
 at the command line (assuming Java and Maven are installed) to get the tests to run.
 
+IMPORTANT: if you are using Eclipse, you will have errors in the project until you
+add target/generated-sources/xsd to the build path.  Right-click on that folder and
+select "Build Path" > "Use as source folder".
+
 To read more about Drools or download the libraries, check out:
 http://www.jboss.org/drools/
 
