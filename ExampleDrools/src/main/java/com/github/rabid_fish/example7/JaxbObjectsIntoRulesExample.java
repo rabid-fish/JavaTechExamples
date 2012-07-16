@@ -7,11 +7,11 @@ import org.drools.runtime.StatelessKnowledgeSession;
 
 import com.github.rabid_fish.ExampleParent;
 
-import rabid_fish.github.com.exampledroolsandjaxb.ContactList;
-import rabid_fish.github.com.exampledroolsandjaxb.ContactType;
-import rabid_fish.github.com.exampledroolsandjaxb.ObjectFactory;
+import https.github_com.rabid_fish.ContactList;
+import https.github_com.rabid_fish.ContactType;
+import https.github_com.rabid_fish.ObjectFactory;
 
-public class JaxbObjectsIntoRules extends ExampleParent {
+public class JaxbObjectsIntoRulesExample extends ExampleParent {
 
 	public void executeRules(KnowledgeBase kbase) {
 

@@ -1,8 +1,8 @@
 <xs:schema
 	elementFormDefault="qualified"
-	targetNamespace="http://com.github.rabid-fish/ExampleDroolsAndJaxb"
+	targetNamespace="https://github.com/rabid-fish"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:example="http://com.github.rabid-fish/ExampleDroolsAndJaxb"
+	xmlns:example="https://github.com/rabid-fish"
 >
 	<xs:element name="ContactList">
 		<xs:complexType>
