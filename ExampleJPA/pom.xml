@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.rabid_fish</groupId>
-	<artifactId>ExampleJPA</artifactId>
+	<artifactId>ExampleJpa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
