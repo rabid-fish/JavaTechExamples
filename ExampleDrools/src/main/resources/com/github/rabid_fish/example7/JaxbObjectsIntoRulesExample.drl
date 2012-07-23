@@ -1,6 +1,6 @@
 package com.github.rabid_fish.example1
 
-import rabid_fish.github.com.exampledroolsandjaxb.ContactType;
+import https.github_com.rabid_fish.ContactType;
 
 rule "High risk group male"
 	when
