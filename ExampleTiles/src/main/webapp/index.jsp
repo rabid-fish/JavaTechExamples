@@ -2,7 +2,7 @@
 
 <p>Start main page</p>
 
-<tiles:insertDefinition name="layout-nochrome">
+<tiles:insertDefinition name="layoutNoChrome">
 	<tiles:putAttribute name="body">
 		
 		<p>Hello from Tiles!</p>
