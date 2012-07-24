@@ -1,8 +1,5 @@
 package com.github.rabid_fish;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -13,8 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/META-INF/spring-context.xml")
-public class UserDaoImplTest {
+@ContextConfiguration(locations = "classpath:/META-INF/spring-localsession-context.xml")
+public class LocalSessionTest {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -31,26 +28,5 @@ public class UserDaoImplTest {
 
 		session.close();
 	}
-	
-//	Wish I could autowire the Dao...
-//	
-//	@Autowired
-//	UserDaoImpl repository;
-//
-//	@Test
-//	public void testSave() {
-//
-//		User user = new User();
-//		user.setName("Dan");
-//		repository.save(user);
-//
-//		assertEquals(user, repository.findOne(user.getId()));
-//	}
-//	
-//	@Test
-//	public void testFindByName() {
-//		
-//		assertTrue(repository.findByName("Dan") != null);
-//	}
-	
+
 }

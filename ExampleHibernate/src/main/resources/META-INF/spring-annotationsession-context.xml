@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+">
+
+	<!--
+		Much help taken from:
+		http://www.roseindia.net/tutorial/spring/spring3/web/spring-3-mvc-and-hibernate3-example-part2.html 
+	 -->
+
+	<!--
+		Wish we didn't have to tie to a sql script here, but I couldn't get
+		hibernate to just generate the needed tables at runtime based on
+		the my @Entity classes.
+	 -->
+	 <!-- 
+	<jdbc:embedded-database id="dataSource" type="HSQL">
+		<jdbc:script location="classpath:/META-INF/user.sql"/>
+	</jdbc:embedded-database>
+	  -->
+	
+	<context:component-scan base-package="com.github.rabid_fish" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean 
+		id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:mem:users" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.github.rabid_fish" /> 
+		<property name="hibernateProperties">
+			 <props>
+			 	<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+			 	<prop key="hibernate.show_sql">true</prop>
+			 	<prop key="hibernate.format_sql">true</prop>
+			 	<prop key="hibernate.hbm2ddl.auto">create</prop>
+			 </props>
+		</property>
+	</bean>
+
+</beans>

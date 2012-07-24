@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Written with help from:
@@ -11,7 +12,8 @@ import org.springframework.stereotype.Repository;
  * -with-spring-3-1-and-hibernate/
  */
 
-@Repository
+@Repository("userDao")
+@Transactional
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
@@ -32,12 +34,12 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User findOne(Long id) {
-		return (User) getCurrentSession().get(getClass(), id);
+		return (User) getCurrentSession().get(User.class, id);
 	}
 
 	@Override
 	public User findByName(String name) {
-		return (User) getCurrentSession().createQuery( "from " + getClass().getName() ).uniqueResult();
+		return (User) getCurrentSession().createQuery( "from " + User.class.getName() ).uniqueResult();
    }
 
 	protected final Session getCurrentSession() {

@@ -1,8 +1,6 @@
 package com.github.rabid_fish;
 
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
 public interface UserDao {
 
 	public void save(User entity);
