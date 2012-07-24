@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+">
+
+	<!--
+		Much help taken from:
+		https://github.com/michaelisvy/hibernate-4-spring-3.1-samples 
+	 -->
+
+	<!--
+		Wish we didn't have to tie to a sql script here, but I couldn't get
+		hibernate to just generate the needed tables at runtime based on
+		the my @Entity classes.
+	 -->
+	<jdbc:embedded-database id="dataSource" type="HSQL">
+		<jdbc:script location="classpath:/META-INF/user.sql"/>
+	</jdbc:embedded-database>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			 <props>
+			 	<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+			 	<prop key="show_sql">true</prop>
+			 	<prop key="format_sql">true</prop>
+			 	<prop key="hbm2ddl.auto">create</prop>
+			 </props>
+		</property>
+		<property name="packagesToScan" value="com.github.rabid_fish" /> 
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+</beans>
