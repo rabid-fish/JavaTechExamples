@@ -1,0 +1,87 @@
+<project name="ckeditor-concatenate-and-replace-js" default="run" basedir=".">
+
+	<description>
+		Takes a list of CKEditor plugins and creates a single concatenated file from them
+	</description>
+
+	<!--
+		Preconditions:
+		You must first download the CKEditor distributable which includes javascript source 
+		code.  Then download ckpackage.jar and stick it in the same directory.  The jar 
+		helps us to re-concatenate and minify the source code. Lastly, call this script with
+		the location of the folders for those files and we'll generate a new concatenated 
+		and minified ckeditor script that contains only the plugins specified within the
+		config file.
+		
+		To use this script, replace the ckeditor.source.dir property at
+		runtime by calling the script like so:
+			ant -f ckeditor-concatenate-and-replace-js.xml -Dckeditor.source.dir=[ABSOLUTE LOCATION OF CKEDITOR DOWNLOAD]
+		
+		More info about CKPackager:
+		http://docs.cksource.com/CKEditor_3.x/Developers_Guide/CKPackager
+		
+		Run ckpackager on its own like so:
+			java -jar ckpackager.jar ckeditor.pack
+	-->
+
+	<property name="ckeditor.source.dir" value="/pass/this/in/at/runtime" />
+	<!-- <property name="ckeditor.source.filename" value="many files reside here" /> -->
+	<property name="ckeditor.jar.dir" value="${ckeditor.source.dir}" />
+	<property name="ckeditor.jar.filename" value="ckpackager.jar" />
+	<property name="ckeditor.jar.output.filename" value="ckeditor.js" />
+	<property name="ckeditor.config.dir" value="." />
+	<property name="ckeditor.config.filename" value="ckeditor.pack" />
+	<property name="ckeditor.target.dir" value="../webapp/static/ckeditor" />
+	<property name="ckeditor.target.filename" value="ckeditor.concatenated.js" />
+
+	<target name="run" depends="info,setup,compile,replace" />
+	
+	<target name="info">
+		<echo message="Source dir: ${ckeditor.source.dir}" />
+		<echo message="Jar file: ${ckeditor.jar.dir}/${ckeditor.jar.filename}" />
+		<echo message="Config file: ${ckeditor.config.dir}/${ckeditor.config.filename}" />
+		<echo message="Target file: ${ckeditor.target.dir}/${ckeditor.target.filename}" />
+	</target>
+	
+	<target name="setup">
+		<echo message="Delete the current target file if it exists" />
+		<delete 
+			file="${ckeditor.target.dir}/${ckeditor.target.filename}"
+			failonerror="true"
+		/>
+
+		<echo message="Delete the source config file if it exists" />
+		<delete 
+			file="${ckeditor.source.dir}/${ckeditor.config.filename}"
+			failonerror="true"
+		/>
+
+		<echo message="Copy the config file to the source directory" />
+		<copy
+			file="${ckeditor.config.dir}/${ckeditor.config.filename}"
+			tofile="${ckeditor.source.dir}/${ckeditor.config.filename}"
+			failonerror="true"
+			overwrite="true"
+		/>
+	</target>
+	
+	<target name="compile">
+		<java 
+			jar="${ckeditor.jar.dir}/${ckeditor.jar.filename}"
+			fork="true"
+		>
+			<arg value="${ckeditor.source.dir}/${ckeditor.config.filename}" />
+		</java>
+	</target>
+	
+	<target name="replace">
+		<echo message="Copy the resulting file to the target directory" />
+		<copy
+			file="${ckeditor.source.dir}/${ckeditor.jar.output.filename}"
+			tofile="${ckeditor.target.dir}/${ckeditor.target.filename}"
+			failonerror="true"
+			overwrite="true"
+		/>
+	</target>
+	
+</project>

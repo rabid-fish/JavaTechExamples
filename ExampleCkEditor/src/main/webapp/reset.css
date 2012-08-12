@@ -1,0 +1,39 @@
+/*
+Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+*/
+
+html, body, h1, h2, h3, h4, h5, h6, div, span, blockquote, p, address, form, fieldset, img, ul, ol, dl, dt, dd, li, hr, table, td, th, strong, em, sup, sub, dfn, ins, del, q, cite, var, samp, code, kbd, tt, pre {
+	line-height: 1.5em;
+}
+
+body {
+	padding:10px 30px;
+}
+
+input, textarea, select, option, optgroup, button, td, th {
+	font-size: 100%;
+}
+
+pre,
+code,
+kbd,
+samp,
+tt{
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+ol,ul,dl
+{
+	/* IE7: reset rtl list margin. (#7334) */
+	*margin-right:0px;
+	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+    padding:0 40px;
+}
+
+#alerts
+{
+	font-weight: bold;
+	color: Red;
+}
