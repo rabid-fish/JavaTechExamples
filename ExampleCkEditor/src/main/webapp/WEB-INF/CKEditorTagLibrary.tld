@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>ckeditor</shortname>
+	<info>CKEditor tags</info>
+	<uri>http://github.com/rabid-fish/ckeditor</uri>
+	<tag>
+		<name>ckeditor</name>
+		<tagclass>com.github.rabid_fish.taglibrary.CKEditorTagHandler</tagclass>
+		<info>CKEditor tag</info>
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+</taglib>
