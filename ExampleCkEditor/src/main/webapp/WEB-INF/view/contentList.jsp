@@ -1,13 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE>
-<html>
-<head>
-<title>Content List</title>
-</head>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
-<body>
+<tiles:insertDefinition name="layoutDefault">
+	<tiles:putAttribute name="title" value="Content List" />
+	<tiles:putAttribute name="style" value="" />
+	<tiles:putAttribute name="script">
 
-	<h1>Content List</h1>
+		$(document).ready(function() {
+			
+			$.getScript("../../static/js/jquery.dataTables.min.js", function(script, textStatus) {
+				$('table.dataTable').dataTable();
+			});
+
+		});
+
+	</tiles:putAttribute>
+	<tiles:putAttribute name="body">
 
 	<c:if test="${empty list}">
 	<p>${message}</p>
@@ -40,7 +48,7 @@
 		</div>
 	</c:if>
 	
-	<a href="create" class="button">Create a new Entry</a>
+	<a href="create" class="button">Create a new Content Item</a>
 
-</body>
-</html>
+	</tiles:putAttribute>
+</tiles:insertDefinition>

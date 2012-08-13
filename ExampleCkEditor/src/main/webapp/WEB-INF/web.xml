@@ -7,6 +7,10 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
+	<listener>
+		<listener-class>org.apache.tiles.web.startup.simple.SimpleTilesListener</listener-class>
+	</listener>
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/META-INF/spring/root-context.xml</param-value>

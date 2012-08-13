@@ -1,14 +1,27 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE>
-<html>
-<head>
-<title>Content Edit</title>
-</head>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
-<body>
+<tiles:insertDefinition name="layoutDefault">
+	<tiles:putAttribute name="title" value="Content Edit" />
+	<tiles:putAttribute name="style" value="" />
+	<tiles:putAttribute name="script">
+	
+		// From the api docs: "This global variable must be set before the editor script loading."
+		var CKEDITOR_BASEPATH = "../../static/ckeditor/"
+		
+		$(document).ready(function() {
+			
+			$.getScript("../../static/ckeditor/ckeditor.concatenated.js", function(script, textStatus) {
+				CKEDITOR.replace( 'text', {
+					customConfig : 'ckeditor.config.js'
+				});
+			});
 
-	<h1>Content Edit</h1>
+		});
+		
+	</tiles:putAttribute>
+	<tiles:putAttribute name="body">
 
 	<form:form modelAttribute="content" method="post">
 		<form:hidden path="id" />
@@ -25,25 +38,5 @@
 		</div>
 	</form:form>
 
-	<script type="text/javascript" src="../../static/js/jquery-1.8.0.min.js"></script>
-	<script type="text/javascript">
-	//<![CDATA[
-		
-		// From the api docs: "This global variable must be set before the editor script loading."
-		var CKEDITOR_BASEPATH = "../../static/ckeditor/"
-		
-		$(document).ready(function() {
-			
-			$.getScript("../../static/ckeditor/ckeditor.concatenated.js", function(script, textStatus) {
-				CKEDITOR.replace( 'text', {
-					customConfig : 'ckeditor.config.js'
-				});
-			});
-
-		});
-		
-	//]]>
-	</script>
-
-</body>
-</html>
+	</tiles:putAttribute>
+</tiles:insertDefinition>
