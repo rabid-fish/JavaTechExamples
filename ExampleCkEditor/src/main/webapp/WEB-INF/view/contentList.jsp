@@ -43,8 +43,10 @@
 			</table>
 		</div>
 	</c:if>
-	
-	<a href="create" class="button">Create a new Content Item</a>
+
+	<div class="buttons">
+		<a href="create" class="button">Create a new Content Item</a>
+	</div>	
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>

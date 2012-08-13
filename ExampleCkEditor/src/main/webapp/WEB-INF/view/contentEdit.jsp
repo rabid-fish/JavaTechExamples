@@ -34,5 +34,9 @@
 		</div>
 	</form:form>
 
+	<div class="buttons">
+		<a href="list" class="button">Return to the List</a>
+	</div>
+	
 	</tiles:putAttribute>
 </tiles:insertDefinition>

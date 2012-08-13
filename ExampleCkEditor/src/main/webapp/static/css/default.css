@@ -7,7 +7,7 @@ div.content {
 }
 
 div.tableWrapper {
-	margin-bottom: 15px;
+	margin-bottom: 35px;
 }
 
 table.dataTable {
@@ -15,10 +15,17 @@ table.dataTable {
 	border-collapse: collapse;
 }
 
-a.button {
+div.buttonz {
 	display: block;
 	clear: both;
 	padding: 10px 0px 10px 0px;
+}
+
+a.button {
+	display: inline;
+	border: 2px inset #CCCCCC;
+	border-radius: 8px;
+	padding: 5px 10px 5px 10px;
 }
 
 td.center {
