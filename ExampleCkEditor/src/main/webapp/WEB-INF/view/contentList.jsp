@@ -7,11 +7,7 @@
 	<tiles:putAttribute name="script">
 
 		$(document).ready(function() {
-			
-			$.getScript("../../static/js/jquery.dataTables.min.js", function(script, textStatus) {
-				$('table.dataTable').dataTable();
-			});
-
+			$('table.dataTable').dataTable();
 		});
 
 	</tiles:putAttribute>

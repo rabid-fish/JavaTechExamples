@@ -21,6 +21,7 @@
 	</div>
 	
 	<script type="text/javascript" src="../../static/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../static/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript">
 	//<![CDATA[
 		

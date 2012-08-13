@@ -10,14 +10,10 @@
 		// From the api docs: "This global variable must be set before the editor script loading."
 		var CKEDITOR_BASEPATH = "../../static/ckeditor/"
 		
-		$(document).ready(function() {
-			
-			$.getScript("../../static/ckeditor/ckeditor.concatenated.js", function(script, textStatus) {
-				CKEDITOR.replace( 'text', {
-					customConfig : 'ckeditor.config.js'
-				});
+		$.getScript("../../static/ckeditor/ckeditor.concatenated.js", function(script, textStatus) {
+			CKEDITOR.replace( 'text', {
+				customConfig : 'ckeditor.config.js'
 			});
-
 		});
 		
 	</tiles:putAttribute>
