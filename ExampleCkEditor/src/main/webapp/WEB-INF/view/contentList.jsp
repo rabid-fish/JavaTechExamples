@@ -30,7 +30,7 @@
 					<c:forEach items="${list}" var="content">
 						<tr>
 							<td class="center"><a href="update?id=${content.id}">${content.id}</a></td>
-							<td class="center"><a href="update?id=${content.id}">${content.text}</a></td>
+							<td class="center"><a href="update?id=${content.id}"><c:out  value="${content.text}" /></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
