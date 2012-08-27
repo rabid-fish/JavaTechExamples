@@ -10,6 +10,7 @@
 	<name>ExampleCkEditor</name>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<junit.version>4.8.2</junit.version>
 		<slf4j.version>1.6.6</slf4j.version>
@@ -36,7 +37,6 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -84,7 +84,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Tiles -->
@@ -202,7 +201,6 @@
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.2.8</version>
-			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

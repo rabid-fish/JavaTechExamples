@@ -46,7 +46,7 @@ public class ContentController {
 
 		content.setId(null); // ensure this is not provided
 		repository.save(content);
-		
+
 		return "redirect:list";
 	}
 

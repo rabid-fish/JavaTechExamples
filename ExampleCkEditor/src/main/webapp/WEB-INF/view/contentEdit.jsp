@@ -28,7 +28,7 @@
 			<div><form:errors path="text" /></div>
 			<div><form:textarea path="text" id="text" rows="10" cols="80" /></div>
 		</div>
-
+		
 		<div>
 			<input type="submit" />
 		</div>
