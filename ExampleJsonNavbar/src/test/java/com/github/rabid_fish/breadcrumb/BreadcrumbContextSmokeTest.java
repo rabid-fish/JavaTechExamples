@@ -1,4 +1,4 @@
-package com.github.rabid_fish.navbar;
+package com.github.rabid_fish.breadcrumb;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,9 +11,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.rabid_fish.breadcrumb.Breadcrumb;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/META-INF/spring/servlet-context.xml")
-public class NavbarContextSmokeTest {
+public class BreadcrumbContextSmokeTest {
 
 	@Test
 	public void test() {
@@ -24,9 +26,8 @@ public class NavbarContextSmokeTest {
 	public void testReadFile() throws JsonParseException, JsonMappingException, IOException {
 		
 		ObjectMapper mapper = new ObjectMapper();
-		
-		InputStream stream = getClass().getResourceAsStream("/navbar.json");
-		Navbar navbar = mapper.readValue(stream, Navbar.class);
+		InputStream stream = getClass().getResourceAsStream("/breadcrumb.json");
+		Breadcrumb navbar = mapper.readValue(stream, Breadcrumb.class);
 		System.out.println(navbar.getChildren().get(0).getChildren().get(0).getTitle());
 	}
 

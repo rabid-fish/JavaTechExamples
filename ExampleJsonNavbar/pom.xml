@@ -3,11 +3,11 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.rabid-fish</groupId>
-	<artifactId>ExampleJsonNavbar</artifactId>
+	<artifactId>ExampleJsonBreadcrumb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<packaging>war</packaging>
-	<name>ExampleJsonNavbar</name>
+	<name>ExampleJsonBreadcrumb</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
