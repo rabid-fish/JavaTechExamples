@@ -1,3 +1,3 @@
 <%
-    response.sendRedirect("app/breadcrumb/home");
+    response.sendRedirect("app/menu/home");
 %>
