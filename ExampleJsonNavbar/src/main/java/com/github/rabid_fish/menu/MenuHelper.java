@@ -14,10 +14,13 @@ public class MenuHelper {
 	private Map<String, MenuItem> mapUrlToMenuItem = new HashMap<String, MenuItem>();
 	private Map<String, MenuItem> mapNameToMenuItem = new HashMap<String, MenuItem>();
 	private Map<String, MenuItem> mapUrlToParent = new HashMap<String, MenuItem>();
+	private List<MenuItem> index = new ArrayList<MenuItem>();
 	
 	public MenuHelper(String resourcePath) {
 		setMenuItems(resourcePath);
-		fillMapsAndList(menuItems, 0);
+		fillMaps(menuItems, 0);
+		mapChildren(menuItems);
+		createIndexAndMapDepth(menuItems[0], 0);
 	}
 	
 	private void setMenuItems(String resourcePath) {
@@ -31,14 +34,16 @@ public class MenuHelper {
 		}
 	}
 	
-	private void fillMapsAndList(MenuItem[] menuItems, int depth) {
+	private void fillMaps(MenuItem[] menuItems, int depth) {
 		
 		for (MenuItem menuItem : menuItems) {
 			mapUrlToMenuItem.put(menuItem.getUrl(), menuItem);
 			mapNameToMenuItem.put(menuItem.getName(), menuItem);
 		}
-		
-		// Catch all the child mapping on the second pass
+	}
+
+	protected void mapChildren(MenuItem[] menuItems) {
+
 		for (MenuItem menuItem : menuItems) {
 			List<String> children = menuItem.getChildren();
 			for (String child : children) {
@@ -48,8 +53,16 @@ public class MenuHelper {
 		}
 	}
 	
-	public MenuItem[] getMenuItems() {
-		return menuItems;
+	protected void createIndexAndMapDepth(MenuItem menuItem, int depth) {
+		
+		menuItem.setDepth(depth);
+		index.add(menuItem);
+		
+		for (String child : menuItem.getChildren()) {
+			MenuItem childMenuItem = mapNameToMenuItem.get(child);
+			if (childMenuItem == null) continue;
+			createIndexAndMapDepth(childMenuItem, depth + 1);
+		}
 	}
 	
 	public List<MenuItem> listParentMenuItemsForUrl(String url) {
@@ -70,6 +83,15 @@ public class MenuHelper {
 		}
 		
 		return list;
+	}
+	
+	public List<MenuItem> getIndex() {
+		return index;
+	}
+
+	public MenuItem getMenuItemForUrl(String url) {
+		MenuItem menuItem = mapUrlToMenuItem.get(url);
+		return menuItem;
 	}
 	
 	public String getTitleForUrl(String url) {

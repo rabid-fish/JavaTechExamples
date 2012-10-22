@@ -58,4 +58,15 @@ public class MenuHelperTest {
 		assertTrue(list.size() == 0);
 	}
 	
+	@Test
+	public void testCheckIndex() {
+		assertTrue(helper.getIndex().get(1).getName().equals("Level 1 A"));
+		assertTrue(helper.getIndex().get(2).getName().equals("Level 2 A"));
+	}
+	
+	@Test
+	public void testGetDepthForUrl() {
+		assertTrue(helper.getMenuItemForUrl(TEST_URL).getDepth() == 2);
+	}
+	
 }

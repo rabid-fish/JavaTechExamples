@@ -24,7 +24,7 @@ public class MenuController {
 
 		model.addAttribute("title", helper.getTitleForUrl(url));
 		model.addAttribute("name", helper.getNameForUrl(url));
-		model.addAttribute("menuItems", helper.getMenuItems());
+		model.addAttribute("menuItems", helper.getIndex());
 
 		return "menu";
 	}
