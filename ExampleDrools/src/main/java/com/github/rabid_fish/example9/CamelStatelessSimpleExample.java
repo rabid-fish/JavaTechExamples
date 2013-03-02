@@ -1,4 +1,4 @@
-package com.github.rabid_fish.example8;
+package com.github.rabid_fish.example9;
 
 import org.drools.KnowledgeBase;
 import org.drools.runtime.StatelessKnowledgeSession;

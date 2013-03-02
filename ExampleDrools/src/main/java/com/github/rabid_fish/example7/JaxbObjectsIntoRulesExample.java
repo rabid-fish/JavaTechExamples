@@ -39,7 +39,7 @@ public class JaxbObjectsIntoRulesExample extends ExampleParent {
 		}
 	}
 
-	private ContactType createContact(ObjectFactory objectFactory, String name, String age, String gender) {
+	public static ContactType createContact(ObjectFactory objectFactory, String name, String age, String gender) {
 		
 		ContactType contact = objectFactory.createContactType();
 		contact.setName(name);

@@ -31,7 +31,7 @@
 			<property name="logLevel" value="DEBUG" />
 		</bean>
 
-		<bean id="processor" class="com.github.rabid_fish.example8.CamelStatelessSimpleExample" />
+		<bean id="processor" class="com.github.rabid_fish.example9.CamelStatelessSimpleExample" />
 
 		<camelContext xmlns="http://camel.apache.org/schema/spring" id="camelExampleProcessorCamelContext" trace="true">
 
