@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jetty.client.HttpExchange;
 import org.eclipse.jetty.http.HttpURI;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -39,7 +40,7 @@ public class JettyUtil {
 		}
 	}
 
-	public static class GoogleProxyServlet extends ProxyServlet {
+	public static class SomewhereProxyServlet extends ProxyServlet {
 
 		@Override
 		protected HttpURI proxyHttpURI(String scheme, String serverName,
@@ -65,12 +66,28 @@ public class JettyUtil {
 		public SomewhereTransparentProxyServlet(String prefix, String schema, String host, int port, String path) {
 			super(prefix, schema, host, port, path);
 		}
+		
+		@Override
+	    protected void customizeExchange(HttpExchange exchange, HttpServletRequest request) {
+			
+			// Some headers we might consider adding
+//			"Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+//			"Accept-Charset:ISO-8859-1,utf-8;q=0.7,*;q=0.3"
+//			"Accept-Encoding:gzip,deflate,sdch"
+//			"Accept-Language:en-US,en;q=0.8"
+//			"Cache-Control:no-cache"
+//			"Connection:keep-alive"
+//			"Host:logback.qos.ch"
+//			"Pragma:no-cache"
+
+			exchange.getRequestFields().clear();
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
 
 		// Servlet servlet = new HelloServlet();
-		Servlet servlet = new SomewhereTransparentProxyServlet("/logback", "logback.qos.ch", 80);
+		Servlet servlet = new SomewhereTransparentProxyServlet("/yahoo", "www.yahoo.com", 80);
 		ServletHolder holder = new ServletHolder(servlet);
 
 		ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
