@@ -21,7 +21,7 @@ import org.eclipse.jetty.servlets.ProxyServlet;
  * http://stackoverflow.com/questions/8172465/usage-examples-for-jettys-
  * proxyservlet-transparent-class
  */
-public class JettyUtil {
+public class JettyScratch {
 
 	public static class HelloServlet extends HttpServlet {
 

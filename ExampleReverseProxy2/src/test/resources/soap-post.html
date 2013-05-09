@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Soap Post</title>
+	
+	<script type='text/javascript' src='mustache.js'></script>
+	<script type="text/javascript">
+		
+		function display() {
+			var data = {
+				"temperature": "100",
+				"fromUnit" : "degreeCelsius",
+				"toUnit" : "degreeFarenheit"
+			};
+			var template = document.getElementById("soapRequest").innerHTML;
+			var output = Mustache.render(template, data);
+			alert(output);
+		}
+		
+	</script>
+	
+<script id="soapRequest" type="text/html">
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+	<ConvertTemp xmlns="http://www.webserviceX.NET/">
+		<Temperature>{{temperature}}</Temperature>
+		<FromUnit>{{fromUnit}}</FromUnit>
+		<ToUnit>{{toUnit}}</ToUnit>
+	</ConvertTemp>
+</soap:Body>
+</soap:Envelope>
+</script>
+
+<script id="soapResponse" type="text/html">
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+	<ConvertTempResponse xmlns="http://www.webserviceX.NET/">
+		<ConvertTempResult>double</ConvertTempResult>
+	</ConvertTempResponse>
+</soap:Body>
+</soap:Envelope>
+</script>
+
+</head>
+
+<body>
+
+	<h1>Soap Post</h1>
+	<p>Post your soap body below</p>
+
+	<form action="http://www.webservicex.net/ConvertTemperature.asmx?op=ConvertTemp" method="POST">
+
+		<div>
+			<span>Temperature</span>
+			<input type="text" value="temperature" onClick="display();" />
+		</div>
+		
+		<div>
+			<span>From Unit</span>
+			<input type="text" value="fromUnit" />
+		</div>
+		
+		<div>
+			<span>To Unit</span>
+			<input type="text" value="toUnit" />
+		</div>
+		
+		<div>
+			<input type="submit" value="Submit" onClick="display();" />
+		</div>
+		
+	</form>
+	
+	<div>
+		<h3>Sample Request</h3>
+		<div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+  &lt;soap:Body&gt;
+    &lt;ConvertTemp xmlns=&quot;http://www.webserviceX.NET/&quot;&gt;
+      &lt;Temperature&gt;double&lt;/Temperature&gt;
+      &lt;FromUnit&gt;degreeCelsius or degreeFahrenheit or degreeRankine or degreeReaumur or kelvin&lt;/FromUnit&gt;
+      &lt;ToUnit&gt;degreeCelsius or degreeFahrenheit or degreeRankine or degreeReaumur or kelvin&lt;/ToUnit&gt;
+    &lt;/ConvertTemp&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</pre>
+		</div>
+		
+		<h3>Sample Response</h3>
+		<div>
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+  &lt;soap:Body&gt;
+    &lt;ConvertTempResponse xmlns=&quot;http://www.webserviceX.NET/&quot;&gt;
+      &lt;ConvertTempResult&gt;double&lt;/ConvertTempResult&gt;
+    &lt;/ConvertTempResponse&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</pre>
+		</div>
+	</div>
+
+</body>
+</html>
