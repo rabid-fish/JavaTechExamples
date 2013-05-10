@@ -1,0 +1,4 @@
+[
+	{ "path" : "/soap/example1.xml", "regex" : "^example1$" },
+	{ "path" : "/soap/example2.xml", "regex" : "^.*example2.*$" }
+]
