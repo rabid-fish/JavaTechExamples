@@ -24,7 +24,6 @@ public class MockMapUrlHelper extends MockMapHelper<String> {
 		}
 	}
 
-	
 	public String getMockBodyForUrl(String url) throws Exception {
 		
 		String key = getKeyForRequestUrl(url);

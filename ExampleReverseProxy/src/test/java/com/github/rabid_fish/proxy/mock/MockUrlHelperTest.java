@@ -9,8 +9,8 @@ import org.junit.Test;
 public class MockUrlHelperTest {
 
 	public static final String TEST_JSON_PATH = "/html/example_url.json";
-	public static final String TEST_URL = "/example/example1";
-	public static final String TEST_BAD_URL = "/example/bad";
+	public static final String TEST_URL = "/form/example1";
+	public static final String TEST_BAD_URL = "/form/bad";
 	
 	MockMapUrlHelper helper;
 
