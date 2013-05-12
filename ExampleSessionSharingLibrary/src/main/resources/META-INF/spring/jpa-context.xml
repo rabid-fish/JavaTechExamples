@@ -15,7 +15,7 @@
 	<tx:annotation-driven />
 	<jpa:repositories base-package="com.github.rabid_fish.session" />
 	<context:component-scan base-package="com.github.rabid_fish" />
-	<import resource="jpa-datasource.xml"/>
+	<import resource="classpath:/META-INF/spring/jpa-datasource.xml"/>
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
