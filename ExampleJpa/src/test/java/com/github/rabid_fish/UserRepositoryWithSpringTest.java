@@ -24,12 +24,7 @@ public class UserRepositoryWithSpringTest {
 		user = repository.save(user);
 
 		assertEquals(user, repository.findOne(user.getId()));
-	}
-	
-	@Test
-	public void testFindByName() {
-		
 		assertTrue(repository.findByName("Dan") != null);
 	}
-
+	
 }
