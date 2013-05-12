@@ -26,7 +26,7 @@ public class DifferentObjectsIntoRulesExample extends ExampleParent {
 
 		ObjectFactory objectFactory = new ObjectFactory();
 		ContactType contact = JaxbObjectsIntoRulesExample.createContact(
-				objectFactory, "John Deer", "16", "male");
+				objectFactory, "Jane Doe", "19", "female");
 
 		Number number = new Number("3");
 

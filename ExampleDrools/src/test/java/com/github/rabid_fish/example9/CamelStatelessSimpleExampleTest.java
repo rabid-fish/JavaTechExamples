@@ -21,7 +21,7 @@ public class CamelStatelessSimpleExampleTest extends CamelSpringTestSupport {
 	
 	@Override
 	protected AbstractApplicationContext createApplicationContext() {
-		return new ClassPathXmlApplicationContext("classpath:/com/github/rabid_fish/example8/CamelStatelessSimpleExample.xml");
+		return new ClassPathXmlApplicationContext("classpath:/com/github/rabid_fish/example9/CamelStatelessSimpleExample.xml");
 	}
 	
 	@Test
