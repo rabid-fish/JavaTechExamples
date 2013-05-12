@@ -1,4 +1,4 @@
-package com.github.rabid_fish.proxy;
+package com.github.rabid_fish.proxy.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
