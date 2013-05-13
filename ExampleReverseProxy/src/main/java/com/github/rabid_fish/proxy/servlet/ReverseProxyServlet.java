@@ -28,6 +28,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.client.HttpExchange;
 import org.eclipse.jetty.servlets.ProxyServlet;
 
+/**
+ * Abstract class that takes care of a couple things for proxies:
+ * <ul>
+ * <li>clears the request headers so target servers do no misinterpret the request</li>
+ * <li>provides utility methods for child classes</li>
+ * </ul>
+ */
 public abstract class ReverseProxyServlet extends ProxyServlet.Transparent {
 
 	abstract boolean sendMockResponse(HttpServletRequest request, HttpServletResponse response);

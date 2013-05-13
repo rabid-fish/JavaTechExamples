@@ -16,6 +16,9 @@
 
 package com.github.rabid_fish.proxy.mock;
 
+/**
+ * Represents a single config record in the json config file.
+ */
 public class MockMapItem {
 
 	private String path;

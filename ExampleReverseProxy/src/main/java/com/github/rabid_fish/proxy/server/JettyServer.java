@@ -27,10 +27,12 @@ import com.github.rabid_fish.proxy.servlet.ProxyHtmlServlet;
 import com.github.rabid_fish.proxy.servlet.ProxySoapServlet;
 
 /**
- * Useful links to read
+ * Only class with a main method, JettyServer stands up a single-servlet
+ * Jetty server instance based on the arguments passed in.  The servlet
+ * types are listed in the enum JettyServerType.
  * 
- * "I want to send an XML file as a request to a SOAP server"...
- * http://stackoverflow.com/questions/12827900/why-is-this-simple-soap-client-not-working-org-apache-http
+ * See the README.txt file for a list of command line examples of how
+ * to interact with this class' main().
  */
 public class JettyServer {
 

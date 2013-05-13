@@ -26,6 +26,9 @@ import org.apache.commons.io.IOUtils;
 
 import com.github.rabid_fish.proxy.mock.MockMapRegexHelper;
 
+/**
+ * Proxies a SOAP service.
+ */
 public class ProxySoapServlet extends ReverseProxyServlet {
 
 	String mockPath;

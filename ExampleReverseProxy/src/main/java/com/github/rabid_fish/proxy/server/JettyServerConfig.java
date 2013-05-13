@@ -18,7 +18,9 @@ package com.github.rabid_fish.proxy.server;
 
 import java.net.URL;
 
-
+/**
+ * Break up the list of command line arguments into properties.
+ */
 public class JettyServerConfig {
 
 	private JettyServerType servletType = null;

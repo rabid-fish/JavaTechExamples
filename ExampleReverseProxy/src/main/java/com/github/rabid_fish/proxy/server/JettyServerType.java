@@ -16,6 +16,9 @@
 
 package com.github.rabid_fish.proxy.server;
 
+/**
+ * A list of servlet types that JettyServer may be started with.
+ */
 enum JettyServerType {
 	PROXY_HTML("proxy_html"), 
 	PROXY_SOAP("proxy_soap"), 

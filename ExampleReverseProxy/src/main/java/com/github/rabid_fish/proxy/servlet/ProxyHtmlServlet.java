@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.github.rabid_fish.proxy.mock.MockMapUrlHelper;
 
+/**
+ * Proxies an html 'GET' service.
+ */
 public class ProxyHtmlServlet extends ReverseProxyServlet {
 
 	String mockPath;

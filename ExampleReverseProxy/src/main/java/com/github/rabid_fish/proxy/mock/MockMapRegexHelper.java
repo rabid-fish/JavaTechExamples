@@ -21,6 +21,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * Extends MockMapHelper to cause only two fields in the config file
+ * to be 'seen': path and regex.
+ */
 public class MockMapRegexHelper extends MockMapHelper<Pattern> {
 
 	private Map<Pattern, String> mapRegexToFilename = new HashMap<Pattern, String>();

@@ -26,7 +26,8 @@ import org.apache.commons.io.FileUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
- * The developer
+ * MockMapHelper handles unmarshalling a json config file to an array
+ * of MockMapItems. 
  */
 public abstract class MockMapHelper<A> {
 	

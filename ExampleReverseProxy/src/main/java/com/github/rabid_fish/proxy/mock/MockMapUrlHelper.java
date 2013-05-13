@@ -20,7 +20,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-
+/**
+ * Extends MockMapHelper to cause only two fields in the config file
+ * to be 'seen': path and regex.
+ */
 public class MockMapUrlHelper extends MockMapHelper<String> {
 
 	private Map<String, String> mapUrlToFilename = new HashMap<String, String>();
