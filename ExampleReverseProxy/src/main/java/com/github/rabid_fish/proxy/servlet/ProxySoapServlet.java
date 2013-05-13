@@ -64,8 +64,14 @@ public class ProxySoapServlet extends ReverseProxyServlet {
 			String mockBody;
 
 			if (method.equals("POST")) {
+				
 				ServletInputStream stream = request.getInputStream();
 				String requestBody = IOUtils.toString(stream);
+				
+				// Need to save off the body so that the input stream can be reset later
+				// by the parent class.
+				request.setAttribute(ReverseProxyServlet.PROXY_REQUEST_BODY, requestBody);
+				
 				mockBody = mockMapRegexHelper.getMockBodyForBody(requestBody);
 				if (mockBody != null) {
 					writeMockResponse(response, mockBody);

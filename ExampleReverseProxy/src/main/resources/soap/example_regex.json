@@ -1,4 +1,4 @@
 [
-	{ "path" : "/soap/example1.xml", "regex" : "^example1$" },
-	{ "path" : "/soap/example2.xml", "regex" : "^.*example2.*$" }
+	{ "path" : "/soap/example1.xml", "regex" : "^.*operand1\\>99999\\<.*$" },
+	{ "path" : "/soap/example2.xml", "regex" : "^.*operand1\\>88888\\<.*$" }
 ]

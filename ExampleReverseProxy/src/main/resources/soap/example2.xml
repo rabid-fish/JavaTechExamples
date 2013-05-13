@@ -1,1 +1,9 @@
-<node>Example 2</node>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mat="http://www.github.com/rabid-fish/math2/">
+	<soapenv:Header />
+	<soapenv:Body>
+		<mat:MathResponse>
+			<!-- This is a mocked response -->
+			<result>20</result>
+		</mat:MathResponse>
+	</soapenv:Body>
+</soapenv:Envelope>

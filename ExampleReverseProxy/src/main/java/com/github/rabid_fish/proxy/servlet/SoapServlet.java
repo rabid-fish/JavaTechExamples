@@ -33,7 +33,14 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 /**
- * Returns an SOAP response.
+ * Returns a SOAP response.
+ * 
+ * If using an http GET request, if you have '?wsdl' on the end of your url, 
+ * this servlet will return the math.wsdl file.
+ * 
+ * If using an http POST request containing a valid MathRequest SOAP request,
+ * this will add the two operands and return the result in a valid MathResponse
+ * envelope.
  */
 public class SoapServlet extends HttpServlet {
 

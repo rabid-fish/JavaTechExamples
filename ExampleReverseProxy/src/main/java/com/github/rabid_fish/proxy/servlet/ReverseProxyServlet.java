@@ -16,7 +16,9 @@
 
 package com.github.rabid_fish.proxy.servlet;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.client.HttpExchange;
+import org.eclipse.jetty.http.HttpFields;
 import org.eclipse.jetty.servlets.ProxyServlet;
 
 /**
@@ -37,32 +40,12 @@ import org.eclipse.jetty.servlets.ProxyServlet;
  */
 public abstract class ReverseProxyServlet extends ProxyServlet.Transparent {
 
+	public static final String PROXY_REQUEST_BODY = "proxy-request-body";
+
 	abstract boolean sendMockResponse(HttpServletRequest request, HttpServletResponse response);
 
 	public ReverseProxyServlet(String prefix, String host, int port) {
 		super(prefix, host, port);
-	}
-
-	@Override
-	protected void customizeExchange(HttpExchange exchange, HttpServletRequest request) {
-
-		// Some headers we might consider adding
-		// "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-		// "Accept-Charset:ISO-8859-1,utf-8;q=0.7,*;q=0.3"
-		// "Accept-Encoding:gzip,deflate,sdch"
-		// "Accept-Language:en-US,en;q=0.8"
-		// "Cache-Control:no-cache"
-		// "Connection:keep-alive"
-		// "Host:logback.qos.ch"
-		// "Pragma:no-cache"
-
-		// For whatever reason, transparent proxying was broken unless we
-		// cleared out the request headers. Yahoo, microsoft, and your 
-		// average Apache run site were behaving as if we are connecting 
-		// via telnet and returned something different from the page 
-		// being requested.
-
-		exchange.getRequestFields().clear();
 	}
 
 	@Override
@@ -77,7 +60,38 @@ public abstract class ReverseProxyServlet extends ProxyServlet.Transparent {
 
 		super.service(request, response);
 	}
+    
+	@Override
+	protected void customizeExchange(HttpExchange exchange, HttpServletRequest request) {
 
+		// For whatever reason, transparent proxying was broken unless we
+		// cleared out some the request headers. Yahoo, microsoft, and your 
+		// average Apache run site were behaving as if we are connecting 
+		// via telnet and returned something different from the page 
+		// being requested.
+		HttpFields requestFields = exchange.getRequestFields();
+		for (int i = requestFields.size() - 1; i > 0; i--) {
+			
+			String fieldName = requestFields.getField(i).getName();
+			String value = requestFields.getField(i).getValue();
+			
+			System.out.println(fieldName + " = " + value);
+			if (fieldName.startsWith("X-Forwarded") ||
+				fieldName.startsWith("Via")) {
+				requestFields.remove(fieldName);
+			}
+		}
+		
+		// If we read out 'request.getInputStream()' in the overriding servlet,
+		// then we have to reset the exchange's requestContentSource to a new
+		// stream.
+		if (request.getAttribute(PROXY_REQUEST_BODY) != null) {
+			String requestBody = (String) request.getAttribute(PROXY_REQUEST_BODY);
+			InputStream in = new ByteArrayInputStream(requestBody.getBytes());
+			exchange.setRequestContentSource(in);
+		}
+	}
+	
 	void writeMockResponse(HttpServletResponse response, String body) throws IOException {
 		
 		PrintWriter writer = response.getWriter();
