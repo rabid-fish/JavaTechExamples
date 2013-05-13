@@ -31,18 +31,10 @@ public class ProxyHtmlServlet extends ReverseProxyServlet {
 	String mockPath;
 	MockMapUrlHelper mockMapUrlHelper;
 	
-//	public ProxyHtmlServlet() {
-//		super();
-//	}
-
 	public ProxyHtmlServlet(String prefix, String host, int port, String mockPath) {
 		super(prefix, host, port);
 		this.mockPath = mockPath;
 	}
-
-//	public ProxyHtmlServlet(String prefix, String schema, String host, int port, String path) {
-//		super(prefix, schema, host, port, path);
-//	}
 
     public void init(ServletConfig config) throws ServletException {
     	

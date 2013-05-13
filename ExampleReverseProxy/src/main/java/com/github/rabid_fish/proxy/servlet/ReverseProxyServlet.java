@@ -39,17 +39,9 @@ public abstract class ReverseProxyServlet extends ProxyServlet.Transparent {
 
 	abstract boolean sendMockResponse(HttpServletRequest request, HttpServletResponse response);
 
-//	public ReverseProxyServlet() {
-//		super();
-//	}
-//
 	public ReverseProxyServlet(String prefix, String host, int port) {
 		super(prefix, host, port);
 	}
-
-//	public ReverseProxyServlet(String prefix, String schema, String host, int port, String path) {
-//		super(prefix, schema, host, port, path);
-//	}
 
 	@Override
 	protected void customizeExchange(HttpExchange exchange, HttpServletRequest request) {
