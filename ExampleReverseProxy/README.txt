@@ -30,11 +30,21 @@ Now open a browser to:
 You should see a mocked response returned.
 
 ===
+Soap Servlet
+===
+
+To start up a soap servlet:
+	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="soap 6003"
+Open a browser to:
+	http://localhost:6001/?wsdl
+You should see the wsdl print out to the browser.
+
+===
 Soap Proxy
 ===
 
 To start up a proxy to a locally running Tomcat with a deployed Soap service:
-	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="proxy_soap 6003 /soap/example_regex.json /soap localhost 8080"
+	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="proxy_soap 6004 /soap/example_regex.json /soap localhost 8080"
 Can't really try it out with a browser, I recommend grabbing SoapUI 
 and giving it a whirl that way.
 

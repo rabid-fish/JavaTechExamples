@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+	name="math2" 
+	targetNamespace="http://www.github.com/rabid-fish/math2/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:tns="http://www.github.com/rabid-fish/math2/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.github.com/rabid-fish/math2/">
+
+			<xsd:element name="MathRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="operand1" type="xsd:int"></xsd:element>
+						<xsd:element name="operand2" type="xsd:int"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="MathResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="result" type="xsd:int"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="MathRequest">
+		<wsdl:part name="parameters" element="tns:MathRequest"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="MathResponse">
+		<wsdl:part name="parameters" element="tns:MathResponse"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="MathPortType">
+		<wsdl:operation name="MathRequest">
+			<wsdl:input message="tns:MathRequest"></wsdl:input>
+			<wsdl:output message="tns:MathResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="MathBinding" type="tns:MathPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="MathRequest">
+			<soap:operation soapAction="http://www.github.com/rabid-fish/math2/MathRequest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="MathService">
+		<wsdl:port name="MathPort" binding="tns:MathBinding">
+			<soap:address location="http://localhost:6003/math/" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Math Service" resourceRoot="" soapui-version="4.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MathBinding" type="wsdl" bindingName="{http://www.github.com/rabid-fish/math2/}MathBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:6003/math?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:6003/math?wsdl"><con:part><con:url>http://localhost:6003/math?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="math2" targetNamespace="http://www.github.com/rabid-fish/math2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.github.com/rabid-fish/math2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.github.com/rabid-fish/math2/">
+      <xsd:element name="MathRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="operand1" type="xsd:int"/>
+            <xsd:element name="operand2" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MathResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MathRequest">
+    <wsdl:part name="parameters" element="tns:MathRequest"/>
+  </wsdl:message>
+  <wsdl:message name="MathResponse">
+    <wsdl:part name="parameters" element="tns:MathResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="MathPortType">
+    <wsdl:operation name="MathRequest">
+      <wsdl:input message="tns:MathRequest"/>
+      <wsdl:output message="tns:MathResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MathBinding" type="tns:MathPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="MathRequest">
+      <soap:operation soapAction="http://www.github.com/rabid-fish/math2/MathRequest"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MathService">
+    <wsdl:port name="MathPort" binding="tns:MathBinding">
+      <soap:address location="http://localhost/math/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:6003/math/</con:endpoint><con:endpoint>http://tinfoil:8088/mockMathBinding</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.github.com/rabid-fish/math2/MathRequest" name="MathRequest" bindingOperationName="MathRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:6003/math/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mat="http://www.github.com/rabid-fish/math2/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mat:MathRequest>
+         <operand1>?</operand1>
+         <operand2>?</operand2>
+      </mat:MathRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.github.com/rabid-fish/math2/MathRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="MathBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="MathRequest TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="MathRequest"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MathBinding</con:interface><con:operation>MathRequest</con:operation><con:request name="MathRequest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:6003/math/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mat="http://www.github.com/rabid-fish/math2/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mat:MathRequest>
+         <operand1>1</operand1>
+         <operand2>2</operand2>
+      </mat:MathRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.github.com/rabid-fish/math2/MathRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="MathRequest Invalid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MathBinding</con:interface><con:operation>MathRequest</con:operation><con:request name="MathRequest Invalid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:6003/math/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mat="http://www.github.com/rabid-fish/math2/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mat:MathRequest>
+         <operand1>a</operand1>
+         <operand2>b</operand2>
+      </mat:MathRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.github.com/rabid-fish/math2/MathRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService port="8088" path="/mockMathBinding" host="tinfoil" name="MathBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="MathRequest" interface="MathBinding" operation="MathRequest"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mat="http://www.github.com/rabid-fish/math2/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mat:MathResponse>
+         <result>?</result>
+      </mat:MathResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.github.com/rabid-fish/math2/MathRequest"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

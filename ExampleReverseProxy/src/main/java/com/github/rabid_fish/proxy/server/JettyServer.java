@@ -25,6 +25,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import com.github.rabid_fish.proxy.servlet.HtmlServlet;
 import com.github.rabid_fish.proxy.servlet.ProxyHtmlServlet;
 import com.github.rabid_fish.proxy.servlet.ProxySoapServlet;
+import com.github.rabid_fish.proxy.servlet.SoapServlet;
 
 /**
  * Only class with a main method, JettyServer stands up a single-servlet
@@ -82,7 +83,6 @@ public class JettyServer {
 		server.join();
 	}
 	
-	
 	Servlet getServlet(JettyServerConfig config) {
 		
 		
@@ -90,35 +90,19 @@ public class JettyServer {
 		
 		switch (config.getServletType()) {
 		case HTML:
-			servlet = getHtmlServlet(config);
+			servlet = new HtmlServlet();
+			break;
+		case SOAP:
+			servlet = new SoapServlet();
 			break;
 		case PROXY_HTML:
-			servlet = getReverseProxyHtmlServlet(config);
+			servlet = new ProxyHtmlServlet(config.getProxyUrl(), config.getTargetHost(), config.getTargetPort(), config.getProxyMockConfigPath());
 			break;
 		case PROXY_SOAP:
-			servlet = getReverseProxySoapServlet(config);
+			servlet = new ProxySoapServlet(config.getProxyUrl(), config.getTargetHost(), config.getTargetPort(), config.getProxyMockConfigPath());
 			break;
 		}
 		
 		return servlet;
 	}
-	
-	Servlet getHtmlServlet(JettyServerConfig config) {
-
-		HtmlServlet servlet = new HtmlServlet();
-		return servlet;
-	}
-
-	Servlet getReverseProxyHtmlServlet(JettyServerConfig config) {
-		
-		Servlet servlet = new ProxyHtmlServlet(config.getProxyUrl(), config.getTargetHost(), config.getTargetPort(), config.getProxyMockConfigPath());
-		return servlet;
-	}
-
-	Servlet getReverseProxySoapServlet(JettyServerConfig config) {
-
-		Servlet servlet = new ProxySoapServlet(config.getProxyUrl(), config.getTargetHost(), config.getTargetPort(), config.getProxyMockConfigPath());
-		return servlet;
-	}
-	
 }
