@@ -22,7 +22,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-import com.github.rabid_fish.proxy.servlet.FormServlet;
+import com.github.rabid_fish.proxy.servlet.HtmlServlet;
 import com.github.rabid_fish.proxy.servlet.ProxyHtmlServlet;
 import com.github.rabid_fish.proxy.servlet.ProxySoapServlet;
 
@@ -89,8 +89,8 @@ public class JettyServer {
 		Servlet servlet = null;
 		
 		switch (config.getServletType()) {
-		case FORM:
-			servlet = getFormServlet(config);
+		case HTML:
+			servlet = getHtmlServlet(config);
 			break;
 		case PROXY_HTML:
 			servlet = getReverseProxyHtmlServlet(config);
@@ -103,9 +103,9 @@ public class JettyServer {
 		return servlet;
 	}
 	
-	Servlet getFormServlet(JettyServerConfig config) {
+	Servlet getHtmlServlet(JettyServerConfig config) {
 
-		FormServlet servlet = new FormServlet();
+		HtmlServlet servlet = new HtmlServlet();
 		return servlet;
 	}
 

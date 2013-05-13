@@ -5,11 +5,11 @@ easily intercept the incoming request and return a mocked response.
 Below are some command line 'profiles' you can run with.
 
 ===
-Form Servlet
+Html Servlet
 ===
 
-To start up an html 'form' servlet:
-	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="form 6001"
+To start up an html servlet:
+	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="html 6001"
 Open a browser to:
 	http://localhost:6001/?one=yes&two=no
 You should see the additional 'GET' parameters print out in the browser.
@@ -18,15 +18,15 @@ You should see the additional 'GET' parameters print out in the browser.
 Html Proxy
 ===
 
-To start up a proxy to the html 'form' servlet:
-	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="proxy_html 6002 /html/example_url.json /form localhost 6001"
-You MUST have the 'form' servlet already running for this example to 
+To start up a proxy to the html servlet:
+	mvn exec:java -Dexec.mainClass=com.github.rabid_fish.proxy.server.JettyServer -Dexec.args="proxy_html 6002 /html/example_url.json /html localhost 6001"
+You MUST have the html servlet already running for this example to 
 work or else the proxy will be unable to connect to it. Open a browser 
 to:
-	http://localhost:6002/form/?one=no&two=yes
+	http://localhost:6002/html/?one=no&two=yes
 You should see the additiona 'GET' parameters print out in the browser.
 Now open a browser to:
-	http://localhost:6002/form/example1.html
+	http://localhost:6002/html/example1.html
 You should see a mocked response returned.
 
 ===

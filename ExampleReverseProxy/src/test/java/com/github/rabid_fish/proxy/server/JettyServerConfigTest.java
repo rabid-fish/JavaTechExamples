@@ -37,20 +37,20 @@ public class JettyServerConfigTest {
 	// The following tests have nothing to assert.  Either an exception was thrown or it wasn't.
 	
 	@Test
-	public void testValidateArgsForFormServlet() {
-		String[] args = { JettyServerType.FORM.toString(), SERVLET_PORT };
+	public void testValidateArgsForHtmlServlet() {
+		String[] args = { JettyServerType.HTML.toString(), SERVLET_PORT };
 		config.validateArgs(args);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testValidateArgsForFormServletMissingArg() {
-		String[] args = { JettyServerType.FORM.toString() };
+	public void testValidateArgsForHtmlServletMissingArg() {
+		String[] args = { JettyServerType.HTML.toString() };
 		config.validateArgs(args);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testValidateArgsForFormServletNonIntegerPort() {
-		String[] args = { JettyServerType.FORM.toString(), BAD_PARAMETER };
+	public void testValidateArgsForHtmlServletNonIntegerPort() {
+		String[] args = { JettyServerType.HTML.toString(), BAD_PARAMETER };
 		config.validateArgs(args);
 	}
 	
@@ -87,8 +87,8 @@ public class JettyServerConfigTest {
 	// Back to having asserts.
 	
 	@Test
-	public void testInitializeForFormServlet() {
-		String[] args = { JettyServerType.FORM.toString(), SERVLET_PORT };
+	public void testInitializeForHtmlServlet() {
+		String[] args = { JettyServerType.HTML.toString(), SERVLET_PORT };
 		config.initialize(args);
 		assertNotNull(config.getServletType());
 		assertNotNull(config.getServletPort());

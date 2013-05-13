@@ -1,4 +1,4 @@
 [
-	{ "path" : "/html/example1.html", "url" : "/form/example1" },
-	{ "path" : "/html/example2.html", "url" : "/form/example2" }
+	{ "path" : "/html/example1.html", "url" : "/html/example1" },
+	{ "path" : "/html/example2.html", "url" : "/html/example2" }
 ]

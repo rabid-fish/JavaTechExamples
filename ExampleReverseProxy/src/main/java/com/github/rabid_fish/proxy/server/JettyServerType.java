@@ -22,7 +22,7 @@ package com.github.rabid_fish.proxy.server;
 enum JettyServerType {
 	PROXY_HTML("proxy_html"), 
 	PROXY_SOAP("proxy_soap"), 
-	FORM("form"), 
+	HTML("html"), 
 	;
 
 	private String name;

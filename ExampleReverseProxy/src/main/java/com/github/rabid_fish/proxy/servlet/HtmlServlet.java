@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Returns an html response.
  */
-public class FormServlet extends HttpServlet {
+public class HtmlServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class FormServlet extends HttpServlet {
 		}
 
 		writer.println("\t<br>");
-		writer.println("<h1>Form Servlet as of " + new Date().toString() + "</h1>");
+		writer.println("<h1>Html servlet as of " + new Date().toString() + "</h1>");
 		writer.println("\t<br>");
 
 		writer.println("</body>");

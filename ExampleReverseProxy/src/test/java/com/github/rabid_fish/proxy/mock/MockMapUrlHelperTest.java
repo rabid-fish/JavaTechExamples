@@ -25,8 +25,8 @@ import org.junit.Test;
 public class MockMapUrlHelperTest {
 
 	public static final String TEST_JSON_PATH = "/html/example_url.json";
-	public static final String TEST_URL = "/form/example1";
-	public static final String TEST_BAD_URL = "/form/bad";
+	public static final String TEST_URL = "/html/example1";
+	public static final String TEST_BAD_URL = "/html/bad";
 	
 	MockMapUrlHelper helper;
 
