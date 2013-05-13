@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<tiles.version>2.2.2</tiles.version>
 		<slf4j.version>1.6.4</slf4j.version>
