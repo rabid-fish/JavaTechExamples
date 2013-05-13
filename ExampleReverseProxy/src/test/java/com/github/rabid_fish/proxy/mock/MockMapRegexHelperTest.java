@@ -27,11 +27,28 @@ import org.junit.Test;
 public class MockMapRegexHelperTest {
 
 	public static final String TEST_JSON_PATH = "/soap/example_regex.json";
-	public static final String TEST_BODY = "blah\nexample1\nblah\n";
-	public static final String TEST_BAD_BODY = "blah\n blah nothing blah\n blah\n";
-	
+	public static final String TEST_BODY = getRequestBody("99999", "1");
+	public static final String TEST_BAD_BODY = getRequestBody("", "");
+
 	MockMapRegexHelper helper;
 
+	public static String getRequestBody(String operand1, String operand2) {
+		
+		String requestBody = 
+			"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mat=\"http://www.github.com/rabid-fish/math2/\">" +
+			"   <soapenv:Header/>\n" +
+			"   <soapenv:Body>\n" +
+			"      <mat:MathRequest>\n" +
+			"         <operand1>" + operand1 + "</operand1>\n" +
+			"         <operand2>" + operand2 + "</operand2>\n" +
+			"      </mat:MathRequest>\n" +
+			"   </soapenv:Body>\n" +
+			"</soapenv:Envelope>\n"
+		;
+		
+		return requestBody;
+	}
+	
 	@Before
 	public void setUp() {
 		helper = new MockMapRegexHelper(TEST_JSON_PATH);
