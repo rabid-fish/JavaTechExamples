@@ -3,8 +3,8 @@
 <html>
 <head>
 <title>Welcome</title>
-<script type="text/javascript" src="/ExampleTiles/static/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="/ExampleTiles/static/js/helloDisplay.js"></script>
+<script type="text/javascript" src="/ExampleTiles3/static/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="/ExampleTiles3/static/js/helloDisplay.js"></script>
 </head>
 
 <body>

@@ -9,8 +9,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>3.0.5.RELEASE</spring.version>
-		<tiles.version>2.2.2</tiles.version>
+		<spring.version>3.2.4.RELEASE</spring.version>
+		<tiles.version>3.0.1</tiles.version>
 		<slf4j.version>1.5.8</slf4j.version>
 	</properties>
 
@@ -75,9 +75,6 @@
 			</exclusions>
 		</dependency>
 		
-		<!-- <dependency> <groupId>taglibs</groupId> <artifactId>standard</artifactId> 
-			<version>1.1.2</version> <type>jar</type> </dependency> -->
-
 		<!-- Tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
@@ -91,45 +88,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-el</artifactId>
+			<artifactId>tiles-api</artifactId>
 			<version>${tiles.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-servlet</artifactId>
-			<version>${tiles.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-servlet-wildcard</artifactId>
-			<version>${tiles.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-extras</artifactId>
-			<version>${tiles.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.tiles</groupId>
-					<artifactId>tiles-freemarker</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.tiles</groupId>
-					<artifactId>tiles-velocity</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.tiles</groupId>
-					<artifactId>tiles-mvel</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.tiles</groupId>
-					<artifactId>tiles-ognl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.tiles</groupId>
-					<artifactId>tiles-compat</artifactId>
-				</exclusion>
-			</exclusions>
+			<artifactId>tiles-request-api</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 
 		<!-- Logging -->
@@ -170,21 +135,6 @@
 			<version>1.6.4</version>
 		</dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>com.springsource.repository.bundles.milestone</id>
-			<url>http://repository.springsource.com/maven/bundles/milestone</url>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.bundles.release</id>
-			<url>http://repository.springsource.com/maven/bundles/release</url>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.bundles.external</id>
-			<url>http://repository.springsource.com/maven/bundles/external</url>
-		</repository>
-	</repositories>
 
 	<build>
 		<plugins>
