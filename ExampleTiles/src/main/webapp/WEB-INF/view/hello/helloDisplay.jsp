@@ -1,5 +1,5 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<tiles:insertDefinition name="layoutWithTemplateExpressionAdvanced">
+<tiles:insertDefinition name="layout">
 	<tiles:putAttribute name="body">
 
 <p>${message}</p>

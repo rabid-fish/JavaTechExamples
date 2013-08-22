@@ -4,13 +4,11 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-
-	<definition 
-		name="layoutWithTemplateExpressionAdvanced" 
-		preparer="com.test.HelloTilesViewPreparer" 
-		templateExpression="/WEB-INF/tile/${layout}">
-
-		<put-attribute name="script" expression="${viewJs}"/>
+	
+	<definition name="layout" template="/WEB-INF/tile/layout.jsp">
 	</definition>
 	
+	<definition name="layoutNoChrome" template="/WEB-INF/tile/layoutNoChrome.jsp">
+	</definition>
+
 </tiles-definitions>
