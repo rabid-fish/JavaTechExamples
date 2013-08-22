@@ -25,7 +25,7 @@ public class HelloController {
 	public String getHelloAjax(ModelMap model) {
 		model.addAttribute("message", "Hello from Spring MVC via AJAX!");
 		model.addAttribute("ajax", "true");
-		return "hello/helloDisplay";
+		return "hello/helloAjax";
 	}
 	
 	@RequestMapping(value = "/getTime", method = RequestMethod.GET)
