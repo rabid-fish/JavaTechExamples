@@ -1,0 +1,138 @@
+/* ----------------------------
+   simple reset
+   http://www.maxdesign.com.au/articles/css-reset/
+   ---------------------------- */
+
+html, body, ul, ol, li, form, fieldset, legend
+{
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
+
+fieldset,img { border: 0; }
+
+legend { color: #000; }
+
+li { list-style: none; }
+
+sup { vertical-align: text-top; }
+
+sub { vertical-align: text-bottom; }
+
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption, th, td
+{
+	text-align: left;
+	vertical-align: top;
+	font-weight: normal;
+}
+
+input, textarea, select
+{
+	font-size: 110%;
+	line-height: 1.1;
+}
+
+abbr, acronym
+{
+	border-bottom: .1em dotted;
+	cursor: help;
+}
+
+/*
+	Color scheme
+	  dark purple:	#880055
+	  grey: 		#999999
+	  light grey:	#D1D1D1
+	  white:		#FFFFFF
+	  black:		#000000
+*/
+
+/* layout */
+body {
+	margin: 10px;
+}
+
+#header, #container, #footer {
+	padding: 0px;
+	margin: 0px;
+}
+
+#header_inner, #content_inner, #footer_inner {
+	padding: 5px 20px;
+}
+
+/* colors and pretty */
+body {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+#banner {
+	font-size: 2.0em;
+	font-weight: bold;
+	padding: 10px;
+}
+
+#nav {
+	background-color: #880055;
+	padding: 3px;
+}
+
+#nav a, #nav li {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#nav a:hover {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#nav ul {
+	list-style-type: none;
+	display: inline;
+	padding: 3px;
+}
+
+#nav li {
+	display: inline;
+	padding: 3px 8px 3px 3px;
+	border-right: 1px solid #FFFFFF;
+}
+
+#container {
+	border: 1px solid #999999;
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px #AAAAAA;
+}
+
+#footer {
+	color: #FFFFFF;
+	background-color: #000000;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 5px solid #880055;
+}
+
+#footer a {
+	color: #FFFFFF;
+}
+
+#footer ul {
+	list-style-type: none;
+	display: inline;
+	padding: 3px;
+}
+
+#footer li {
+	display: inline;
+	padding: 3px;
+}
