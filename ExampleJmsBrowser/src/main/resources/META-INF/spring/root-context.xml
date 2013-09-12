@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:amq="http://activemq.apache.org/schema/core"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
 ">
 
+	<context:component-scan base-package="com.github.rabid_fish">
+    	<context:exclude-filter type="regex" expression="com\.github\.rabid_fish\.web.*"/>
+ 	</context:component-scan>	
+
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:META-INF/spring/environment.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!--
+		Articles which explain amq and spring jms setup:	
+		http://bsnyderblog.blogspot.com/2010/02/using-spring-jmstemplate-to-send-jms.html 
+		http://codedependents.com/2009/10/16/efficient-lightweight-jms-with-spring-and-activemq/ 
+	 -->
+
+	<amq:connectionFactory id="amqConnectionFactory"
+		brokerURL="${activemq.uri}" userName="${activemq.username}" password="${activemq.password}"
+		sendTimeout="5000" />
+
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<constructor-arg ref="amqConnectionFactory" />
+		<property name="sessionCacheSize" value="10" />
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<constructor-arg ref="connectionFactory" />
+		<property name="sessionTransacted" value="true" />
+		<property name="receiveTimeout" value="5000" />
+		<property name="timeToLive" value="5000" />
+	</bean>
+	
 </beans>

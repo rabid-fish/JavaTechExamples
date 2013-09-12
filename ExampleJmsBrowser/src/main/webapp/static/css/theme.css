@@ -48,7 +48,8 @@ abbr, acronym
 
 /*
 	Color scheme
-	  dark purple:	#880055
+	  dark purple:	#5000DB
+	  light purple:	#B58AFF
 	  grey: 		#999999
 	  light grey:	#D1D1D1
 	  white:		#FFFFFF
@@ -57,7 +58,7 @@ abbr, acronym
 
 /* layout */
 body {
-	margin: 10px;
+	margin: 20px;
 }
 
 #header, #container, #footer {
@@ -67,6 +68,10 @@ body {
 
 #header_inner, #content_inner, #footer_inner {
 	padding: 5px 20px;
+}
+
+#content_inner {
+	padding-bottom: 25px;
 }
 
 /* colors and pretty */
@@ -81,7 +86,7 @@ body {
 }
 
 #nav {
-	background-color: #880055;
+	background-color: #5000DB;
 	padding: 3px;
 }
 
@@ -119,7 +124,7 @@ body {
 	background-color: #000000;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	border-top: 5px solid #880055;
+	border-top: 5px solid #5000DB;
 }
 
 #footer a {
@@ -135,4 +140,60 @@ body {
 #footer li {
 	display: inline;
 	padding: 3px;
+}
+
+#serverInfo {
+	padding: 0px 10px 10px 10px;
+}
+
+td.serverInfoKey, td.serverInfoValue {
+	color: #B58AFF;
+	font-size: .8em;
+}
+
+td.serverInfoValue {
+	padding-right: 7px;
+	font-weight: bold;
+}
+
+span.queueName {
+	font-weight: bold;
+}
+
+span.queueMessageCount {
+	padding-left: 10px;
+}
+
+div.messages {
+	padding: 10px;
+}
+
+table.messages {
+	font-size: .8em;
+}
+
+table.messages th {
+	color: #999999;
+	font-size: .7em;
+}
+
+table.messages td {
+	padding: 2px 5px;
+}
+
+tr.stripe {
+	background-color: #D1D1D1;
+}
+
+a.action, a.action:visited, a.action:hover {
+	 color: #0000FF;
+}
+
+div.actions {
+	display: inline;
+	float: right;
+}
+
+li.action {
+	
 }

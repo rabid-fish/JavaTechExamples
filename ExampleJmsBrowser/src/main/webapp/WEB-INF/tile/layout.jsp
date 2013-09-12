@@ -13,10 +13,22 @@
 		<div id="header">
 			<div id="header_inner">
 				<div id="banner">ExampleJmsBrowser</div>
+				<div id="serverInfo">
+					<table>
+						<tbody>
+							<tr>
+								<td class="serverInfoKey">Name:</td>           <td class="serverInfoValue">localhost</td>
+								<td class="serverInfoKey">Version: </td>       <td class="serverInfoValue">5.8.0</td>
+								<td class="serverInfoKey">Store used: </td>    <td class="serverInfoValue">0%</td>
+								<td class="serverInfoKey">Memory used: </td>   <td class="serverInfoValue">22%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 				<div id="nav">
 					<ul>
-						<li class="active">Home</li>
-						<li class="inactive">Other</li>
+						<li class="active">Queues</li>
+						<li class="inactive">Connections</li>
 					</ul>
 				</div>
 				<div id="search"></div>
