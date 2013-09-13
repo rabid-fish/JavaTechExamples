@@ -1,0 +1,49 @@
+[
+	{
+		"name" : "ExampleJMS.Queue.Contacts",
+		"maxMessageCount" : 3,
+		"columns" : 
+		[
+			{
+				"title" : "Timestamp",
+				"property" : "JMSTimestamp"
+			},
+			{
+				"title" : "Message ID",
+				"property" : "JMSMessageID"
+			},
+			{
+				"title" : "First Name",
+				"regex" : "<firstName>([A-Za-z0-9]+)</firstName>"
+			},
+			{
+				"title" : "Last Name",
+				"regex" : "<lastName>([A-Za-z0-9]+)</lastName>"
+			}
+		]
+	}
+,
+	{
+		"name" : "ExampleJMS.Queue.Cars",
+		"maxMessageCount" : 3,
+		"columns" : 
+		[
+			{
+				"title" : "Timestamp",
+				"property" : "JMSTimestamp"
+			},
+			{
+				"title" : "Message ID",
+				"property" : "JMSMessageID"
+			},
+			{
+				"title" : "Make",
+				"regex" : "/make/"
+			},
+			{
+				"title" : "Model",
+				"regex" : "/model/"
+			}
+		]
+	}
+]

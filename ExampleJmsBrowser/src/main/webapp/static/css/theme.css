@@ -164,6 +164,18 @@ span.queueMessageCount {
 	padding-left: 10px;
 }
 
+div.queueSearch {
+	display: block;
+	position: absolute;
+	margin-left: 600px;
+	font-size: .8em;
+}
+
+span.queueSearchLabel {
+	color: #999999;
+	font-style: italic;
+}
+
 div.messages {
 	padding: 10px;
 }
