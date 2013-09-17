@@ -7,12 +7,15 @@ import java.util.regex.Pattern;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.rabid_fish.load.MessageLoad;
 import com.github.rabid_fish.load.MessageLoadHelper;
 
 public class ConfigHelperTest {
 
+	public static final Logger LOG = LoggerFactory.getLogger(ConfigHelperTest.class);
 	private static final String QUEUE_CONFIG_JSON = "/json/queueConfig.json";
 	private static final String QUEUE_LOAD_JSON = "/json/queueLoad.json";
 	
@@ -45,6 +48,6 @@ public class ConfigHelperTest {
 			text = matcher.group(0) + " : " + matcher.group(1);
 		}
 		
-		System.out.println(text);
+		LOG.info(text);
 	}
 }

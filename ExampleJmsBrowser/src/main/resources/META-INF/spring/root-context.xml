@@ -44,5 +44,13 @@
 		<property name="receiveTimeout" value="5000" />
 		<property name="timeToLive" value="5000" />
 	</bean>
-	
+
+	<bean class="org.springframework.jmx.support.MBeanServerConnectionFactoryBean">
+		<property name="serviceUrl" value="service:jmx:rmi:///jndi/rmi://localhost:1616/jmxrmi"/>
+	</bean>
+
+	<bean class="com.github.rabid_fish.jms.ActiveMqJmxBrowser">
+		<constructor-arg value="${activemq.host}"/>
+	</bean>
+
 </beans>

@@ -1,7 +1,7 @@
 [
 	{
 		"name" : "ExampleJMS.Queue.Contacts",
-		"maxMessageCount" : 3,
+		"maxMessageCount" : 10,
 		"columns" : 
 		[
 			{
