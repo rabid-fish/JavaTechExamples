@@ -6,7 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.github.rabid_fish.config.QueueConfig;
+import com.github.rabid_fish.model.QueueData;
 import com.github.rabid_fish.service.QueueService;
 
 @Controller
@@ -19,7 +19,7 @@ public class QueueController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getList(ModelMap model) {
 
-		Iterable<QueueConfig> list = queueService.getQueueConfigIterable();
+		Iterable<QueueData> list = queueService.getQueueDataIterable();
 		model.addAttribute("list", list);
 
 		if (!list.iterator().hasNext()) {

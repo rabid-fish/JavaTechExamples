@@ -34,8 +34,8 @@ public class QueueConfigHelperTest {
 	@Test
 	public void testConfigQueueRegexHitsQueueLoadMessage() {
 		
-		QueueConfig[] configQueueArray = new QueueConfigHelper(QUEUE_CONFIG_JSON).getConfigQueueArray();
-		String regex = configQueueArray[0].getColumns().get(2).getRegex();
+		QueueConfig[] queueConfigArray = new QueueConfigHelper(QUEUE_CONFIG_JSON).getConfigQueueArray();
+		String regex = queueConfigArray[0].getColumns().get(2).getRegex();
 		
 		MessageLoadHelper messageLoadHelper = new MessageLoadHelper(QUEUE_LOAD_JSON);
 		MessageLoad messageLoad = messageLoadHelper.getMessageLoadArray()[0];
@@ -54,9 +54,9 @@ public class QueueConfigHelperTest {
 	@Test
 	public void testGetConfigQueueForQueueName() {
 		
-		QueueConfig configQueue = helper.getConfigQueueArray()[0];
-		QueueConfig result = helper.getConfigQueueForQueueName(configQueue.getName());
-		assertTrue(result == configQueue);
+		QueueConfig queueConfig = helper.getConfigQueueArray()[0];
+		QueueConfig result = helper.getConfigQueueForQueueName(queueConfig.getName());
+		assertTrue(result == queueConfig);
 	}
 	
 	@Test

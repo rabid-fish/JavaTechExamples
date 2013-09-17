@@ -20,10 +20,10 @@ import com.github.rabid_fish.model.MessageData;
 
 public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 
-	private QueueConfig configQueue;
+	private QueueConfig queueConfig;
 
-	public JmsBrowserCallback(QueueConfig configQueue) {
-		this.configQueue = configQueue;
+	public JmsBrowserCallback(QueueConfig queueConfig) {
+		this.queueConfig = queueConfig;
 	}
 
 	public List<MessageData> doInJms(Session session, QueueBrowser browser) throws JMSException {
@@ -35,13 +35,13 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		while (e.hasMoreElements()) {
 
 			Message message = e.nextElement();
-			List<QueueConfigColumn> columns = configQueue.getColumns();
+			List<QueueConfigColumn> columns = queueConfig.getColumns();
 			MessageData messageData = new MessageData();
 
 			appendMessageDataToList(message, columns, messageData);
 			
 			list.add(messageData);
-			if (list.size() >= configQueue.getMaxMessageCount()) break;
+			if (list.size() >= queueConfig.getMaxMessageCount()) break;
 		}
 
 		return list;

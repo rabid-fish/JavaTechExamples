@@ -6,7 +6,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class QueueConfigHelper {
 
-	private QueueConfig[] configQueueArray = null;
+	private QueueConfig[] queueConfigArray = null;
 	
 	public QueueConfigHelper(String resourcePath) {
 		setConfigQueueArray(resourcePath);
@@ -25,23 +25,23 @@ public class QueueConfigHelper {
 	
 	public QueueConfig getConfigQueueForQueueName(String queueName) {
 		
-		QueueConfig configQueueForQueueName = null;
-		for (QueueConfig configQueueElement : configQueueArray) {
-			if (configQueueElement.getName().equals(queueName)) {
-				configQueueForQueueName = configQueueElement;
+		QueueConfig queueConfigForQueueName = null;
+		for (QueueConfig queueConfigElement : queueConfigArray) {
+			if (queueConfigElement.getName().equals(queueName)) {
+				queueConfigForQueueName = queueConfigElement;
 				break;
 			}
 		}
 		
-		return configQueueForQueueName;
+		return queueConfigForQueueName;
 	}
 
 	public QueueConfig[] getConfigQueueArray() {
-		return configQueueArray;
+		return queueConfigArray;
 	}
 
-	public void setConfigQueueArray(QueueConfig[] configQueueArray) {
-		this.configQueueArray = configQueueArray;
+	public void setConfigQueueArray(QueueConfig[] queueConfigArray) {
+		this.queueConfigArray = queueConfigArray;
 	}
 	
 }
