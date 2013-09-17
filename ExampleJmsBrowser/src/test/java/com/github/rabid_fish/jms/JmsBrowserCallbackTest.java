@@ -11,11 +11,18 @@ import javax.jms.TextMessage;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.rabid_fish.config.ConfigColumn;
+import com.github.rabid_fish.config.ConfigHelper;
 import com.github.rabid_fish.model.MessageData;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "/META-INF/spring/root-context.xml")
 public class JmsBrowserCallbackTest {
 
 	private static final String MESSAGE_TEXT = "find\nresponse\nin this string";
@@ -31,9 +38,12 @@ public class JmsBrowserCallbackTest {
 	
 	private JmsBrowserCallback callback;
 	
+	@Autowired
+	ConfigHelper configHelper;
+	
 	@Before
 	public void setUp() {
-		callback = new JmsBrowserCallback(JmsBrowser.CONFIG_QUEUE_ARRAY[0]);
+		callback = new JmsBrowserCallback(configHelper.getConfigQueueArray()[0]);
 	}
 	
 	@Test

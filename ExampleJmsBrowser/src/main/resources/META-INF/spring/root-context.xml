@@ -53,4 +53,12 @@
 		<constructor-arg value="${activemq.host}"/>
 	</bean>
 
+	<bean class="com.github.rabid_fish.load.MessageLoadHelper">
+		<constructor-arg value="${json.queue-load}"/>
+	</bean>
+
+	<bean class="com.github.rabid_fish.config.ConfigHelper">
+		<constructor-arg value="${json.queue-config}"/>
+	</bean>
+
 </beans>

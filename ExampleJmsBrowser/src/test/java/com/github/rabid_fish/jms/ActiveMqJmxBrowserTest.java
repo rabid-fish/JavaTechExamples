@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.rabid_fish.config.ConfigHelper;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/META-INF/spring/root-context.xml")
 public class ActiveMqJmxBrowserTest {
@@ -17,9 +19,12 @@ public class ActiveMqJmxBrowserTest {
 	@Autowired
 	private ActiveMqJmxBrowser stats;
 	
+	@Autowired
+	private ConfigHelper configHelper;
+	
 	@Test
 	public void test() {
-		String queueName = JmsBrowser.CONFIG_QUEUE_ARRAY[0].getName();
+		String queueName = configHelper.getConfigQueueArray()[0].getName();
 		JmsQueueStats queueStats = stats.getQueueStats(queueName);
 		LOG.info("Queue depth for " + queueName + ": " + queueStats.getQueueSize());
 	}

@@ -24,7 +24,6 @@ import com.github.rabid_fish.model.MessageData;
 public class JmsBrowser {
 
 	public static final Logger LOG = LoggerFactory.getLogger(JmsBrowser.class);
-	public static final ConfigQueue[] CONFIG_QUEUE_ARRAY = new ConfigHelper("/json/queueConfig.json").getConfigQueueArray();
 	
 	private static final int MAX_TIMEOUT = 100000;
 	
@@ -33,6 +32,9 @@ public class JmsBrowser {
 	
 	@Autowired
 	private ActiveMqJmxBrowser jmxBrowser;
+	
+	@Autowired
+	private ConfigHelper configHelper;
 	
 	public List<MessageData> browseTopMessages(ConfigQueue configQueue) {
 		
@@ -45,7 +47,7 @@ public class JmsBrowser {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
-		for (ConfigQueue configQueue : CONFIG_QUEUE_ARRAY) {
+		for (ConfigQueue configQueue : configHelper.getConfigQueueArray()) {
 			List<MessageData> top3Messages = browseTopMessages(configQueue);
 			listOfListOfQueueMessage.add(top3Messages);
 		}
@@ -69,7 +71,7 @@ public class JmsBrowser {
 
 	public void purgeAllQueues() throws JMSException {
 		
-		for (ConfigQueue configQueue : CONFIG_QUEUE_ARRAY) {
+		for (ConfigQueue configQueue : configHelper.getConfigQueueArray()) {
 			
 			String queueName = configQueue.getName();
 			

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.rabid_fish.config.ConfigHelper;
 import com.github.rabid_fish.load.MessageLoader;
 import com.github.rabid_fish.model.MessageData;
 
@@ -27,11 +28,14 @@ public class JmsBrowserTest {
 	@Autowired
 	MessageLoader messageLoader;
 	
+	@Autowired
+	private ConfigHelper configHelper;
+	
 	@Test
 	public void testBrowseTopMessage() {
 		
 		LOG.info("Running test");
-		List<MessageData> messageDataList = browser.browseTopMessages(JmsBrowser.CONFIG_QUEUE_ARRAY[0]);
+		List<MessageData> messageDataList = browser.browseTopMessages(configHelper.getConfigQueueArray()[0]);
 		LOG.info("Size of queue: " + messageDataList.size());
 		assertTrue(messageDataList.size() == 4);
 		

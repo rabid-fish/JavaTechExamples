@@ -21,10 +21,13 @@ public class MessageLoader {
 	@Autowired
 	private JmsBrowser jmsBrowser;
 	
+	@Autowired 
+	MessageLoadHelper messageLoadHelper;
+	
 	@PostConstruct
 	public void setUpClass() {
 		
-		MessageLoad[] messageLoadArray = new MessageLoadHelper("/json/queueLoad.json").getMessageLoadArray();
+		MessageLoad[] messageLoadArray = messageLoadHelper.getMessageLoadArray();
 		for (MessageLoad messageLoad : messageLoadArray) {
 			jmsBrowser.putMessage(messageLoad.getQueueName(), messageLoad.getText());
 		}
