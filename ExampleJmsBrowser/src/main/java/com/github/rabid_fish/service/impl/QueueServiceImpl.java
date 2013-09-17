@@ -26,22 +26,14 @@ public class QueueServiceImpl implements QueueService {
 	}
 
 	@Override
-	public Iterable<MessageData> getMessageDataIterable() {
+	public Iterable<MessageData> getMessageDataIterable(String queueName) {
 		
-//		ConfigQueue configQueueForQueueName = null;
-//		for (ConfigQueue configQueueElement : JmsBrowser.CONFIG_QUEUE_ARRAY) {
-//			if (configQueueElement.getName().equals(queueName)) {
-//				configQueueForQueueName = configQueueElement;
-//				break;
-//			}
-//		}
-//		
-//		if (configQueueForQueueName == null) {
-//			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
-//		}
-//		
-//		return browser.browseTopMessages(configQueueForQueueName);
-		return null;
+		ConfigQueue configQueueForQueueName = configHelper.getConfigQueueForQueueName(queueName);
+		if (configQueueForQueueName == null) {
+			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
+		}
+		
+		return browser.browseTopMessages(configQueueForQueueName);
 	}
 
 }

@@ -22,6 +22,19 @@ public class ConfigHelper {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public ConfigQueue getConfigQueueForQueueName(String queueName) {
+		
+		ConfigQueue configQueueForQueueName = null;
+		for (ConfigQueue configQueueElement : configQueueArray) {
+			if (configQueueElement.getName().equals(queueName)) {
+				configQueueForQueueName = configQueueElement;
+				break;
+			}
+		}
+		
+		return configQueueForQueueName;
+	}
 
 	public ConfigQueue[] getConfigQueueArray() {
 		return configQueueArray;

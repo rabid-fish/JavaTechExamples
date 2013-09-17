@@ -1,6 +1,6 @@
 package com.github.rabid_fish.config;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,5 +49,20 @@ public class ConfigHelperTest {
 		}
 		
 		LOG.info(text);
+	}
+	
+	@Test
+	public void testGetConfigQueueForQueueName() {
+		
+		ConfigQueue configQueue = helper.getConfigQueueArray()[0];
+		ConfigQueue result = helper.getConfigQueueForQueueName(configQueue.getName());
+		assertTrue(result == configQueue);
+	}
+	
+	@Test
+	public void testGetConfigQueueForQueueNameWithBadName() {
+		
+		ConfigQueue result = helper.getConfigQueueForQueueName("");
+		assertNull(result);
 	}
 }

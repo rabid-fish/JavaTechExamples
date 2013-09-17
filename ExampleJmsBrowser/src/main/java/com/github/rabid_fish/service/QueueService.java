@@ -6,6 +6,6 @@ import com.github.rabid_fish.model.MessageData;
 public interface QueueService {
 
 	Iterable<ConfigQueue> getQueueConfigIterable();
-	Iterable<MessageData> getMessageDataIterable();
+	Iterable<MessageData> getMessageDataIterable(String queueName);
 	
 }
