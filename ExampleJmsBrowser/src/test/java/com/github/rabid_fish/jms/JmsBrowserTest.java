@@ -1,21 +1,15 @@
 package com.github.rabid_fish.jms;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import javax.jms.JMSException;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.rabid_fish.config.ConfigHelper;
-import com.github.rabid_fish.config.ConfigQueue;
 import com.github.rabid_fish.model.MessageData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,22 +19,10 @@ public class JmsBrowserTest {
 	@Autowired
 	private JmsBrowser browser;
 	
-	private ConfigQueue[] configQueueArray = new ConfigHelper("/json/queueConfig.json").getConfigQueueArray();
-	
-	@Before
-	public void setUp() {
-		browser.loadMessages();
-	}
-	
-	@After
-	public void tearDown() throws JMSException {
-		browser.purgeAllQueues(configQueueArray);
-	}
-	
 	@Test
 	public void testBrowseTop3() {
 		
-		List<MessageData> messageDataList = browser.browseTop3(configQueueArray[0]);
+		List<MessageData> messageDataList = browser.browseTop3(JmsBrowser.CONFIG_QUEUE_ARRAY[0]);
 		assertTrue(messageDataList.size() == 3);
 		
 		for (int i = 0; i < messageDataList.size(); i++) {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
@@ -14,6 +16,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
+import com.github.rabid_fish.config.ConfigHelper;
 import com.github.rabid_fish.config.ConfigQueue;
 import com.github.rabid_fish.load.MessageLoad;
 import com.github.rabid_fish.load.MessageLoadHelper;
@@ -22,8 +25,20 @@ import com.github.rabid_fish.model.MessageData;
 @Component
 public class JmsBrowser {
 
+	public static final ConfigQueue[] CONFIG_QUEUE_ARRAY = new ConfigHelper("/json/queueConfig.json").getConfigQueueArray();
+	public static final MessageLoad[] MESSAGE_LOAD_ARRAY = new MessageLoadHelper("/json/queueLoad.json").getMessageLoadArray();
+	
 	private static final int MAX_TIMEOUT = 10000;
 	
+	@PostConstruct
+	public void setUpClass() {
+		loadMessages();
+	}
+	
+	@PreDestroy
+	public void tearDownClass() throws JMSException {
+		purgeAllQueues();
+	}
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
@@ -36,11 +51,11 @@ public class JmsBrowser {
 		return list;
 	}
 	
-	public List<List<MessageData>> browseMessagesForAllQueues(ConfigQueue[] configQueueArray) {
+	public List<List<MessageData>> browseMessagesForAllQueues() {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
-		for (ConfigQueue configQueue : configQueueArray) {
+		for (ConfigQueue configQueue : CONFIG_QUEUE_ARRAY) {
 			List<MessageData> top3Messages = browseTop3(configQueue);
 			listOfListOfQueueMessage.add(top3Messages);
 		}
@@ -60,9 +75,9 @@ public class JmsBrowser {
         });
 	}
 
-	public void purgeAllQueues(ConfigQueue[] configQueueArray) throws JMSException {
+	public void purgeAllQueues() throws JMSException {
 		
-		for (ConfigQueue configQueue : configQueueArray) {
+		for (ConfigQueue configQueue : CONFIG_QUEUE_ARRAY) {
 			purgeQueue(configQueue.getName());
 		}
 	}
@@ -87,9 +102,7 @@ public class JmsBrowser {
 	
 	public void loadMessages() {
 		
-		MessageLoadHelper messageLoadHelper = new MessageLoadHelper("/json/queueLoad.json");
-		MessageLoad[] messageLoadArray = messageLoadHelper.getMessageLoadArray();
-		for (MessageLoad messageLoad : messageLoadArray) {
+		for (MessageLoad messageLoad : MESSAGE_LOAD_ARRAY) {
 			putMessage(messageLoad.getQueueName(), messageLoad.getText());
 		}
 	}

@@ -17,11 +17,9 @@ public class QueueServiceImpl implements QueueService {
 	@Autowired
 	JmsBrowser browser;
 	
-	ConfigHelper helper = new ConfigHelper("/json/queueConfig.json");
-	
 	@Override
 	public Iterable<ConfigQueue> getQueueConfigIterable() {
-		return Arrays.asList(helper.getConfigQueueArray());
+		return Arrays.asList(JmsBrowser.CONFIG_QUEUE_ARRAY);
 	}
 
 	@Override

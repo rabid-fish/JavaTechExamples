@@ -2,71 +2,49 @@ package com.github.rabid_fish.config;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.rabid_fish.load.MessageLoad;
+import com.github.rabid_fish.load.MessageLoadHelper;
+
 public class ConfigHelperTest {
 
-//	private static final String TEST_URL = "/ibs-dashboard/demo/menu/level2a";
-//	private static final String TEST_BAD_URL = "bad_url";
-
+	private static final String QUEUE_CONFIG_JSON = "/json/queueConfig.json";
+	private static final String QUEUE_LOAD_JSON = "/json/queueLoad.json";
+	
 	ConfigHelper helper = null;
 
 	@Before
 	public void setUp() {
-		helper = new ConfigHelper("/json/queueConfig.json");
+		helper = new ConfigHelper(QUEUE_CONFIG_JSON);
 	}
 	
 	@Test
 	public void testHasQueueConfigItem() {
 		assertTrue(helper.getConfigQueueArray().length > 0);
 	}
-	
-//	@Test
-//	public void testGetNameForUrl() {
-//		String name = helper.getNameForUrl(TEST_URL);
-//		assertEquals(name, "Level 2 A");
-//	}
-//	
-//	@Test
-//	public void testGetNameForUrlWithInvalidUrl() {
-//		String name = helper.getNameForUrl(TEST_BAD_URL);
-//		assertEquals(name, null);
-//	}
-//	
-//	@Test
-//	public void testGetTitleForUrl() {
-//		String title = helper.getTitleForUrl(TEST_URL);
-//		assertEquals(title, "eAdvantage Level 2 A");
-//	}
-//	
-//	@Test
-//	public void testGetTitleForUrlWithInvalidUrl() {
-//		String title = helper.getTitleForUrl(TEST_BAD_URL);
-//		assertEquals(title, null);
-//	}
-//	
-//	@Test
-//	public void testListCrumbsForUrl() {
-//		List<MenuItem> list = helper.listParentMenuItemsForUrl(TEST_URL);
-//		assertTrue(list.size() == 2);
-//	}
-//	
-//	@Test
-//	public void testListCrumbsForUrlWithInvalidUrl() {
-//		List<MenuItem> list = helper.listParentMenuItemsForUrl(TEST_BAD_URL);
-//		assertTrue(list.size() == 0);
-//	}
-//	
-//	@Test
-//	public void testCheckIndex() {
-//		assertTrue(helper.getIndex().get(1).getName().equals("Level 1 A"));
-//		assertTrue(helper.getIndex().get(2).getName().equals("Level 2 A"));
-//	}
-//	
-//	@Test
-//	public void testGetDepthForUrl() {
-//		assertTrue(helper.getMenuItemForUrl(TEST_URL).getDepth() == 2);
-//	}
-	
+
+	@Test
+	public void testConfigQueueRegexHitsQueueLoadMessage() {
+		
+		ConfigQueue[] configQueueArray = new ConfigHelper(QUEUE_CONFIG_JSON).getConfigQueueArray();
+		String regex = configQueueArray[0].getColumns().get(2).getRegex();
+		
+		MessageLoadHelper messageLoadHelper = new MessageLoadHelper(QUEUE_LOAD_JSON);
+		MessageLoad messageLoad = messageLoadHelper.getMessageLoadArray()[0];
+		String text = messageLoad.getText();
+		
+		Matcher matcher = Pattern.compile(regex).matcher(text);
+		if (!matcher.find()) {
+			text = "Not found";
+		} else {
+			text = matcher.group(0) + " : " + matcher.group(1);
+		}
+		
+		System.out.println(text);
+	}
 }

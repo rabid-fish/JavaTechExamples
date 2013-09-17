@@ -14,8 +14,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.github.rabid_fish.config.ConfigColumn;
-import com.github.rabid_fish.config.ConfigHelper;
-import com.github.rabid_fish.config.ConfigQueue;
 import com.github.rabid_fish.model.MessageData;
 
 public class JmsBrowserCallbackTest {
@@ -35,8 +33,7 @@ public class JmsBrowserCallbackTest {
 	
 	@Before
 	public void setUp() {
-		ConfigQueue[] configQueues = new ConfigHelper("/json/queueConfig.json").getConfigQueueArray();
-		callback = new JmsBrowserCallback(configQueues[0]);
+		callback = new JmsBrowserCallback(JmsBrowser.CONFIG_QUEUE_ARRAY[0]);
 	}
 	
 	@Test
