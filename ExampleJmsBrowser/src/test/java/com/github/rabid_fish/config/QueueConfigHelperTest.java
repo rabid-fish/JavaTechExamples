@@ -13,17 +13,17 @@ import org.slf4j.LoggerFactory;
 import com.github.rabid_fish.load.MessageLoad;
 import com.github.rabid_fish.load.MessageLoadHelper;
 
-public class ConfigHelperTest {
+public class QueueConfigHelperTest {
 
-	public static final Logger LOG = LoggerFactory.getLogger(ConfigHelperTest.class);
+	public static final Logger LOG = LoggerFactory.getLogger(QueueConfigHelperTest.class);
 	private static final String QUEUE_CONFIG_JSON = "/json/queueConfig.json";
 	private static final String QUEUE_LOAD_JSON = "/json/queueLoad.json";
 	
-	ConfigHelper helper = null;
+	QueueConfigHelper helper = null;
 
 	@Before
 	public void setUp() {
-		helper = new ConfigHelper(QUEUE_CONFIG_JSON);
+		helper = new QueueConfigHelper(QUEUE_CONFIG_JSON);
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class ConfigHelperTest {
 	@Test
 	public void testConfigQueueRegexHitsQueueLoadMessage() {
 		
-		ConfigQueue[] configQueueArray = new ConfigHelper(QUEUE_CONFIG_JSON).getConfigQueueArray();
+		QueueConfig[] configQueueArray = new QueueConfigHelper(QUEUE_CONFIG_JSON).getConfigQueueArray();
 		String regex = configQueueArray[0].getColumns().get(2).getRegex();
 		
 		MessageLoadHelper messageLoadHelper = new MessageLoadHelper(QUEUE_LOAD_JSON);
@@ -54,15 +54,15 @@ public class ConfigHelperTest {
 	@Test
 	public void testGetConfigQueueForQueueName() {
 		
-		ConfigQueue configQueue = helper.getConfigQueueArray()[0];
-		ConfigQueue result = helper.getConfigQueueForQueueName(configQueue.getName());
+		QueueConfig configQueue = helper.getConfigQueueArray()[0];
+		QueueConfig result = helper.getConfigQueueForQueueName(configQueue.getName());
 		assertTrue(result == configQueue);
 	}
 	
 	@Test
 	public void testGetConfigQueueForQueueNameWithBadName() {
 		
-		ConfigQueue result = helper.getConfigQueueForQueueName("");
+		QueueConfig result = helper.getConfigQueueForQueueName("");
 		assertNull(result);
 	}
 }

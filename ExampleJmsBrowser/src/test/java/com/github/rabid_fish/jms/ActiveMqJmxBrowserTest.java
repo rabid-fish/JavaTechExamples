@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.rabid_fish.config.ConfigHelper;
+import com.github.rabid_fish.config.QueueConfigHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/META-INF/spring/root-context.xml")
@@ -20,7 +20,7 @@ public class ActiveMqJmxBrowserTest {
 	private ActiveMqJmxBrowser stats;
 	
 	@Autowired
-	private ConfigHelper configHelper;
+	private QueueConfigHelper configHelper;
 	
 	@Test
 	public void test() {

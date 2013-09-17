@@ -2,11 +2,11 @@ package com.github.rabid_fish.config;
 
 import java.util.List;
 
-public class ConfigQueue {
+public class QueueConfig {
 	
 	private String name;
 	private int maxMessageCount;
-	private List<ConfigColumn> columns;
+	private List<QueueConfigColumn> columns;
 
 	public String getName() {
 		return name;
@@ -14,10 +14,10 @@ public class ConfigQueue {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<ConfigColumn> getColumns() {
+	public List<QueueConfigColumn> getColumns() {
 		return columns;
 	}
-	public void setColumns(List<ConfigColumn> columns) {
+	public void setColumns(List<QueueConfigColumn> columns) {
 		this.columns = columns;
 	}
 	public int getMaxMessageCount() {

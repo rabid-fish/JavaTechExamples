@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.rabid_fish.config.ConfigHelper;
+import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.load.MessageLoader;
 import com.github.rabid_fish.model.MessageData;
 
@@ -29,7 +29,7 @@ public class JmsBrowserTest {
 	MessageLoader messageLoader;
 	
 	@Autowired
-	private ConfigHelper configHelper;
+	private QueueConfigHelper configHelper;
 	
 	@Test
 	public void testBrowseTopMessage() {

@@ -14,15 +14,15 @@ import javax.jms.TextMessage;
 
 import org.springframework.jms.core.BrowserCallback;
 
-import com.github.rabid_fish.config.ConfigColumn;
-import com.github.rabid_fish.config.ConfigQueue;
+import com.github.rabid_fish.config.QueueConfigColumn;
+import com.github.rabid_fish.config.QueueConfig;
 import com.github.rabid_fish.model.MessageData;
 
 public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 
-	private ConfigQueue configQueue;
+	private QueueConfig configQueue;
 
-	public JmsBrowserCallback(ConfigQueue configQueue) {
+	public JmsBrowserCallback(QueueConfig configQueue) {
 		this.configQueue = configQueue;
 	}
 
@@ -35,7 +35,7 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		while (e.hasMoreElements()) {
 
 			Message message = e.nextElement();
-			List<ConfigColumn> columns = configQueue.getColumns();
+			List<QueueConfigColumn> columns = configQueue.getColumns();
 			MessageData messageData = new MessageData();
 
 			appendMessageDataToList(message, columns, messageData);
@@ -47,10 +47,10 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		return list;
 	}
 
-	void appendMessageDataToList(Message message, List<ConfigColumn> columns, MessageData messageData)
+	void appendMessageDataToList(Message message, List<QueueConfigColumn> columns, MessageData messageData)
 			throws JMSException {
 		
-		for (ConfigColumn column : columns) {
+		for (QueueConfigColumn column : columns) {
 			String value = getPropertyOrTextFromMessage(message, column.getTitle(), column.getProperty(), column.getRegex());
 			messageData.getDataTitleList().add(column.getTitle());
 			messageData.getDataValueList().add(value);

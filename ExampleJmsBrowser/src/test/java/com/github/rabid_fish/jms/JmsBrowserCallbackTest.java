@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.rabid_fish.config.ConfigColumn;
-import com.github.rabid_fish.config.ConfigHelper;
+import com.github.rabid_fish.config.QueueConfigColumn;
+import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.model.MessageData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,7 +39,7 @@ public class JmsBrowserCallbackTest {
 	private JmsBrowserCallback callback;
 	
 	@Autowired
-	ConfigHelper configHelper;
+	QueueConfigHelper configHelper;
 	
 	@Before
 	public void setUp() {
@@ -52,8 +52,8 @@ public class JmsBrowserCallbackTest {
 		TextMessage message = Mockito.mock(TextMessage.class);
 		Mockito.when(message.getText()).thenReturn(MESSAGE_TEXT);
 		
-		List<ConfigColumn> columns = new ArrayList<ConfigColumn>();
-		columns.add(new ConfigColumn(null, null, MESSAGE_TEXT_REGEX));
+		List<QueueConfigColumn> columns = new ArrayList<QueueConfigColumn>();
+		columns.add(new QueueConfigColumn(null, null, MESSAGE_TEXT_REGEX));
 		
 		MessageData queueMessage = new MessageData();
 		callback.appendMessageDataToList(message, columns, queueMessage);
