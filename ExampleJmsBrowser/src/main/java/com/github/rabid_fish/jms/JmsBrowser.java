@@ -70,9 +70,16 @@ public class JmsBrowser {
 	public void purgeAllQueues() throws JMSException {
 		
 		for (ConfigQueue configQueue : CONFIG_QUEUE_ARRAY) {
+			
 			String queueName = configQueue.getName();
+			
+			// Note that determining queuesize is necessary to purging
+			// the queue and not pay a wait penalty.  This act couples
+			// JmsBrowser to ActiveMQ unfortunately.
 			JmsQueueStats queueStats = jmxBrowser.getQueueStats(queueName);
-			purgeQueue(queueName, queueStats.getQueueSize());
+			Long queueSize = queueStats.getQueueSize();
+			
+			purgeQueue(queueName, queueSize);
 		}
 	}
 	
