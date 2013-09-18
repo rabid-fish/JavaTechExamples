@@ -156,6 +156,10 @@ td.serverInfoValue {
 	font-weight: bold;
 }
 
+li.queue {
+	margin-bottom: 15px;
+}
+
 span.queueName {
 	font-weight: bold;
 }
@@ -165,10 +169,13 @@ span.queueMessageCount {
 }
 
 div.queueSearch {
+	padding: 0px 10px;
 	display: block;
-	position: absolute;
-	margin-left: 600px;
 	font-size: .8em;
+}
+
+a.queueSearchButton {
+	text-decoration: none;
 }
 
 span.queueSearchLabel {

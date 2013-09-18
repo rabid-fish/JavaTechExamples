@@ -13,12 +13,13 @@
 <ul class="queues">
 	<c:forEach items="${list}" var="queueData">
 	<li class="queue">
+		<span class="queueName">Queue: ${queueData.queueConfig.name}</span>
+		<span class="queueMessageCount">${queueData.jmsQueueStats.queueSize} messages</span>
 		<div class="queueSearch">
 			<span class="queueSearchLabel">search queue:</span>
 			<input class="queueSearchInput" type="text" name="" value="" />
+			<a class="queueSearchButton" href="#">go</a>
 		</div>
-		<span class="queueName">Queue: ${queueData.queueConfig.name}</span>
-		<span class="queueMessageCount">${queueData.jmsQueueStats.queueSize} messages</span>
 		<div class="messages">
 			<table class="messages">
 				<thead>
@@ -42,97 +43,10 @@
 					</tr>
 					</c:forEach>
 				</tbody>
-<!-- 
-				<tbody>
-					<tr class="message stripe">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
-						<td>
-							<a class="action" href="queue/view">View</a>
-							<a class="action" href="queue/delete">Delete</a>
-						</td>
-					</tr>
-					<tr class="message">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>ID:DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
-						<td>
-							<a class="action" href="queue/view">View</a>
-							<a class="action" href="queue/delete">Delete</a>
-						</td>
-					</tr>
-					<tr class="message stripe">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>ID:DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
-						<td>
-							<a class="action" href="queue/view">View</a>
-							<a class="action" href="queue/delete">Delete</a>
-						</td>
-					</tr>
-					<tr class="message">
-						<td>view more messages ...</td>
-					</tr>
-				</tbody>
- -->
 			</table>
 		</div>
 	</li>
 	</c:forEach>
-<!-- 
-	<li class="queue">
-		<div class="queueSearch">
-			<span class="queueSearchLabel">search queue:</span>
-			<input class="queueSearchInput" type="text" name="" value="" />
-		</div>
-		<span class="queueName">Q2: Example.Queue.In</span>
-		<span class="queueMessageCount">21 messages</span>
-		<div class="messages">
-			<table class="messages">
-				<thead>
-					<tr>
-						<th>Timestamp</th>
-						<th>Message ID</th>
-						<th>Correlation ID</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="message stripe">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>ID:DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
-						<td> 
-							<a class="action" href="queue/view">View</a>
-							<a class="action" href="queue/delete">Delete</a>
-						</td>
-					</tr>
-					<tr class="message">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>ID:DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
-						<td>
-							<a class="action" href="queue/view">View</a>
-							<a class="action" href="queue/delete">Delete</a>
-						</td>
-					</tr>
-					<tr class="message stripe">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>ID:DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
-						<td>
-							<a class="action" href="queue/view">View</a>
-							<a class="action" href="queue/delete">Delete</a>
-						</td>
-					</tr>
-					<tr class="message">
-						<td>view more messages ...</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</li>
- -->
 </ul>
 </c:if>
 
