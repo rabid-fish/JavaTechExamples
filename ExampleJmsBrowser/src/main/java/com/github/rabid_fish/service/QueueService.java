@@ -1,6 +1,5 @@
 package com.github.rabid_fish.service;
 
-import com.github.rabid_fish.config.QueueConfig;
 import com.github.rabid_fish.model.MessageData;
 import com.github.rabid_fish.model.QueueData;
 

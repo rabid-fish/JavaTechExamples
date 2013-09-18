@@ -14,8 +14,8 @@ import javax.jms.TextMessage;
 
 import org.springframework.jms.core.BrowserCallback;
 
-import com.github.rabid_fish.config.QueueConfigColumn;
 import com.github.rabid_fish.config.QueueConfig;
+import com.github.rabid_fish.config.QueueConfigColumn;
 import com.github.rabid_fish.model.MessageData;
 
 public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
@@ -49,6 +49,9 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 
 	void appendMessageDataToList(Message message, List<QueueConfigColumn> columns, MessageData messageData)
 			throws JMSException {
+		
+//		messageData.setMessageId(message.getJMSMessageID());
+//		messageData.setTimestamp(message.getJMSTimestamp());
 		
 		for (QueueConfigColumn column : columns) {
 			String value = getPropertyOrTextFromMessage(message, column.getTitle(), column.getProperty(), column.getRegex());

@@ -1,16 +1,12 @@
 [
 	{
 		"name" : "ExampleJMS.Queue.Contacts",
-		"maxMessageCount" : 10,
+		"maxMessageCount" : 3,
 		"columns" : 
 		[
 			{
 				"title" : "Timestamp",
 				"property" : "JMSTimestamp"
-			},
-			{
-				"title" : "Message ID",
-				"property" : "JMSMessageID"
 			},
 			{
 				"title" : "First Name",
@@ -33,16 +29,12 @@
 				"property" : "JMSTimestamp"
 			},
 			{
-				"title" : "Message ID",
-				"property" : "JMSMessageID"
-			},
-			{
 				"title" : "Make",
-				"regex" : "/make/"
+				"regex" : "<make>([A-Za-z0-9]+)</make>"
 			},
 			{
 				"title" : "Model",
-				"regex" : "/model/"
+				"regex" : "<model>([A-Za-z0-9]+)</model>"
 			}
 		]
 	}

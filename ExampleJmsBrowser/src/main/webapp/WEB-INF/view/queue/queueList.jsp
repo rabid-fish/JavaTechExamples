@@ -11,34 +11,36 @@
 
 <c:if test="${not empty list}">
 <ul class="queues">
-	<c:forEach items="${list}" var="queue">
+	<c:forEach items="${list}" var="queueData">
 	<li class="queue">
 		<div class="queueSearch">
 			<span class="queueSearchLabel">search queue:</span>
 			<input class="queueSearchInput" type="text" name="" value="" />
 		</div>
-		<span class="queueName">Queue: ${queue.name}</span>
-		<span class="queueMessageCount">${queue.messageCount} messages</span>
+		<span class="queueName">Queue: ${queueData.queueConfig.name}</span>
+		<span class="queueMessageCount">${queueData.jmsQueueStats.queueSize} messages</span>
 		<div class="messages">
 			<table class="messages">
 				<thead>
 					<tr>
-						<c:forEach items="${queue.columns}" var="column">
+						<c:forEach items="${queueData.queueConfig.columns}" var="column">
 						<th>${column.title}</th>
 						</c:forEach>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach items="${queueData.messageDataList}" var="message">
 					<tr class="message stripe">
-						<td>2013-08-09 11:14:17:687 CDT </td>
-						<td>DESBAPP01-58182-1376050924672-1:1:3:1:1</td>
-						<td>388e3529-21b9-49ef-94f6-4a1518fe6b66</td>
+						<c:forEach items="${message.dataValueList}" var="messageDataValue">
+						<td>${messageDataValue}</td>
+						</c:forEach>
 						<td>
 							<a class="action" href="queue/view">View</a>
 							<a class="action" href="queue/delete">Delete</a>
 						</td>
 					</tr>
+					</c:forEach>
 				</tbody>
 <!-- 
 				<tbody>

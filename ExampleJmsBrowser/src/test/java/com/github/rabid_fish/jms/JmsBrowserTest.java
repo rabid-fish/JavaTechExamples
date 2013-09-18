@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.rabid_fish.config.QueueConfig;
 import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.load.MessageLoader;
 import com.github.rabid_fish.model.MessageData;
@@ -35,9 +36,12 @@ public class JmsBrowserTest {
 	public void testBrowseTopMessage() {
 		
 		LOG.info("Running test");
-		List<MessageData> messageDataList = browser.browseTopMessages(configHelper.getConfigQueueArray()[0]);
-		LOG.info("Size of queue: " + messageDataList.size());
-		assertTrue(messageDataList.size() == 4);
+		QueueConfig queueConfig = configHelper.getConfigQueueArray()[0];
+		queueConfig.setMaxMessageCount(3);
+		List<MessageData> messageDataList = browser.browseTopMessages(queueConfig);
+		
+		LOG.info("Count of top messages on queue: " + messageDataList.size());
+		assertTrue(messageDataList.size() == 3);
 		
 		for (int i = 0; i < messageDataList.size(); i++) {
 			
