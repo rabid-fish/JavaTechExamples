@@ -18,7 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.rabid_fish.config.QueueConfigColumn;
+import com.github.rabid_fish.config.ConfigurationColumn;
+import com.github.rabid_fish.config.QueueConfigDetailViewHelper;
 import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.model.MessageData;
 
@@ -43,9 +44,12 @@ public class JmsBrowserCallbackTest {
 	@Autowired
 	QueueConfigHelper configHelper;
 	
+	@Autowired
+	QueueConfigDetailViewHelper configDetailViewHelper;
+	
 	@Before
 	public void setUp() {
-		callback = new JmsBrowserCallback(configHelper.getConfigQueueArray()[0]);
+		callback = new JmsBrowserCallback(configHelper.getQueueConfigArray()[0]);
 	}
 	
 	@Test
@@ -54,8 +58,8 @@ public class JmsBrowserCallbackTest {
 		TextMessage message = Mockito.mock(TextMessage.class);
 		Mockito.when(message.getText()).thenReturn(MESSAGE_TEXT);
 		
-		List<QueueConfigColumn> columns = new ArrayList<QueueConfigColumn>();
-		columns.add(new QueueConfigColumn(null, null, MESSAGE_TEXT_REGEX));
+		List<ConfigurationColumn> columns = new ArrayList<ConfigurationColumn>();
+		columns.add(new ConfigurationColumn(null, null, MESSAGE_TEXT_REGEX));
 		
 		MessageData messageData = new MessageData();
 		callback.appendMessageDataToList(message, columns, messageData);
@@ -71,7 +75,29 @@ public class JmsBrowserCallbackTest {
 		Mockito.when(message.getJMSMessageID()).thenReturn(MESSAGE_PROPERTY_VALUE_MESSAGEID);
 		MessageData messageData = new MessageData();
 		callback.setMessageDataMessageId(message, messageData);
+		
 		assertTrue(messageData.getMessageId().equals(MESSAGE_PROPERTY_VALUE_MESSAGEID));
+	}
+	
+	@Test
+	public void testSetMessageBodyWithQueueConfig() throws JMSException {
+		
+		MessageData messageData = new MessageData();
+		callback.setMessageBody(null, messageData);
+		assertTrue(messageData.getBody() == null);
+	}
+	
+	@Test
+	public void testSetMessageBodyWithQueueConfigDetailView() throws JMSException {
+	
+		callback = new JmsBrowserCallback(configDetailViewHelper.getQueueConfigDetailView());
+		
+		TextMessage message = Mockito.mock(TextMessage.class);
+		Mockito.when(message.getText()).thenReturn(MESSAGE_TEXT);
+		MessageData messageData = new MessageData();
+		callback.setMessageBody(message, messageData);
+		
+		assertTrue(messageData.getBody().equals(MESSAGE_TEXT));
 	}
 
 	@Test
@@ -127,6 +153,16 @@ public class JmsBrowserCallbackTest {
 		String property = callback.getPropertyFromMessage(message, MESSAGE_PROPERTY_NAME_TIMESTAMP);
 		
 		assertTrue(property.equals(String.valueOf(MESSAGE_PROPERTY_RESULT_TIMESTAMP)));
+	}
+	
+	@Test
+	public void testGetPropertyFromMessageForNull() throws JMSException {
+		
+		TextMessage message = Mockito.mock(TextMessage.class);
+		Mockito.when(message.getObjectProperty(MESSAGE_PROPERTY_NAME_MESSAGEID)).thenReturn(null);
+		String property = callback.getPropertyFromMessage(message, MESSAGE_PROPERTY_NAME_MESSAGEID);
+		
+		assertTrue(property == null);
 	}
 
 	@Test

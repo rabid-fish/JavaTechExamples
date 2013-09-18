@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <tiles:insertDefinition name="layout">
 	<tiles:putAttribute name="title" value="Queue List" />
 	<tiles:putAttribute name="body">
@@ -25,7 +26,7 @@
 				<thead>
 					<tr>
 						<c:forEach items="${queueData.queueConfig.columns}" var="column">
-						<th>${column.title}</th>
+						<th>${fn:escapeXml(column.title)}</th>
 						</c:forEach>
 						<th>Actions</th>
 					</tr>
@@ -34,10 +35,10 @@
 					<c:forEach items="${queueData.messageDataList}" var="message" varStatus="stripe">
 					<tr class="message ${stripe.index % 2 == 0 ? 'stripe' : ''}">
 						<c:forEach items="${message.dataValueList}" var="messageDataValue">
-						<td>${messageDataValue}</td>
+						<td>${fn:escapeXml(messageDataValue)}</td>
 						</c:forEach>
 						<td>
-							<a class="action" href="queue/view">View</a>
+							<a class="action" href="queue/view?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfig.name)}">View</a>
 							<a class="action" href="queue/delete">Delete</a>
 						</td>
 					</tr>

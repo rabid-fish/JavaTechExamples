@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.rabid_fish.model.MessageData;
 import com.github.rabid_fish.model.QueueData;
 import com.github.rabid_fish.service.QueueService;
 
@@ -30,8 +32,16 @@ public class QueueController {
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String getView(ModelMap model) {
+	public String getView(
+			@RequestParam("queueName") String queueName, 
+			@RequestParam("messageId") String messageId,
+			ModelMap model) {
+		
 		model.addAttribute("message", "Welcome to the queue view page");
+		
+		MessageData messageData = queueService.getDetailedMessageDataForMessageId(queueName, messageId);
+		model.addAttribute("messageData", messageData);
+		
 		return "queue/queueView";
 	}
 	

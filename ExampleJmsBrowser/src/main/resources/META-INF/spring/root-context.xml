@@ -61,4 +61,8 @@
 		<constructor-arg value="${json.queue-config}"/>
 	</bean>
 
+	<bean class="com.github.rabid_fish.config.QueueConfigDetailViewHelper">
+		<constructor-arg value="${json.queue-config-detail-view}"/>
+	</bean>
+
 </beans>

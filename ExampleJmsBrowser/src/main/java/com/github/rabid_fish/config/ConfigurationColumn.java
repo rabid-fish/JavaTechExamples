@@ -1,16 +1,16 @@
 package com.github.rabid_fish.config;
 
-public class QueueConfigColumn {
+public class ConfigurationColumn {
 	
 	private String title;
 	private String property;
 	private String regex;
 	
-	public QueueConfigColumn() {
+	public ConfigurationColumn() {
 		super();
 	}
 	
-	public QueueConfigColumn(String title, String property, String regex) {
+	public ConfigurationColumn(String title, String property, String regex) {
 		super();
 		this.title = title;
 		this.property = property;

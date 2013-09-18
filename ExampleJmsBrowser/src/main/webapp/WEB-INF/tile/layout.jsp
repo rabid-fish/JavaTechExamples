@@ -12,7 +12,7 @@
 	<div id="container">
 		<div id="header">
 			<div id="header_inner">
-				<div id="banner">ExampleJmsBrowser</div>
+				<div id="banner">ExampleJmsBrowser - <tiles:insertAttribute name="title" /></div>
 				<div id="serverInfo">
 					<table>
 						<tbody>
@@ -36,7 +36,9 @@
 		</div>
 		<div id="content">
 			<div id="content_inner">
+				<!-- 
 				<h1><tiles:insertAttribute name="title" /></h1>
+				 -->
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>

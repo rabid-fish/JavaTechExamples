@@ -66,12 +66,12 @@ body {
 	margin: 0px;
 }
 
-#header_inner, #content_inner, #footer_inner {
+#header_inner, #footer_inner {
 	padding: 5px 20px;
 }
 
 #content_inner {
-	padding-bottom: 25px;
+	padding: 20px 30px;
 }
 
 /* colors and pretty */

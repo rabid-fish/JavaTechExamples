@@ -1,0 +1,45 @@
+{
+	"columns" : 
+	[
+		{
+			"title" : "Message ID",
+			"property" : "JMSMessageID"
+		},
+		{
+			"title" : "Message Type",
+			"property" : "JMSType"
+		},
+		{
+			"title" : "Timestamp",
+			"property" : "JMSTimestamp"
+		},
+		{
+			"title" : "Expiration",
+			"property" : "JMSExpiration"
+		},
+		{
+			"title" : "Correlation ID",
+			"property" : "JMSCorrelationID"
+		},
+		{
+			"title" : "Reply To",
+			"property" : "JMSReplyTo"
+		},
+		{
+			"title" : "Destination",
+			"property" : "JMSDestination"
+		},
+		{
+			"title" : "Delivery Mode",
+			"property" : "JMSDeliveryMode"
+		},
+		{
+			"title" : "Redelivered",
+			"property" : "JMSDelivered"
+		},
+		{
+			"title" : "Priority",
+			"property" : "JMSPriority"
+		}
+	]
+}

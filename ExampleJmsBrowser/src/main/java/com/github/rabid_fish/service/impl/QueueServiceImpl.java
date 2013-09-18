@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.rabid_fish.config.QueueConfig;
+import com.github.rabid_fish.config.QueueConfigDetailViewHelper;
 import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.jms.ActiveMqJmxBrowser;
 import com.github.rabid_fish.jms.JmsBrowser;
@@ -19,30 +20,33 @@ import com.github.rabid_fish.service.QueueService;
 public class QueueServiceImpl implements QueueService {
 
 	@Autowired
-	JmsBrowser browser;
-	
-	@Autowired
-	private QueueConfigHelper configHelper;
+	private JmsBrowser jmsBrowser;
 	
 	@Autowired
 	private ActiveMqJmxBrowser jmxBrowser;
 
+	@Autowired
+	private QueueConfigHelper configHelper;
+	
+	@Autowired
+	private QueueConfigDetailViewHelper configDetailViewHelper;
+	
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
 		
-		QueueConfig queueConfigForQueueName = configHelper.getConfigQueueForQueueName(queueName);
+		QueueConfig queueConfigForQueueName = configHelper.getQueueConfigForQueueName(queueName);
 		if (queueConfigForQueueName == null) {
 			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
 		}
 		
-		return browser.browseTopMessages(queueConfigForQueueName);
+		return jmsBrowser.browseTopMessages(queueConfigForQueueName);
 	}
 	
 	@Override
 	public Iterable<QueueData> getQueueDataIterable() {
 		
 		List<QueueData> queueDataList = new ArrayList<QueueData>();
-		QueueConfig[] queueConfigArray = configHelper.getConfigQueueArray();
+		QueueConfig[] queueConfigArray = configHelper.getQueueConfigArray();
 		
 		for(QueueConfig queueConfig : queueConfigArray) {
 			QueueData queueData = getQueueDataForQueueName(queueConfig);
@@ -65,6 +69,15 @@ public class QueueServiceImpl implements QueueService {
 		queueData.setMessageDataList(messageDataList);
 		
 		return queueData;
+	}
+
+	@Override
+	public MessageData getDetailedMessageDataForMessageId(String queueName, String messageId) {
+
+		MessageData messageData = jmsBrowser.browseMessageInDetail(
+				configDetailViewHelper.getQueueConfigDetailView(), queueName, messageId);
+		
+		return messageData;
 	}
 
 }

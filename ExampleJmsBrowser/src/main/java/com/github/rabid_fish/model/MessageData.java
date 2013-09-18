@@ -6,6 +6,7 @@ import java.util.List;
 public class MessageData {
 
 	private String messageId;
+	private String body;
 	private List<String> dataTitleList = new ArrayList<String>();
 	private List<String> dataValueList = new ArrayList<String>();
 
@@ -14,6 +15,12 @@ public class MessageData {
 	}
 	public void setMessageId(String messageId) {
 		this.messageId = messageId;
+	}
+	public String getBody() {
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
 	}
 	public List<String> getDataTitleList() {
 		return dataTitleList;

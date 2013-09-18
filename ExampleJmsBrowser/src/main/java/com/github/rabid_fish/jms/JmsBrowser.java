@@ -16,8 +16,9 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
-import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.config.QueueConfig;
+import com.github.rabid_fish.config.QueueConfigDetailView;
+import com.github.rabid_fish.config.QueueConfigHelper;
 import com.github.rabid_fish.model.MessageData;
 
 @Component
@@ -47,12 +48,20 @@ public class JmsBrowser {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
-		for (QueueConfig queueConfig : configHelper.getConfigQueueArray()) {
+		for (QueueConfig queueConfig : configHelper.getQueueConfigArray()) {
 			List<MessageData> top3Messages = browseTopMessages(queueConfig);
 			listOfListOfQueueMessage.add(top3Messages);
 		}
 		
 		return listOfListOfQueueMessage;
+	}
+	
+	public MessageData browseMessageInDetail(QueueConfigDetailView config, String queueName, String messageId) {
+		
+		JmsBrowserCallback callback = new JmsBrowserCallback(config);
+		List<MessageData> messageDataList = jmsTemplate.browseSelected(queueName, "JMSMessageID='" + messageId + "'", callback);
+		
+		return messageDataList.get(0);
 	}
 	
 	public void putMessage(String queueName, String messageText) {
@@ -66,12 +75,11 @@ public class JmsBrowser {
 				return message;
             }
         });
-		
 	}
 
 	public void purgeAllQueues() throws JMSException {
 		
-		for (QueueConfig queueConfig : configHelper.getConfigQueueArray()) {
+		for (QueueConfig queueConfig : configHelper.getQueueConfigArray()) {
 			
 			String queueName = queueConfig.getName();
 			

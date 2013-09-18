@@ -16,16 +16,18 @@ import javax.jms.TextMessage;
 
 import org.springframework.jms.core.BrowserCallback;
 
+import com.github.rabid_fish.config.Configuration;
 import com.github.rabid_fish.config.QueueConfig;
-import com.github.rabid_fish.config.QueueConfigColumn;
+import com.github.rabid_fish.config.ConfigurationColumn;
+import com.github.rabid_fish.config.QueueConfigDetailView;
 import com.github.rabid_fish.model.MessageData;
 
 public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 
-	private QueueConfig queueConfig;
+	private Configuration config;
 
-	public JmsBrowserCallback(QueueConfig queueConfig) {
-		this.queueConfig = queueConfig;
+	public JmsBrowserCallback(Configuration config) {
+		this.config = config;
 	}
 
 	public List<MessageData> doInJms(Session session, QueueBrowser browser) throws JMSException {
@@ -37,27 +39,50 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		while (e.hasMoreElements()) {
 			
 			Message message = e.nextElement();
-			List<QueueConfigColumn> columns = queueConfig.getColumns();
+			List<ConfigurationColumn> columns = config.getColumns();
 			MessageData messageData = new MessageData();
 			
 			setMessageDataMessageId(message, messageData);
+			setMessageBody(message, messageData);
 			appendMessageDataToList(message, columns, messageData);
 			
 			list.add(messageData);
-			if (list.size() >= queueConfig.getMaxMessageCount()) break;
+			if (checkForEarlyBreak(list.size())) break;
 		}
 
 		return list;
 	}
 	
+	private boolean checkForEarlyBreak(int size) {
+		
+		if (!(config instanceof QueueConfig)) {
+			return false;
+		}
+		
+		boolean condition = size >= ((QueueConfig) config).getMaxMessageCount();
+		return condition;
+	}
+
 	void setMessageDataMessageId(Message message, MessageData messageData) throws JMSException {
 		messageData.setMessageId(message.getJMSMessageID());
 	}
 
-	void appendMessageDataToList(Message message, List<QueueConfigColumn> columns, MessageData messageData)
+	void setMessageBody(Message message, MessageData messageData) throws JMSException {
+		
+		if (!(config instanceof QueueConfigDetailView)) {
+			messageData.setBody(null);
+			return;
+		}
+		
+		TextMessage textMessage = (TextMessage) message;
+		String text = textMessage.getText();
+		messageData.setBody(text);
+	}
+
+	void appendMessageDataToList(Message message, List<ConfigurationColumn> columns, MessageData messageData)
 			throws JMSException {
 		
-		for (QueueConfigColumn column : columns) {
+		for (ConfigurationColumn column : columns) {
 			String value = getPropertyOrTextFromMessage(message, column.getTitle(), column.getProperty(), column.getRegex());
 			messageData.getDataTitleList().add(column.getTitle());
 			messageData.getDataValueList().add(value);
@@ -104,7 +129,9 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		String value;
 		Object property = message.getObjectProperty(propertyName);
 		
-		if (property instanceof String) {
+		if (property == null) {
+			value = null;
+		} else if (property instanceof String) {
 			value = (String) property;
 		} else if (property instanceof Integer) {
 			value = String.valueOf((Integer) property);
