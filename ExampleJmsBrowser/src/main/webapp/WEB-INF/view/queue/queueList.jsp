@@ -44,6 +44,11 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<c:if test="${queueData.jmsQueueStats.queueSize > queueData.queueConfig.maxMessageCount}">
+			<div class="ellipseDiv">
+				<a class="ellipseButton" href="#">more results ...</a>
+			</div>
+			</c:if>
 		</div>
 	</li>
 	</c:forEach>

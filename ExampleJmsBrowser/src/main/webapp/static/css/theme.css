@@ -216,3 +216,22 @@ div.actions {
 li.action {
 	
 }
+
+div.ellipseDiv {
+	padding: 5px 0px 0px 0px;
+}
+
+a.ellipseButton, a.queueSearchButton {
+	font-size: .7em;
+	text-decoration: none;
+	border: 1px solid #5000DB;
+	background-color: #E5D6FF;
+	border-radius: 3px;
+	padding: 0px 4px;
+	font-style: italic;
+}
+
+a.ellipseButton:hover, a.queueSearchButton:hover {
+	color: #FFFFFF;
+	background-color: #5000DB;
+}
