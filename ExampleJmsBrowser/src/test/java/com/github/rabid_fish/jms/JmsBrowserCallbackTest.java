@@ -1,6 +1,6 @@
 package com.github.rabid_fish.jms;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +34,8 @@ public class JmsBrowserCallbackTest {
 	private static final String MESSAGE_PROPERTY_NAME_MESSAGEID = "JMSMessageID";
 	private static final String MESSAGE_PROPERTY_VALUE_MESSAGEID = "1234-123-1234";
 	private static final String MESSAGE_PROPERTY_NAME_TIMESTAMP = "JMSTimestamp";
-	private static final Long MESSAGE_PROPERTY_VALUE_TIMESTAMP = new Date().getTime();
+	private static final Long MESSAGE_PROPERTY_VALUE_TIMESTAMP = new Date(1).getTime();
+	private static final String MESSAGE_PROPERTY_RESULT_TIMESTAMP = "1969-12-31 06:00:00";
 	
 	private JmsBrowserCallback callback;
 	
@@ -114,7 +115,20 @@ public class JmsBrowserCallbackTest {
 		Mockito.when(message.getObjectProperty(MESSAGE_PROPERTY_NAME_TIMESTAMP)).thenReturn(MESSAGE_PROPERTY_VALUE_TIMESTAMP);
 		String property = callback.getPropertyFromMessage(message, MESSAGE_PROPERTY_NAME_TIMESTAMP);
 		
-		assertTrue(property.equals(String.valueOf(MESSAGE_PROPERTY_VALUE_TIMESTAMP)));
+		assertTrue(property.equals(String.valueOf(MESSAGE_PROPERTY_RESULT_TIMESTAMP)));
 	}
 
+	@Test
+	public void testGetPropertyLongCheckForJmsTimestamp() {
+		
+		String result = callback.getPropertyLongCheckForJmsTimestamp("JMSTimestamp", MESSAGE_PROPERTY_VALUE_TIMESTAMP);
+		assertEquals(result, MESSAGE_PROPERTY_RESULT_TIMESTAMP);
+	}
+
+	@Test
+	public void testGetPropertyLongCheckForJmsTimestampWithNotTimestamp() {
+		
+		String result = callback.getPropertyLongCheckForJmsTimestamp("Some property", MESSAGE_PROPERTY_VALUE_TIMESTAMP);
+		assertEquals(result, "1");
+	}
 }

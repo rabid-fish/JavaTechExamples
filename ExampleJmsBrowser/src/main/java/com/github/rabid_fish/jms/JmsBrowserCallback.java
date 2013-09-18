@@ -1,6 +1,8 @@
 package com.github.rabid_fish.jms;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -49,9 +51,6 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 
 	void appendMessageDataToList(Message message, List<QueueConfigColumn> columns, MessageData messageData)
 			throws JMSException {
-		
-//		messageData.setMessageId(message.getJMSMessageID());
-//		messageData.setTimestamp(message.getJMSTimestamp());
 		
 		for (QueueConfigColumn column : columns) {
 			String value = getPropertyOrTextFromMessage(message, column.getTitle(), column.getProperty(), column.getRegex());
@@ -105,10 +104,26 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		} else if (property instanceof Integer) {
 			value = String.valueOf((Integer) property);
 		} else if (property instanceof Long) {
-			value = String.valueOf((Long) property);
+			value = getPropertyLongCheckForJmsTimestamp(propertyName, property);
 		} else {
 			value = property.toString();
 		}
+		
+		return value;
+	}
+
+	String getPropertyLongCheckForJmsTimestamp(String propertyName, Object property) {
+		
+		String value;
+		
+		if (propertyName.equals("JMSTimestamp")) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date propertyDate = new Date((Long) property);
+			value = sdf.format(propertyDate);
+			return value;
+		}
+		
+		value = String.valueOf((Long) property);
 		
 		return value;
 	}
