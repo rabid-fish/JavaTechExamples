@@ -5,9 +5,16 @@ import java.util.List;
 
 public class MessageData {
 
+	private String messageId;
 	private List<String> dataTitleList = new ArrayList<String>();
 	private List<String> dataValueList = new ArrayList<String>();
 
+	public String getMessageId() {
+		return messageId;
+	}
+	public void setMessageId(String messageId) {
+		this.messageId = messageId;
+	}
 	public List<String> getDataTitleList() {
 		return dataTitleList;
 	}

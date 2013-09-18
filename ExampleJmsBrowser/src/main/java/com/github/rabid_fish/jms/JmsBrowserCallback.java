@@ -35,11 +35,12 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		@SuppressWarnings("unchecked")
 		Enumeration<Message> e = browser.getEnumeration();
 		while (e.hasMoreElements()) {
-
+			
 			Message message = e.nextElement();
 			List<QueueConfigColumn> columns = queueConfig.getColumns();
 			MessageData messageData = new MessageData();
-
+			
+			setMessageDataMessageId(message, messageData);
 			appendMessageDataToList(message, columns, messageData);
 			
 			list.add(messageData);
@@ -47,6 +48,10 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		}
 
 		return list;
+	}
+	
+	void setMessageDataMessageId(Message message, MessageData messageData) throws JMSException {
+		messageData.setMessageId(message.getJMSMessageID());
 	}
 
 	void appendMessageDataToList(Message message, List<QueueConfigColumn> columns, MessageData messageData)

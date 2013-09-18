@@ -1,6 +1,7 @@
 package com.github.rabid_fish.jms;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,13 +57,23 @@ public class JmsBrowserCallbackTest {
 		List<QueueConfigColumn> columns = new ArrayList<QueueConfigColumn>();
 		columns.add(new QueueConfigColumn(null, null, MESSAGE_TEXT_REGEX));
 		
-		MessageData queueMessage = new MessageData();
-		callback.appendMessageDataToList(message, columns, queueMessage);
+		MessageData messageData = new MessageData();
+		callback.appendMessageDataToList(message, columns, messageData);
 		
-		assertTrue(queueMessage.getDataValueList().size() == 1);
-		assertTrue(queueMessage.getDataValueList().get(0).equals(MESSAGE_TEXT_RESPONSE));
+		assertTrue(messageData.getDataValueList().size() == 1);
+		assertTrue(messageData.getDataValueList().get(0).equals(MESSAGE_TEXT_RESPONSE));
 	}
-	
+
+	@Test
+	public void testSetMessageDataMessageId() throws JMSException {
+
+		TextMessage message = Mockito.mock(TextMessage.class);
+		Mockito.when(message.getJMSMessageID()).thenReturn(MESSAGE_PROPERTY_VALUE_MESSAGEID);
+		MessageData messageData = new MessageData();
+		callback.setMessageDataMessageId(message, messageData);
+		assertTrue(messageData.getMessageId().equals(MESSAGE_PROPERTY_VALUE_MESSAGEID));
+	}
+
 	@Test
 	public void testGetPropertyOrTextFromMessage() throws JMSException {
 		
