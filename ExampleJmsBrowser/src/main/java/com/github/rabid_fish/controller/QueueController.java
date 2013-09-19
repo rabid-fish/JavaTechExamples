@@ -1,5 +1,7 @@
 package com.github.rabid_fish.controller;
 
+import javax.xml.transform.TransformerException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.rabid_fish.model.MessageData;
 import com.github.rabid_fish.model.QueueData;
 import com.github.rabid_fish.service.QueueService;
+import com.github.rabid_fish.util.CommonUtil;
 
 @Controller
 @RequestMapping(value = "/queue")
@@ -35,12 +38,14 @@ public class QueueController {
 	public String getView(
 			@RequestParam("queueName") String queueName, 
 			@RequestParam("messageId") String messageId,
-			ModelMap model) {
+			ModelMap model) throws TransformerException {
 		
 		MessageData messageData = queueService.getDetailedMessageDataForMessageId(queueName, messageId);
 		model.addAttribute("message", messageData);
 		model.addAttribute("queueName", queueName);
 		model.addAttribute("messageId", messageId);
+		
+		CommonUtil.prettifyMessageBody(messageData);
 		
 		return "queue/queueView";
 	}

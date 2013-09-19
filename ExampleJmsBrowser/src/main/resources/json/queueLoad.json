@@ -1,31 +1,31 @@
 [
 	{
 		"queueName" : "ExampleJMS.Queue.Contacts",
-		"text" : "<contact>\n<firstName>John</firstName>\n<lastName>Deer</lastName>\n</contact>"
+		"text" : "<contact><firstName>John</firstName><lastName>Deer</lastName></contact>"
 	}
 ,
 	{
 		"queueName" : "ExampleJMS.Queue.Contacts",
-		"text" : "<contact>\n<firstName>Jane</firstName>\n<lastName>Doe</lastName>\n</contact>"
+		"text" : "<contact><firstName>Jane</firstName><lastName>Doe</lastName></contact>"
 	}
 ,
 	{
 		"queueName" : "ExampleJMS.Queue.Contacts",
-		"text" : "<contact>\n<firstName>Anonymous</firstName>\n<lastName>Person</lastName>\n</contact>"
+		"text" : "<contact><firstName>Anonymous</firstName><lastName>Person</lastName></contact>"
 	}
 ,
 	{
 		"queueName" : "ExampleJMS.Queue.Contacts",
-		"text" : "<contact>\n<firstName>President</firstName>\n<lastName>of the United States</lastName>\n</contact>"
+		"text" : "<contact><firstName>President</firstName><lastName>of the United States</lastName></contact>"
 	}
 ,
 	{
 		"queueName" : "ExampleJMS.Queue.Cars",
-		"text" : "<car>\n<make>Dodge</make>\n<model>Neon</model>\n</car>"
+		"text" : "<car><make>Dodge</make><model>Neon</model></car>"
 	}
 ,
 	{
 		"queueName" : "ExampleJMS.Queue.Cars",
-		"text" : "<car>\n<make>Mazda</make>\n<model>Miata</model>\n</car>"
+		"text" : "<car><make>Mazda</make><model>Miata</model></car>"
 	}
 ]
