@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.github.rabid_fish.util.CommonUtil;
 
-public class QueueConfigDetailViewHelperTest {
+public class QueueConfigViewHelperTest {
 
 	@Test
 	public void testConstructor() {

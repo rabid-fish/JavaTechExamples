@@ -14,9 +14,9 @@ import com.github.rabid_fish.load.MessageLoad;
 import com.github.rabid_fish.load.MessageLoadHelper;
 import com.github.rabid_fish.util.CommonUtil;
 
-public class QueueConfigHelperTest {
+public class QueueConfigListHelperTest {
 
-	public static final Logger LOG = LoggerFactory.getLogger(QueueConfigHelperTest.class);
+	public static final Logger LOG = LoggerFactory.getLogger(QueueConfigListHelperTest.class);
 	QueueConfigListHelper helper = null;
 
 	@Before
