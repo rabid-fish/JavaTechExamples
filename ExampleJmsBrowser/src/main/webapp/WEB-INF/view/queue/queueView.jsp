@@ -37,12 +37,14 @@
 	<li class="queue">
 		<div class="queueTitle">
 			<span class="queueName">${queueName}</span>
+			<!-- 
 			<div class="actions">
 				<ul class="actions">
 					<li class="action"><a class="action" href="#">Copy</a></li>
 					<li class="action"><a class="action" href="#">Delete</a></li>
 				</ul>
 			</div>
+			 -->
 		</div>
 		<div class="messages">
 			<div class="messageBody">
