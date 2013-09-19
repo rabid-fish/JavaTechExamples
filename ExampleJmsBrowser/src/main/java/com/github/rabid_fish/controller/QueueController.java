@@ -37,10 +37,10 @@ public class QueueController {
 			@RequestParam("messageId") String messageId,
 			ModelMap model) {
 		
-		model.addAttribute("userMessage", "Welcome to the queue view page");
-		
 		MessageData messageData = queueService.getDetailedMessageDataForMessageId(queueName, messageId);
-		model.addAttribute("messageData", messageData);
+		model.addAttribute("message", messageData);
+		model.addAttribute("queueName", queueName);
+		model.addAttribute("messageId", messageId);
 		
 		return "queue/queueView";
 	}

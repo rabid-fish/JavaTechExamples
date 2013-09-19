@@ -6,12 +6,16 @@
 			"property" : "JMSMessageID"
 		},
 		{
-			"title" : "Message Type",
-			"property" : "JMSType"
+			"title" : "Destination",
+			"property" : "JMSDestination"
 		},
 		{
 			"title" : "Timestamp",
 			"property" : "JMSTimestamp"
+		},
+		{
+			"title" : "Message Type",
+			"property" : "JMSType"
 		},
 		{
 			"title" : "Expiration",
@@ -24,10 +28,6 @@
 		{
 			"title" : "Reply To",
 			"property" : "JMSReplyTo"
-		},
-		{
-			"title" : "Destination",
-			"property" : "JMSDestination"
 		},
 		{
 			"title" : "Delivery Mode",

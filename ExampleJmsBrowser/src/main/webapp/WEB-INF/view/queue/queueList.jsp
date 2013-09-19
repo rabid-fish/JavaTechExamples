@@ -33,8 +33,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${queueData.messageDataList}" var="message" varStatus="stripe">
-					<tr class="message ${stripe.index % 2 == 0 ? 'stripe' : ''}">
+					<c:forEach items="${queueData.messageDataList}" var="message" varStatus="loop">
+					<tr class="message ${loop.index % 2 == 0 ? 'stripe' : ''}">
 						<c:forEach items="${message.dataValueList}" var="messageDataValue">
 						<td>${fn:escapeXml(messageDataValue)}</td>
 						</c:forEach>

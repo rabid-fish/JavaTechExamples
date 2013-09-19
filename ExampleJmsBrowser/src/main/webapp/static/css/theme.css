@@ -187,16 +187,18 @@ div.messages {
 	padding: 10px;
 }
 
-table.messages {
+table.messages, table.messageData {
 	font-size: .8em;
+	border: 1px solid black;
 }
 
-table.messages th {
+table.messages th, table.messageData th {
 	color: #999999;
 	font-size: .7em;
+	padding: 0px 5px;
 }
 
-table.messages td {
+table.messages td, table.messageData td {
 	padding: 2px 5px;
 }
 
@@ -234,4 +236,13 @@ a.ellipseButton, a.queueSearchButton {
 a.ellipseButton:hover, a.queueSearchButton:hover {
 	color: #FFFFFF;
 	background-color: #5000DB;
+}
+
+div.messageBody {
+	padding-bottom: 15px;
+}
+
+th.spacer, td.spacer {
+	border-right: 1px solid black;
+	padding-left: 5px;
 }
