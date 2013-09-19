@@ -15,6 +15,10 @@ import com.github.rabid_fish.model.MessageData;
 
 public final class CommonUtil {
 
+	public static final String QUEUE_CONFIG_VIEW_JSON = "/json/queueConfigView.json";
+	public static final String QUEUE_CONFIG_LIST_JSON = "/json/queueConfigList.json";
+	public static final String QUEUE_LOAD_JSON = "/json/queueLoad.json";
+
 	private CommonUtil() { }
 	
 	public static void prettifyMessageBody(MessageData messageData) {

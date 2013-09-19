@@ -16,9 +16,9 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
-import com.github.rabid_fish.config.QueueConfig;
-import com.github.rabid_fish.config.QueueConfigDetailView;
-import com.github.rabid_fish.config.QueueConfigHelper;
+import com.github.rabid_fish.config.QueueConfigList;
+import com.github.rabid_fish.config.QueueConfigView;
+import com.github.rabid_fish.config.QueueConfigListHelper;
 import com.github.rabid_fish.model.MessageData;
 
 @Component
@@ -35,9 +35,9 @@ public class JmsBrowser {
 	private ActiveMqJmxBrowser jmxBrowser;
 	
 	@Autowired
-	private QueueConfigHelper configHelper;
+	private QueueConfigListHelper configHelper;
 	
-	public List<MessageData> browseTopMessages(QueueConfig queueConfig) {
+	public List<MessageData> browseTopMessages(QueueConfigList queueConfig) {
 		
 		JmsBrowserCallback callback = new JmsBrowserCallback(queueConfig);
 		List<MessageData> list = jmsTemplate.browseSelected(queueConfig.getName(), "", callback);
@@ -48,7 +48,7 @@ public class JmsBrowser {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
-		for (QueueConfig queueConfig : configHelper.getQueueConfigArray()) {
+		for (QueueConfigList queueConfig : configHelper.getQueueConfigArray()) {
 			List<MessageData> top3Messages = browseTopMessages(queueConfig);
 			listOfListOfQueueMessage.add(top3Messages);
 		}
@@ -56,7 +56,7 @@ public class JmsBrowser {
 		return listOfListOfQueueMessage;
 	}
 	
-	public MessageData browseMessageInDetail(QueueConfigDetailView config, String queueName, String messageId) {
+	public MessageData browseMessageInDetail(QueueConfigView config, String queueName, String messageId) {
 		
 		JmsBrowserCallback callback = new JmsBrowserCallback(config);
 		List<MessageData> messageDataList = jmsTemplate.browseSelected(queueName, "JMSMessageID='" + messageId + "'", callback);
@@ -84,7 +84,7 @@ public class JmsBrowser {
 
 	public void purgeAllQueues() throws JMSException {
 		
-		for (QueueConfig queueConfig : configHelper.getQueueConfigArray()) {
+		for (QueueConfigList queueConfig : configHelper.getQueueConfigArray()) {
 			
 			String queueName = queueConfig.getName();
 			

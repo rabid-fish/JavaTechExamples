@@ -12,18 +12,16 @@ import org.slf4j.LoggerFactory;
 
 import com.github.rabid_fish.load.MessageLoad;
 import com.github.rabid_fish.load.MessageLoadHelper;
+import com.github.rabid_fish.util.CommonUtil;
 
 public class QueueConfigHelperTest {
 
 	public static final Logger LOG = LoggerFactory.getLogger(QueueConfigHelperTest.class);
-	private static final String QUEUE_CONFIG_JSON = "/json/queueConfig.json";
-	private static final String QUEUE_LOAD_JSON = "/json/queueLoad.json";
-	
-	QueueConfigHelper helper = null;
+	QueueConfigListHelper helper = null;
 
 	@Before
 	public void setUp() {
-		helper = new QueueConfigHelper(QUEUE_CONFIG_JSON);
+		helper = new QueueConfigListHelper(CommonUtil.QUEUE_CONFIG_LIST_JSON);
 	}
 	
 	@Test
@@ -34,10 +32,10 @@ public class QueueConfigHelperTest {
 	@Test
 	public void testConfigQueueRegexHitsQueueLoadMessage() {
 		
-		QueueConfig[] queueConfigArray = new QueueConfigHelper(QUEUE_CONFIG_JSON).getQueueConfigArray();
+		QueueConfigList[] queueConfigArray = new QueueConfigListHelper(CommonUtil.QUEUE_CONFIG_LIST_JSON).getQueueConfigArray();
 		String regex = queueConfigArray[0].getColumns().get(2).getRegex();
 		
-		MessageLoadHelper messageLoadHelper = new MessageLoadHelper(QUEUE_LOAD_JSON);
+		MessageLoadHelper messageLoadHelper = new MessageLoadHelper(CommonUtil.QUEUE_LOAD_JSON);
 		MessageLoad messageLoad = messageLoadHelper.getMessageLoadArray()[0];
 		String text = messageLoad.getText();
 		
@@ -54,15 +52,15 @@ public class QueueConfigHelperTest {
 	@Test
 	public void testGetConfigQueueForQueueName() {
 		
-		QueueConfig queueConfig = helper.getQueueConfigArray()[0];
-		QueueConfig result = helper.getQueueConfigForQueueName(queueConfig.getName());
+		QueueConfigList queueConfig = helper.getQueueConfigArray()[0];
+		QueueConfigList result = helper.getQueueConfigForQueueName(queueConfig.getName());
 		assertTrue(result == queueConfig);
 	}
 	
 	@Test
 	public void testGetConfigQueueForQueueNameWithBadName() {
 		
-		QueueConfig result = helper.getQueueConfigForQueueName("");
+		QueueConfigList result = helper.getQueueConfigForQueueName("");
 		assertNull(result);
 	}
 }

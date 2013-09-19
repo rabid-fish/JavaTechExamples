@@ -4,11 +4,11 @@ import java.io.InputStream;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class QueueConfigDetailViewHelper {
+public class QueueConfigViewHelper {
 
-	private QueueConfigDetailView queueConfigDetailView = null;
+	private QueueConfigView queueConfigDetailView = null;
 	
-	public QueueConfigDetailViewHelper(String resourcePath) {
+	public QueueConfigViewHelper(String resourcePath) {
 		setQueueConfig(resourcePath);
 	}
 
@@ -17,17 +17,17 @@ public class QueueConfigDetailViewHelper {
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = getClass().getResourceAsStream(resourcePath);
 		try {
-			setQueueConfigDetailView(mapper.readValue(stream, QueueConfigDetailView.class));
+			setQueueConfigDetailView(mapper.readValue(stream, QueueConfigView.class));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
-	public QueueConfigDetailView getQueueConfigDetailView() {
+	public QueueConfigView getQueueConfigDetailView() {
 		return queueConfigDetailView;
 	}
 
-	public void setQueueConfigDetailView(QueueConfigDetailView queueConfigDetailView) {
+	public void setQueueConfigDetailView(QueueConfigView queueConfigDetailView) {
 		this.queueConfigDetailView = queueConfigDetailView;
 	}
 	

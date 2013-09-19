@@ -4,11 +4,11 @@ import java.io.InputStream;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class QueueConfigHelper {
+public class QueueConfigListHelper {
 
-	private QueueConfig[] queueConfigArray = null;
+	private QueueConfigList[] queueConfigArray = null;
 	
-	public QueueConfigHelper(String resourcePath) {
+	public QueueConfigListHelper(String resourcePath) {
 		setQueueConfigArray(resourcePath);
 	}
 	
@@ -17,16 +17,16 @@ public class QueueConfigHelper {
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = getClass().getResourceAsStream(resourcePath);
 		try {
-			setQueueConfigArray(mapper.readValue(stream, QueueConfig[].class));
+			setQueueConfigArray(mapper.readValue(stream, QueueConfigList[].class));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
-	public QueueConfig getQueueConfigForQueueName(String queueName) {
+	public QueueConfigList getQueueConfigForQueueName(String queueName) {
 		
-		QueueConfig queueConfigForQueueName = null;
-		for (QueueConfig queueConfigElement : queueConfigArray) {
+		QueueConfigList queueConfigForQueueName = null;
+		for (QueueConfigList queueConfigElement : queueConfigArray) {
 			if (queueConfigElement.getName().equals(queueName)) {
 				queueConfigForQueueName = queueConfigElement;
 				break;
@@ -36,11 +36,11 @@ public class QueueConfigHelper {
 		return queueConfigForQueueName;
 	}
 
-	public QueueConfig[] getQueueConfigArray() {
+	public QueueConfigList[] getQueueConfigArray() {
 		return queueConfigArray;
 	}
 
-	public void setQueueConfigArray(QueueConfig[] queueConfigArray) {
+	public void setQueueConfigArray(QueueConfigList[] queueConfigArray) {
 		this.queueConfigArray = queueConfigArray;
 	}
 	

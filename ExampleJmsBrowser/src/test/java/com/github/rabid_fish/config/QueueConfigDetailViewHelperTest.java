@@ -4,18 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.github.rabid_fish.util.CommonUtil;
+
 public class QueueConfigDetailViewHelperTest {
 
-	private static final String QUEUE_CONFIG_DETAIL_VIEW_JSON = "/json/queueConfigDetailView.json";
-	
 	@Test
 	public void testConstructor() {
-		QueueConfigDetailViewHelper helper = new QueueConfigDetailViewHelper(QUEUE_CONFIG_DETAIL_VIEW_JSON);
+		QueueConfigViewHelper helper = new QueueConfigViewHelper(CommonUtil.QUEUE_CONFIG_VIEW_JSON);
 		assertTrue(helper.getQueueConfigDetailView().getColumns().size() > 0);
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void testConstructorWithNullArgument() {
-		new QueueConfigDetailViewHelper(null);
+		new QueueConfigViewHelper(null);
 	}
 }

@@ -17,9 +17,9 @@ import javax.jms.TextMessage;
 import org.springframework.jms.core.BrowserCallback;
 
 import com.github.rabid_fish.config.Configuration;
-import com.github.rabid_fish.config.QueueConfig;
+import com.github.rabid_fish.config.QueueConfigList;
 import com.github.rabid_fish.config.ConfigurationColumn;
-import com.github.rabid_fish.config.QueueConfigDetailView;
+import com.github.rabid_fish.config.QueueConfigView;
 import com.github.rabid_fish.model.MessageData;
 
 public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
@@ -55,11 +55,11 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 	
 	private boolean checkForEarlyBreak(int size) {
 		
-		if (!(config instanceof QueueConfig)) {
+		if (!(config instanceof QueueConfigList)) {
 			return false;
 		}
 		
-		boolean condition = size >= ((QueueConfig) config).getMaxMessageCount();
+		boolean condition = size >= ((QueueConfigList) config).getMaxMessageCount();
 		return condition;
 	}
 
@@ -69,7 +69,7 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 
 	void setMessageBody(Message message, MessageData messageData) throws JMSException {
 		
-		if (!(config instanceof QueueConfigDetailView)) {
+		if (!(config instanceof QueueConfigView)) {
 			messageData.setBody(null);
 			return;
 		}

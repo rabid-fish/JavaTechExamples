@@ -1,18 +1,18 @@
 package com.github.rabid_fish.model;
 
-import com.github.rabid_fish.config.QueueConfig;
+import com.github.rabid_fish.config.QueueConfigList;
 import com.github.rabid_fish.jms.JmsQueueStats;
 
 public class QueueData {
 
-	private QueueConfig queueConfig;
+	private QueueConfigList queueConfig;
 	private JmsQueueStats jmsQueueStats;
 	private Iterable<MessageData> messageDataList;
 	
-	public QueueConfig getQueueConfig() {
+	public QueueConfigList getQueueConfig() {
 		return queueConfig;
 	}
-	public void setQueueConfig(QueueConfig queueConfig) {
+	public void setQueueConfig(QueueConfigList queueConfig) {
 		this.queueConfig = queueConfig;
 	}
 	public JmsQueueStats getJmsQueueStats() {

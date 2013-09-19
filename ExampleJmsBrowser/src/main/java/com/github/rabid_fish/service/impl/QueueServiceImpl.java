@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.rabid_fish.config.QueueConfig;
-import com.github.rabid_fish.config.QueueConfigDetailViewHelper;
-import com.github.rabid_fish.config.QueueConfigHelper;
+import com.github.rabid_fish.config.QueueConfigList;
+import com.github.rabid_fish.config.QueueConfigViewHelper;
+import com.github.rabid_fish.config.QueueConfigListHelper;
 import com.github.rabid_fish.jms.ActiveMqJmxBrowser;
 import com.github.rabid_fish.jms.JmsBrowser;
 import com.github.rabid_fish.jms.JmsQueueStats;
@@ -26,15 +26,15 @@ public class QueueServiceImpl implements QueueService {
 	private ActiveMqJmxBrowser jmxBrowser;
 
 	@Autowired
-	private QueueConfigHelper configHelper;
+	private QueueConfigListHelper configHelper;
 	
 	@Autowired
-	private QueueConfigDetailViewHelper configDetailViewHelper;
+	private QueueConfigViewHelper configDetailViewHelper;
 	
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
 		
-		QueueConfig queueConfigForQueueName = configHelper.getQueueConfigForQueueName(queueName);
+		QueueConfigList queueConfigForQueueName = configHelper.getQueueConfigForQueueName(queueName);
 		if (queueConfigForQueueName == null) {
 			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
 		}
@@ -46,9 +46,9 @@ public class QueueServiceImpl implements QueueService {
 	public Iterable<QueueData> getQueueDataIterable() {
 		
 		List<QueueData> queueDataList = new ArrayList<QueueData>();
-		QueueConfig[] queueConfigArray = configHelper.getQueueConfigArray();
+		QueueConfigList[] queueConfigArray = configHelper.getQueueConfigArray();
 		
-		for(QueueConfig queueConfig : queueConfigArray) {
+		for(QueueConfigList queueConfig : queueConfigArray) {
 			QueueData queueData = getQueueDataForQueueName(queueConfig);
 			queueDataList.add(queueData);
 		}
@@ -56,7 +56,7 @@ public class QueueServiceImpl implements QueueService {
 		return queueDataList;
 	}
 
-	QueueData getQueueDataForQueueName(QueueConfig queueConfig) {
+	QueueData getQueueDataForQueueName(QueueConfigList queueConfig) {
 		
 		QueueData queueData = new QueueData();
 		queueData.setQueueConfig(queueConfig);

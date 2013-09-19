@@ -1,6 +1,6 @@
 package com.github.rabid_fish.config;
 
-public class QueueConfig extends Configuration {
+public class QueueConfigList extends Configuration {
 	
 	private String name;
 	private int maxMessageCount;

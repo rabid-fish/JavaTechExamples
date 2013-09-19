@@ -19,8 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.rabid_fish.config.ConfigurationColumn;
-import com.github.rabid_fish.config.QueueConfigDetailViewHelper;
-import com.github.rabid_fish.config.QueueConfigHelper;
+import com.github.rabid_fish.config.QueueConfigViewHelper;
+import com.github.rabid_fish.config.QueueConfigListHelper;
 import com.github.rabid_fish.model.MessageData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -42,10 +42,10 @@ public class JmsBrowserCallbackTest {
 	private JmsBrowserCallback callback;
 	
 	@Autowired
-	QueueConfigHelper configHelper;
+	QueueConfigListHelper configHelper;
 	
 	@Autowired
-	QueueConfigDetailViewHelper configDetailViewHelper;
+	QueueConfigViewHelper configDetailViewHelper;
 	
 	@Before
 	public void setUp() {

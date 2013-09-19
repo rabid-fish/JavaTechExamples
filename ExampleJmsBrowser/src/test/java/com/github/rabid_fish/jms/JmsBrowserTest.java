@@ -14,10 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.rabid_fish.config.QueueConfig;
-import com.github.rabid_fish.config.QueueConfigDetailView;
-import com.github.rabid_fish.config.QueueConfigDetailViewHelper;
-import com.github.rabid_fish.config.QueueConfigHelper;
+import com.github.rabid_fish.config.QueueConfigList;
+import com.github.rabid_fish.config.QueueConfigView;
+import com.github.rabid_fish.config.QueueConfigViewHelper;
+import com.github.rabid_fish.config.QueueConfigListHelper;
 import com.github.rabid_fish.load.MessageLoader;
 import com.github.rabid_fish.model.MessageData;
 
@@ -34,12 +34,12 @@ public class JmsBrowserTest {
 	MessageLoader messageLoader;
 	
 	@Autowired
-	private QueueConfigHelper configHelper;
+	private QueueConfigListHelper configHelper;
 	
 	@Autowired
-	private QueueConfigDetailViewHelper configDetailViewHelper;
+	private QueueConfigViewHelper configDetailViewHelper;
 	
-	private QueueConfig defaultQueueConfig;
+	private QueueConfigList defaultQueueConfig;
 	
 	@Before
 	public void setUp() {
@@ -50,7 +50,7 @@ public class JmsBrowserTest {
 	public void testBrowseTopMessage() {
 		
 		LOG.info("Running test");
-		QueueConfig queueConfig = configHelper.getQueueConfigArray()[0];
+		QueueConfigList queueConfig = configHelper.getQueueConfigArray()[0];
 		queueConfig.setMaxMessageCount(3);
 		List<MessageData> messageDataList = browser.browseTopMessages(queueConfig);
 		
@@ -74,11 +74,11 @@ public class JmsBrowserTest {
 	@Test
 	public void testBrowseMessageInDetail() {
 
-		QueueConfig localConfig = cloneConfig(defaultQueueConfig, 1);
+		QueueConfigList localConfig = cloneConfig(defaultQueueConfig, 1);
 		List<MessageData> messageDataList = browser.browseTopMessages(localConfig);
 		String queueName = localConfig.getName();
 		String messageId = messageDataList.get(0).getMessageId();
-		QueueConfigDetailView configDetailView = configDetailViewHelper.getQueueConfigDetailView();
+		QueueConfigView configDetailView = configDetailViewHelper.getQueueConfigDetailView();
 		MessageData messageData = browser.browseMessageInDetail(configDetailView, queueName, messageId);
 		
 		assertNotNull(messageData);
@@ -87,7 +87,7 @@ public class JmsBrowserTest {
 	@Test
 	public void testDeleteMessage() {
 
-		QueueConfig localConfig = cloneConfig(defaultQueueConfig, 100);
+		QueueConfigList localConfig = cloneConfig(defaultQueueConfig, 100);
 		List<MessageData> messageDataListStart = browser.browseTopMessages(localConfig);
 		
 		String queueName = localConfig.getName();
@@ -99,9 +99,9 @@ public class JmsBrowserTest {
 		assertTrue(messageDataListStart.size() > messageDataListEnd.size());
 	}
 	
-	private QueueConfig cloneConfig(QueueConfig queueConfig, int maxMessageCount) {
+	private QueueConfigList cloneConfig(QueueConfigList queueConfig, int maxMessageCount) {
 		
-		QueueConfig clone = new QueueConfig();
+		QueueConfigList clone = new QueueConfigList();
 		clone.setColumns(queueConfig.getColumns());
 		clone.setName(queueConfig.getName());
 		clone.setMaxMessageCount(maxMessageCount);
