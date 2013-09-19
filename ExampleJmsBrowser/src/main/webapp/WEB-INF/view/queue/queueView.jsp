@@ -52,60 +52,58 @@
 	
 </style>
 
-<ul class="queues">
-	<li class="queue">
-		<div class="queueTitle">
-			<span class="queueName">${queueName}</span>
-			<!-- 
-			<div class="actions">
-				<ul class="actions">
-					<li class="action"><a class="action" href="#">Copy</a></li>
-					<li class="action"><a class="action" href="#">Delete</a></li>
-				</ul>
-			</div>
-			 -->
-		</div>
-		<div class="messages">
-			<div class="messageBody">
-				<label class="messageBodyLabel">Message Body</label>
-				<div class="messageBodyText">${fn:escapeXml(message.body)}</div>
-			</div>
+<div class="queueTitle">
+	<span class="queueName">${queueName}</span>
+	<!-- 
+	<div class="actions">
+		<ul class="actions">
+			<li class="action"><a class="action" href="#">Copy</a></li>
+			<li class="action"><a class="action" href="#">Delete</a></li>
+		</ul>
+	</div>
+	 -->
+</div>
 
-			<div class="messageData">
-				<label class="messageDataLabel">Message Properties</label>
-				<table class="messageData">
-					<thead>
-						<tr>
-							<th>key</th>
-							<th>value</th>
-							<th class="spacer"></th>
-							<th>key</th>
-							<th>value</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach begin="0" end="${fn:length(message.dataTitleList) - 1}" step="2" varStatus="loop">
-						<tr class="message ${loop.index % 4 == 0 ? 'stripe' : ''}">
-							<c:if test="${not empty message.dataTitleList[loop.index]}">
-							<td class="messageDataTitle">${message.dataTitleList[loop.index]}</td>
-							<td class="messageDataValue">${message.dataValueList[loop.index]}</td>
-							</c:if>
-							<td class="spacer"></td>
-							<c:if test="${not empty message.dataTitleList[loop.index + 1]}">
-							<td class="messageDataTitle">${message.dataTitleList[loop.index + 1]}</td>
-							<td class="messageDataValue">${message.dataValueList[loop.index + 1]}</td>
-							</c:if>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="backButton">
-			<a class="button backButton" href="../../">Return to Queue List</a>
-		</div>
-	</li>
-</ul>
+<div class="messages">
+	<div class="messageBody">
+		<label class="messageBodyLabel">Message Body</label>
+		<div class="messageBodyText">${fn:escapeXml(message.body)}</div>
+	</div>
+
+	<div class="messageData">
+		<label class="messageDataLabel">Message Properties</label>
+		<table class="messageData">
+			<thead>
+				<tr>
+					<th>key</th>
+					<th>value</th>
+					<th class="spacer"></th>
+					<th>key</th>
+					<th>value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach begin="0" end="${fn:length(message.dataTitleList) - 1}" step="2" varStatus="loop">
+				<tr class="message ${loop.index % 4 == 0 ? 'stripe' : ''}">
+					<c:if test="${not empty message.dataTitleList[loop.index]}">
+					<td class="messageDataTitle">${message.dataTitleList[loop.index]}</td>
+					<td class="messageDataValue">${message.dataValueList[loop.index]}</td>
+					</c:if>
+					<td class="spacer"></td>
+					<c:if test="${not empty message.dataTitleList[loop.index + 1]}">
+					<td class="messageDataTitle">${message.dataTitleList[loop.index + 1]}</td>
+					<td class="messageDataValue">${message.dataValueList[loop.index + 1]}</td>
+					</c:if>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="backButton">
+	<a class="button backButton" href="../../">Return to Queue List</a>
+</div>
 
 	</tiles:putAttribute>
 </tiles:insertDefinition>

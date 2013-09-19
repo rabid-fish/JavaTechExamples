@@ -33,7 +33,7 @@ public class QueueController {
 		
 		return "queue/queueList";
 	}
-	
+
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String getView(
 			@RequestParam("queueName") String queueName, 

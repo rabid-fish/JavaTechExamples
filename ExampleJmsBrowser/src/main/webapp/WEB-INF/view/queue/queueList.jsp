@@ -22,7 +22,6 @@
 	table.messages td {
 		padding: 2px 5px;
 	}
-	
 
 </style>
 
@@ -32,11 +31,13 @@
 	<li class="queue">
 		<span class="queueName">Queue: ${queueData.queueConfig.name}</span>
 		<span class="queueMessageCount">${queueData.jmsQueueStats.queueSize} messages</span>
+		
 		<div class="queueSearch">
 			<span class="queueSearchLabel">search queue:</span>
 			<input class="queueSearchInput" type="text" name="" value="" />
 			<a class="button queueSearchButton" href="#">go</a>
 		</div>
+		
 		<div class="messages">
 			<c:if test="${empty queueData.messageDataList}">
 			<p class="messagesEmpty">There are no messages currently in this queue</p>
