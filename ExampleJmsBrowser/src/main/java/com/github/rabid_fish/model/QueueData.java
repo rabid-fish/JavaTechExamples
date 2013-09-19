@@ -5,15 +5,15 @@ import com.github.rabid_fish.jms.JmsQueueStats;
 
 public class QueueData {
 
-	private QueueConfigList queueConfig;
+	private QueueConfigList queueConfigList;
 	private JmsQueueStats jmsQueueStats;
 	private Iterable<MessageData> messageDataList;
 	
-	public QueueConfigList getQueueConfig() {
-		return queueConfig;
+	public QueueConfigList getQueueConfigList() {
+		return queueConfigList;
 	}
-	public void setQueueConfig(QueueConfigList queueConfig) {
-		this.queueConfig = queueConfig;
+	public void setQueueConfigList(QueueConfigList queueConfigList) {
+		this.queueConfigList = queueConfigList;
 	}
 	public JmsQueueStats getJmsQueueStats() {
 		return jmsQueueStats;

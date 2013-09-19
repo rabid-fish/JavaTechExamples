@@ -43,16 +43,16 @@ public class JmsBrowserTest {
 	
 	@Before
 	public void setUp() {
-		defaultQueueConfig = configHelper.getQueueConfigArray()[0];
+		defaultQueueConfig = configHelper.getQueueConfigListArray()[0];
 	}
 	
 	@Test
 	public void testBrowseTopMessage() {
 		
 		LOG.info("Running test");
-		QueueConfigList queueConfig = configHelper.getQueueConfigArray()[0];
-		queueConfig.setMaxMessageCount(3);
-		List<MessageData> messageDataList = browser.browseTopMessages(queueConfig);
+		QueueConfigList queueConfigList = configHelper.getQueueConfigListArray()[0];
+		queueConfigList.setMaxMessageCount(3);
+		List<MessageData> messageDataList = browser.browseTopMessages(queueConfigList);
 		
 		LOG.info("Count of top messages on queue: " + messageDataList.size());
 		assertTrue(messageDataList.size() == 3);
@@ -99,11 +99,11 @@ public class JmsBrowserTest {
 		assertTrue(messageDataListStart.size() > messageDataListEnd.size());
 	}
 	
-	private QueueConfigList cloneConfig(QueueConfigList queueConfig, int maxMessageCount) {
+	private QueueConfigList cloneConfig(QueueConfigList queueConfigList, int maxMessageCount) {
 		
 		QueueConfigList clone = new QueueConfigList();
-		clone.setColumns(queueConfig.getColumns());
-		clone.setName(queueConfig.getName());
+		clone.setColumns(queueConfigList.getColumns());
+		clone.setName(queueConfigList.getName());
 		clone.setMaxMessageCount(maxMessageCount);
 		
 		return clone;

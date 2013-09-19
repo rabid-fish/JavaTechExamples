@@ -17,6 +17,7 @@ import com.github.rabid_fish.util.CommonUtil;
 public class QueueConfigListHelperTest {
 
 	public static final Logger LOG = LoggerFactory.getLogger(QueueConfigListHelperTest.class);
+	
 	QueueConfigListHelper helper = null;
 
 	@Before
@@ -26,14 +27,14 @@ public class QueueConfigListHelperTest {
 	
 	@Test
 	public void testHasQueueConfigItem() {
-		assertTrue(helper.getQueueConfigArray().length > 0);
+		assertTrue(helper.getQueueConfigListArray().length > 0);
 	}
 	
 	@Test
 	public void testConfigQueueRegexHitsQueueLoadMessage() {
 		
-		QueueConfigList[] queueConfigArray = new QueueConfigListHelper(CommonUtil.QUEUE_CONFIG_LIST_JSON).getQueueConfigArray();
-		String regex = queueConfigArray[0].getColumns().get(2).getRegex();
+		QueueConfigList[] queueConfigListArray = new QueueConfigListHelper(CommonUtil.QUEUE_CONFIG_LIST_JSON).getQueueConfigListArray();
+		String regex = queueConfigListArray[0].getColumns().get(2).getRegex();
 		
 		MessageLoadHelper messageLoadHelper = new MessageLoadHelper(CommonUtil.QUEUE_LOAD_JSON);
 		MessageLoad messageLoad = messageLoadHelper.getMessageLoadArray()[0];
@@ -52,9 +53,9 @@ public class QueueConfigListHelperTest {
 	@Test
 	public void testGetConfigQueueForQueueName() {
 		
-		QueueConfigList queueConfig = helper.getQueueConfigArray()[0];
-		QueueConfigList result = helper.getQueueConfigForQueueName(queueConfig.getName());
-		assertTrue(result == queueConfig);
+		QueueConfigList queueConfigList = helper.getQueueConfigListArray()[0];
+		QueueConfigList result = helper.getQueueConfigForQueueName(queueConfigList.getName());
+		assertTrue(result == queueConfigList);
 	}
 	
 	@Test

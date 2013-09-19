@@ -49,7 +49,7 @@ public class JmsBrowserCallbackTest {
 	
 	@Before
 	public void setUp() {
-		callback = new JmsBrowserCallback(configHelper.getQueueConfigArray()[0]);
+		callback = new JmsBrowserCallback(configHelper.getQueueConfigListArray()[0]);
 	}
 	
 	@Test

@@ -34,34 +34,34 @@ public class QueueServiceImpl implements QueueService {
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
 		
-		QueueConfigList queueConfigForQueueName = configHelper.getQueueConfigForQueueName(queueName);
-		if (queueConfigForQueueName == null) {
+		QueueConfigList queueConfigListForQueueName = configHelper.getQueueConfigForQueueName(queueName);
+		if (queueConfigListForQueueName == null) {
 			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
 		}
 		
-		return jmsBrowser.browseTopMessages(queueConfigForQueueName);
+		return jmsBrowser.browseTopMessages(queueConfigListForQueueName);
 	}
 	
 	@Override
 	public Iterable<QueueData> getQueueDataIterable() {
 		
 		List<QueueData> queueDataList = new ArrayList<QueueData>();
-		QueueConfigList[] queueConfigArray = configHelper.getQueueConfigArray();
+		QueueConfigList[] queueConfigListArray = configHelper.getQueueConfigListArray();
 		
-		for(QueueConfigList queueConfig : queueConfigArray) {
-			QueueData queueData = getQueueDataForQueueName(queueConfig);
+		for(QueueConfigList queueConfigList : queueConfigListArray) {
+			QueueData queueData = getQueueDataForQueueName(queueConfigList);
 			queueDataList.add(queueData);
 		}
 		
 		return queueDataList;
 	}
 
-	QueueData getQueueDataForQueueName(QueueConfigList queueConfig) {
+	QueueData getQueueDataForQueueName(QueueConfigList queueConfigList) {
 		
 		QueueData queueData = new QueueData();
-		queueData.setQueueConfig(queueConfig);
+		queueData.setQueueConfigList(queueConfigList);
 		
-		String queueName = queueConfig.getName();
+		String queueName = queueConfigList.getName();
 		JmsQueueStats queueStats = jmxBrowser.getQueueStats(queueName);
 		queueData.setJmsQueueStats(queueStats);
 		

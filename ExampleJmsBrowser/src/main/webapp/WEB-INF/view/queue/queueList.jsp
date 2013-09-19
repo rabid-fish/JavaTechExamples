@@ -29,7 +29,7 @@
 <ul class="queues">
 	<c:forEach items="${list}" var="queueData">
 	<li class="queue">
-		<span class="queueName">Queue: ${queueData.queueConfig.name}</span>
+		<span class="queueName">Queue: ${queueData.queueConfigList.name}</span>
 		<span class="queueMessageCount">${queueData.jmsQueueStats.queueSize} messages</span>
 		
 		<div class="queueSearch">
@@ -47,7 +47,7 @@
 			<table class="messages">
 				<thead>
 					<tr>
-						<c:forEach items="${queueData.queueConfig.columns}" var="column">
+						<c:forEach items="${queueData.queueConfigList.columns}" var="column">
 						<th>${fn:escapeXml(column.title)}</th>
 						</c:forEach>
 						<th>Actions</th>
@@ -60,14 +60,14 @@
 						<td>${fn:escapeXml(messageDataValue)}</td>
 						</c:forEach>
 						<td>
-							<a class="button action" href="queue/view?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfig.name)}">View</a>
-							<a class="button action" href="queue/delete?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfig.name)}">Delete</a>
+							<a class="button action" href="queue/view?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfigList.name)}">View</a>
+							<a class="button action" href="queue/delete?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfigList.name)}">Delete</a>
 						</td>
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<c:if test="${queueData.jmsQueueStats.queueSize > queueData.queueConfig.maxMessageCount}">
+			<c:if test="${queueData.jmsQueueStats.queueSize > queueData.queueConfigList.maxMessageCount}">
 			<div class="ellipseDiv">
 				<a class="button ellipseButton" href="#">more results ...</a>
 			</div>

@@ -6,7 +6,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class QueueConfigViewHelper {
 
-	private QueueConfigView queueConfigDetailView = null;
+	private QueueConfigView queueConfigView = null;
 	
 	public QueueConfigViewHelper(String resourcePath) {
 		setQueueConfig(resourcePath);
@@ -24,11 +24,11 @@ public class QueueConfigViewHelper {
 	}
 	
 	public QueueConfigView getQueueConfigDetailView() {
-		return queueConfigDetailView;
+		return queueConfigView;
 	}
 
-	public void setQueueConfigDetailView(QueueConfigView queueConfigDetailView) {
-		this.queueConfigDetailView = queueConfigDetailView;
+	public void setQueueConfigDetailView(QueueConfigView queueConfigView) {
+		this.queueConfigView = queueConfigView;
 	}
 	
 }

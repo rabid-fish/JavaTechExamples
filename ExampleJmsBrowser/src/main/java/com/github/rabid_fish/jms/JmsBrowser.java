@@ -37,10 +37,10 @@ public class JmsBrowser {
 	@Autowired
 	private QueueConfigListHelper configHelper;
 	
-	public List<MessageData> browseTopMessages(QueueConfigList queueConfig) {
+	public List<MessageData> browseTopMessages(QueueConfigList queueConfigList) {
 		
-		JmsBrowserCallback callback = new JmsBrowserCallback(queueConfig);
-		List<MessageData> list = jmsTemplate.browseSelected(queueConfig.getName(), "", callback);
+		JmsBrowserCallback callback = new JmsBrowserCallback(queueConfigList);
+		List<MessageData> list = jmsTemplate.browseSelected(queueConfigList.getName(), "", callback);
 		return list;
 	}
 	
@@ -48,8 +48,8 @@ public class JmsBrowser {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
-		for (QueueConfigList queueConfig : configHelper.getQueueConfigArray()) {
-			List<MessageData> top3Messages = browseTopMessages(queueConfig);
+		for (QueueConfigList queueConfigList : configHelper.getQueueConfigListArray()) {
+			List<MessageData> top3Messages = browseTopMessages(queueConfigList);
 			listOfListOfQueueMessage.add(top3Messages);
 		}
 		
@@ -84,9 +84,9 @@ public class JmsBrowser {
 
 	public void purgeAllQueues() throws JMSException {
 		
-		for (QueueConfigList queueConfig : configHelper.getQueueConfigArray()) {
+		for (QueueConfigList queueConfigList : configHelper.getQueueConfigListArray()) {
 			
-			String queueName = queueConfig.getName();
+			String queueName = queueConfigList.getName();
 			
 			// Note that determining queuesize is necessary to purging
 			// the queue and not pay a wait penalty.  This act couples
