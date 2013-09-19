@@ -17,5 +17,4 @@ public class QueueConfig extends Configuration {
 	public void setMaxMessageCount(int maxMessageCount) {
 		this.maxMessageCount = maxMessageCount;
 	}
-
 }

@@ -11,6 +11,21 @@
 		width: 900px;
 	}
 
+	table.messageData {
+		font-size: .8em;
+		border: 1px solid black;
+	}
+	
+	table.messageData th {
+		color: #999999;
+		font-size: .7em;
+		padding: 0px 5px;
+	}
+	
+	table.messageData td {
+		padding: 2px 5px;
+	}
+	
 	td.messageDataTitle {
 		width: 14%;
 	}
@@ -28,6 +43,10 @@
 		font-family: monospace;
 		white-space: pre;
 		border: 1px solid black;
+		padding: 10px;
+	}
+	
+	div.backButton {
 		padding: 10px;
 	}
 	
@@ -81,6 +100,9 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
+		<div class="backButton">
+			<a class="button backButton" href="../../">Return to Queue List</a>
 		</div>
 	</li>
 </ul>

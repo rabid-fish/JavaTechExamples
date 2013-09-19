@@ -64,6 +64,11 @@ public class JmsBrowser {
 		return messageDataList.get(0);
 	}
 	
+	public void deleteMessage(String queueName, String messageId) {
+		
+		jmsTemplate.receiveSelected(queueName, "JMSMessageID='" + messageId + "'");
+	}
+	
 	public void putMessage(String queueName, String messageText) {
 		
 		final String messageTextFinal = messageText;

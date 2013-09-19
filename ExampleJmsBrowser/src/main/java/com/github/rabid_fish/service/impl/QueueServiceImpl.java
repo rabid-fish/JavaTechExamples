@@ -80,4 +80,10 @@ public class QueueServiceImpl implements QueueService {
 		return messageData;
 	}
 
+	@Override
+	public void removeMessage(String queueName, String messageId) {
+		
+		jmsBrowser.deleteMessage(queueName, messageId);
+	}
+
 }

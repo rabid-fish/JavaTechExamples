@@ -26,7 +26,7 @@ public class QueueController {
 
 		Iterable<QueueData> list = queueService.getQueueDataIterable();
 		model.addAttribute("list", list);
-
+		
 		if (!list.iterator().hasNext()) {
 			model.addAttribute("userMessage", "No message items to list at this time");
 		}
@@ -51,7 +51,15 @@ public class QueueController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String getDelete(ModelMap model) {
+	public String getDelete(
+			@RequestParam("queueName") String queueName, 
+			@RequestParam("messageId") String messageId,
+			ModelMap model) {
+		
+		// Drop error message into session and show on list page 'errorMessage' div
+		
+		queueService.removeMessage(queueName, messageId);
+		
 		return "redirect:../queue";
 	}
 

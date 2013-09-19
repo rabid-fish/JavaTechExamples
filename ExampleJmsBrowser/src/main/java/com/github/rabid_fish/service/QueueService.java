@@ -8,5 +8,6 @@ public interface QueueService {
 	MessageData getDetailedMessageDataForMessageId(String queueName, String messageId);
 	Iterable<MessageData> getMessageDataIterable(String queueName);
 	Iterable<QueueData> getQueueDataIterable();
+	void removeMessage(String queueName, String messageId);
 	
 }

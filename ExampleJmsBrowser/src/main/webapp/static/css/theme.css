@@ -148,7 +148,7 @@ body {
 
 td.serverInfoKey, td.serverInfoValue {
 	color: #B58AFF;
-	font-size: .8em;
+	font-size: 1.0em;
 }
 
 td.serverInfoValue {
@@ -187,27 +187,8 @@ div.messages {
 	padding: 10px;
 }
 
-table.messages, table.messageData {
-	font-size: .8em;
-	border: 1px solid black;
-}
-
-table.messages th, table.messageData th {
-	color: #999999;
-	font-size: .7em;
-	padding: 0px 5px;
-}
-
-table.messages td, table.messageData td {
-	padding: 2px 5px;
-}
-
 tr.stripe {
 	background-color: #D1D1D1;
-}
-
-a.action, a.action:visited, a.action:hover {
-	 color: #0000FF;
 }
 
 div.actions {
@@ -223,19 +204,24 @@ div.ellipseDiv {
 	padding: 5px 0px 0px 0px;
 }
 
-a.ellipseButton, a.queueSearchButton {
-	font-size: .7em;
+a.button, a.button:visited {
+	color: #5000DB;
 	text-decoration: none;
 	border: 1px solid #5000DB;
 	background-color: #E5D6FF;
 	border-radius: 3px;
-	padding: 0px 4px;
-	font-style: italic;
+	padding: 3px 5px;
 }
 
-a.ellipseButton:hover, a.queueSearchButton:hover {
+a.button:hover {
 	color: #FFFFFF;
 	background-color: #5000DB;
+}
+
+a.ellipseButton, a.queueSearchButton, a.action {
+	font-size: .9em;
+	padding: 0px 4px;
+	font-style: italic;
 }
 
 div.messageBody {

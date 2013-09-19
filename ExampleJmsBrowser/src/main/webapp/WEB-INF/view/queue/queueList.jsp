@@ -6,6 +6,26 @@
 	<tiles:putAttribute name="title" value="Queue List" />
 	<tiles:putAttribute name="body">
 
+<style type="text/css">
+
+	table.messages {
+		font-size: 1.0em;
+		border: 1px solid black;
+	}
+	
+	table.messages th {
+		color: #999999;
+		font-size: .7em;
+		padding: 0px 5px;
+	}
+	
+	table.messages td {
+		padding: 2px 5px;
+	}
+	
+
+</style>
+
 <c:if test="${not empty list}">
 <ul class="queues">
 	<c:forEach items="${list}" var="queueData">
@@ -15,7 +35,7 @@
 		<div class="queueSearch">
 			<span class="queueSearchLabel">search queue:</span>
 			<input class="queueSearchInput" type="text" name="" value="" />
-			<a class="queueSearchButton" href="#">go</a>
+			<a class="button queueSearchButton" href="#">go</a>
 		</div>
 		<div class="messages">
 			<c:if test="${empty queueData.messageDataList}">
@@ -39,8 +59,8 @@
 						<td>${fn:escapeXml(messageDataValue)}</td>
 						</c:forEach>
 						<td>
-							<a class="action" href="queue/view?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfig.name)}">View</a>
-							<a class="action" href="queue/delete">Delete</a>
+							<a class="button action" href="queue/view?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfig.name)}">View</a>
+							<a class="button action" href="queue/delete?messageId=${fn:escapeXml(message.messageId)}&amp;queueName=${fn:escapeXml(queueData.queueConfig.name)}">Delete</a>
 						</td>
 					</tr>
 					</c:forEach>
@@ -48,7 +68,7 @@
 			</table>
 			<c:if test="${queueData.jmsQueueStats.queueSize > queueData.queueConfig.maxMessageCount}">
 			<div class="ellipseDiv">
-				<a class="ellipseButton" href="#">more results ...</a>
+				<a class="button ellipseButton" href="#">more results ...</a>
 			</div>
 			</c:if>
 			</c:if>
