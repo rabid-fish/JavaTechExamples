@@ -25,7 +25,7 @@ public class QueueController {
 		model.addAttribute("list", list);
 
 		if (!list.iterator().hasNext()) {
-			model.addAttribute("message", "No message items to list at this time");
+			model.addAttribute("userMessage", "No message items to list at this time");
 		}
 		
 		return "queue/queueList";
@@ -37,7 +37,7 @@ public class QueueController {
 			@RequestParam("messageId") String messageId,
 			ModelMap model) {
 		
-		model.addAttribute("message", "Welcome to the queue view page");
+		model.addAttribute("userMessage", "Welcome to the queue view page");
 		
 		MessageData messageData = queueService.getDetailedMessageDataForMessageId(queueName, messageId);
 		model.addAttribute("messageData", messageData);

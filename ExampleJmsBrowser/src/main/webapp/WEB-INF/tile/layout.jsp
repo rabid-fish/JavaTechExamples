@@ -1,4 +1,5 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -36,9 +37,11 @@
 		</div>
 		<div id="content">
 			<div id="content_inner">
-				<!-- 
-				<h1><tiles:insertAttribute name="title" /></h1>
-				 -->
+				<!-- <h1><tiles:insertAttribute name="title" /></h1> -->
+				 <c:if test="${not empty userMessage}">
+				<p>${userMessage}</p>
+				</c:if>
+				
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>

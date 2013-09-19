@@ -3,8 +3,6 @@
 	<tiles:putAttribute name="title" value="Queue View" />
 	<tiles:putAttribute name="body">
 
-<p>${message}</p>
-
 <ul class="queues">
 	<li class="">
 	</li>
