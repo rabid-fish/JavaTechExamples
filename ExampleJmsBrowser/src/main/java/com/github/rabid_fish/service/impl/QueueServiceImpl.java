@@ -26,7 +26,7 @@ public class QueueServiceImpl implements QueueService {
 	private ActiveMqJmxBrowser jmxBrowser;
 
 	@Autowired
-	private QueueConfigListHelper configHelper;
+	private QueueConfigListHelper configListHelper;
 	
 	@Autowired
 	private QueueConfigViewHelper configDetailViewHelper;
@@ -34,7 +34,7 @@ public class QueueServiceImpl implements QueueService {
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
 		
-		QueueConfigList queueConfigListForQueueName = configHelper.getQueueConfigForQueueName(queueName);
+		QueueConfigList queueConfigListForQueueName = configListHelper.getQueueConfigForQueueName(queueName);
 		if (queueConfigListForQueueName == null) {
 			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
 		}
@@ -46,7 +46,7 @@ public class QueueServiceImpl implements QueueService {
 	public Iterable<QueueData> getQueueDataIterable() {
 		
 		List<QueueData> queueDataList = new ArrayList<QueueData>();
-		QueueConfigList[] queueConfigListArray = configHelper.getQueueConfigListArray();
+		QueueConfigList[] queueConfigListArray = configListHelper.getQueueConfigListArray();
 		
 		for(QueueConfigList queueConfigList : queueConfigListArray) {
 			QueueData queueData = getQueueDataForQueueName(queueConfigList);

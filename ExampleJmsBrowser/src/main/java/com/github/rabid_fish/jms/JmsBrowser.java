@@ -35,7 +35,7 @@ public class JmsBrowser {
 	private ActiveMqJmxBrowser jmxBrowser;
 	
 	@Autowired
-	private QueueConfigListHelper configHelper;
+	private QueueConfigListHelper configListHelper;
 	
 	public List<MessageData> browseTopMessages(QueueConfigList queueConfigList) {
 		
@@ -48,7 +48,7 @@ public class JmsBrowser {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
-		for (QueueConfigList queueConfigList : configHelper.getQueueConfigListArray()) {
+		for (QueueConfigList queueConfigList : configListHelper.getQueueConfigListArray()) {
 			List<MessageData> top3Messages = browseTopMessages(queueConfigList);
 			listOfListOfQueueMessage.add(top3Messages);
 		}
@@ -84,7 +84,7 @@ public class JmsBrowser {
 
 	public void purgeAllQueues() throws JMSException {
 		
-		for (QueueConfigList queueConfigList : configHelper.getQueueConfigListArray()) {
+		for (QueueConfigList queueConfigList : configListHelper.getQueueConfigListArray()) {
 			
 			String queueName = queueConfigList.getName();
 			

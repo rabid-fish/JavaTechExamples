@@ -20,11 +20,11 @@ public class ActiveMqJmxBrowserTest {
 	private ActiveMqJmxBrowser stats;
 	
 	@Autowired
-	private QueueConfigListHelper configHelper;
+	private QueueConfigListHelper configListHelper;
 	
 	@Test
 	public void test() {
-		String queueName = configHelper.getQueueConfigListArray()[0].getName();
+		String queueName = configListHelper.getQueueConfigListArray()[0].getName();
 		JmsQueueStats queueStats = stats.getQueueStats(queueName);
 		LOG.info("Queue depth for " + queueName + ": " + queueStats.getQueueSize());
 	}

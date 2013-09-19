@@ -34,7 +34,7 @@ public class JmsBrowserTest {
 	MessageLoader messageLoader;
 	
 	@Autowired
-	private QueueConfigListHelper configHelper;
+	private QueueConfigListHelper configListHelper;
 	
 	@Autowired
 	private QueueConfigViewHelper configDetailViewHelper;
@@ -43,14 +43,14 @@ public class JmsBrowserTest {
 	
 	@Before
 	public void setUp() {
-		defaultQueueConfig = configHelper.getQueueConfigListArray()[0];
+		defaultQueueConfig = configListHelper.getQueueConfigListArray()[0];
 	}
 	
 	@Test
 	public void testBrowseTopMessage() {
 		
 		LOG.info("Running test");
-		QueueConfigList queueConfigList = configHelper.getQueueConfigListArray()[0];
+		QueueConfigList queueConfigList = configListHelper.getQueueConfigListArray()[0];
 		queueConfigList.setMaxMessageCount(3);
 		List<MessageData> messageDataList = browser.browseTopMessages(queueConfigList);
 		

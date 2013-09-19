@@ -42,14 +42,14 @@ public class JmsBrowserCallbackTest {
 	private JmsBrowserCallback callback;
 	
 	@Autowired
-	QueueConfigListHelper configHelper;
+	QueueConfigListHelper configListHelper;
 	
 	@Autowired
 	QueueConfigViewHelper configDetailViewHelper;
 	
 	@Before
 	public void setUp() {
-		callback = new JmsBrowserCallback(configHelper.getQueueConfigListArray()[0]);
+		callback = new JmsBrowserCallback(configListHelper.getQueueConfigListArray()[0]);
 	}
 	
 	@Test
