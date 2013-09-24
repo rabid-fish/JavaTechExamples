@@ -1,4 +1,4 @@
-package com.github.rabid_fish.jms;
+package com.github.rabid_fish.jms.callback;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,19 +17,36 @@ import javax.jms.TextMessage;
 import org.springframework.jms.core.BrowserCallback;
 
 import com.github.rabid_fish.config.Configuration;
-import com.github.rabid_fish.config.QueueConfigList;
 import com.github.rabid_fish.config.ConfigurationColumn;
+import com.github.rabid_fish.config.QueueConfigList;
+import com.github.rabid_fish.config.QueueConfigSearch;
 import com.github.rabid_fish.config.QueueConfigView;
 import com.github.rabid_fish.model.MessageData;
 
-public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
+public abstract class Callback implements BrowserCallback<List<MessageData>> {
+
+	abstract boolean checkForEarlyBreak(int size);
+	abstract void setMessageBody(Message message, MessageData messageData) throws JMSException;
 
 	private Configuration config;
 
-	public JmsBrowserCallback(Configuration config) {
-		this.config = config;
+	Callback(Configuration config) {
+		this.setConfig(config);
 	}
 
+	public static Callback getCallbackForConfig(Configuration config) {
+		
+		if (config instanceof QueueConfigList) {
+			return new CallbackList(config);
+		} else if (config instanceof QueueConfigView) {
+			return new CallbackView(config);
+		} else if (config instanceof QueueConfigSearch) {
+			return new CallbackSearch(config);
+		}
+		
+		throw new RuntimeException("There is no callback for config of class '" + config.getClass().getName() + "'");
+	}
+	
 	public List<MessageData> doInJms(Session session, QueueBrowser browser) throws JMSException {
 
 		List<MessageData> list = new ArrayList<MessageData>();
@@ -39,7 +56,7 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		while (e.hasMoreElements()) {
 			
 			Message message = e.nextElement();
-			List<ConfigurationColumn> columns = config.getColumns();
+			List<ConfigurationColumn> columns = getConfig().getColumns();
 			MessageData messageData = new MessageData();
 			
 			setMessageDataMessageId(message, messageData);
@@ -53,30 +70,8 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		return list;
 	}
 	
-	private boolean checkForEarlyBreak(int size) {
-		
-		if (!(config instanceof QueueConfigList)) {
-			return false;
-		}
-		
-		boolean condition = size >= ((QueueConfigList) config).getMaxMessageCount();
-		return condition;
-	}
-
 	void setMessageDataMessageId(Message message, MessageData messageData) throws JMSException {
 		messageData.setMessageId(message.getJMSMessageID());
-	}
-
-	void setMessageBody(Message message, MessageData messageData) throws JMSException {
-		
-		if (!(config instanceof QueueConfigView)) {
-			messageData.setBody(null);
-			return;
-		}
-		
-		TextMessage textMessage = (TextMessage) message;
-		String text = textMessage.getText();
-		messageData.setBody(text);
 	}
 
 	void appendMessageDataToList(Message message, List<ConfigurationColumn> columns, MessageData messageData)
@@ -158,5 +153,13 @@ public class JmsBrowserCallback implements BrowserCallback<List<MessageData>> {
 		value = String.valueOf((Long) property);
 		
 		return value;
+	}
+	
+	public Configuration getConfig() {
+		return config;
+	}
+	
+	public void setConfig(Configuration config) {
+		this.config = config;
 	}
 }

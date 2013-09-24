@@ -37,7 +37,7 @@ public class JmsBrowserTest {
 	private QueueConfigListHelper configListHelper;
 	
 	@Autowired
-	private QueueConfigViewHelper configDetailViewHelper;
+	private QueueConfigViewHelper configViewHelper;
 	
 	private QueueConfigList defaultQueueConfig;
 	
@@ -78,7 +78,7 @@ public class JmsBrowserTest {
 		List<MessageData> messageDataList = browser.browseTopMessages(localConfig);
 		String queueName = localConfig.getName();
 		String messageId = messageDataList.get(0).getMessageId();
-		QueueConfigView configDetailView = configDetailViewHelper.getQueueConfigDetailView();
+		QueueConfigView configDetailView = configViewHelper.getQueueConfigDetailView();
 		MessageData messageData = browser.browseMessageInDetail(configDetailView, queueName, messageId);
 		
 		assertNotNull(messageData);

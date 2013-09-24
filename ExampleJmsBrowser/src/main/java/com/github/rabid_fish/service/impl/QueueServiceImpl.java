@@ -29,7 +29,7 @@ public class QueueServiceImpl implements QueueService {
 	private QueueConfigListHelper configListHelper;
 	
 	@Autowired
-	private QueueConfigViewHelper configDetailViewHelper;
+	private QueueConfigViewHelper configViewHelper;
 	
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
@@ -75,7 +75,7 @@ public class QueueServiceImpl implements QueueService {
 	public MessageData getDetailedMessageDataForMessageId(String queueName, String messageId) {
 
 		MessageData messageData = jmsBrowser.browseMessageInDetail(
-				configDetailViewHelper.getQueueConfigDetailView(), queueName, messageId);
+				configViewHelper.getQueueConfigDetailView(), queueName, messageId);
 		
 		return messageData;
 	}

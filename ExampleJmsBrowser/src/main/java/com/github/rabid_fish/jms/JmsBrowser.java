@@ -17,8 +17,9 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
 import com.github.rabid_fish.config.QueueConfigList;
-import com.github.rabid_fish.config.QueueConfigView;
 import com.github.rabid_fish.config.QueueConfigListHelper;
+import com.github.rabid_fish.config.QueueConfigView;
+import com.github.rabid_fish.jms.callback.Callback;
 import com.github.rabid_fish.model.MessageData;
 
 @Component
@@ -37,10 +38,10 @@ public class JmsBrowser {
 	@Autowired
 	private QueueConfigListHelper configListHelper;
 	
-	public List<MessageData> browseTopMessages(QueueConfigList queueConfigList) {
+	public List<MessageData> browseTopMessages(QueueConfigList config) {
 		
-		JmsBrowserCallback callback = new JmsBrowserCallback(queueConfigList);
-		List<MessageData> list = jmsTemplate.browseSelected(queueConfigList.getName(), "", callback);
+		Callback callback = Callback.getCallbackForConfig(config);
+		List<MessageData> list = jmsTemplate.browseSelected(config.getName(), "", callback);
 		return list;
 	}
 	
@@ -58,7 +59,7 @@ public class JmsBrowser {
 	
 	public MessageData browseMessageInDetail(QueueConfigView config, String queueName, String messageId) {
 		
-		JmsBrowserCallback callback = new JmsBrowserCallback(config);
+		Callback callback = Callback.getCallbackForConfig(config);
 		List<MessageData> messageDataList = jmsTemplate.browseSelected(queueName, "JMSMessageID='" + messageId + "'", callback);
 		
 		return messageDataList.get(0);

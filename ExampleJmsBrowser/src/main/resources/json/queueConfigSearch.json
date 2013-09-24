@@ -1,0 +1,13 @@
+{
+	"columns" : 
+	[
+		{
+			"title" : "Message ID",
+			"property" : "JMSMessageID"
+		},
+		{
+			"title" : "Timestamp",
+			"property" : "JMSTimestamp"
+		}
+	]
+}
