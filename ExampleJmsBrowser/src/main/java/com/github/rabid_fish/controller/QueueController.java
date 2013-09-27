@@ -50,6 +50,21 @@ public class QueueController {
 		return "queue/queueView";
 	}
 	
+	@RequestMapping(method = RequestMethod.GET)
+	public String getSearch(
+			@RequestParam("queueName") String queueName, 
+			ModelMap model) {
+		
+		Iterable<MessageData> list = queueService.getMessageDataIterable(queueName);
+		model.addAttribute("list", list);
+		
+		if (!list.iterator().hasNext()) {
+			model.addAttribute("userMessage", "No message items to list at this time");
+		}
+		
+		return "queue/queueList";
+	}
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String getDelete(
 			@RequestParam("queueName") String queueName, 

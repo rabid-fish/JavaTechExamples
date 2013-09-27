@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.rabid_fish.config.QueueConfigList;
 import com.github.rabid_fish.config.QueueConfigView;
-import com.github.rabid_fish.config.QueueConfigViewHelper;
-import com.github.rabid_fish.config.QueueConfigListHelper;
+import com.github.rabid_fish.config.helper.QueueConfigListHelper;
+import com.github.rabid_fish.config.helper.QueueConfigViewHelper;
 import com.github.rabid_fish.load.MessageLoader;
 import com.github.rabid_fish.model.MessageData;
 

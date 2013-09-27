@@ -57,11 +57,11 @@
 		<constructor-arg value="${json.queue-load}"/>
 	</bean>
 
-	<bean class="com.github.rabid_fish.config.QueueConfigListHelper">
+	<bean class="com.github.rabid_fish.config.helper.QueueConfigListHelper">
 		<constructor-arg value="${json.queue-config}"/>
 	</bean>
 
-	<bean class="com.github.rabid_fish.config.QueueConfigViewHelper">
+	<bean class="com.github.rabid_fish.config.helper.QueueConfigViewHelper">
 		<constructor-arg value="${json.queue-config-detail-view}"/>
 	</bean>
 

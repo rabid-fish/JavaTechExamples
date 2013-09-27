@@ -1,6 +1,7 @@
-package com.github.rabid_fish.config;
+package com.github.rabid_fish.config.helper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.rabid_fish.config.QueueConfigList;
 import com.github.rabid_fish.load.MessageLoad;
 import com.github.rabid_fish.load.MessageLoadHelper;
 import com.github.rabid_fish.util.CommonUtil;
@@ -27,6 +29,7 @@ public class QueueConfigListHelperTest {
 	
 	@Test
 	public void testHasQueueConfigItem() {
+		helper = new QueueConfigListHelper(CommonUtil.QUEUE_CONFIG_LIST_JSON);
 		assertTrue(helper.getQueueConfigListArray().length > 0);
 	}
 	

@@ -1,9 +1,10 @@
-package com.github.rabid_fish.config;
+package com.github.rabid_fish.config.helper;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.github.rabid_fish.config.helper.QueueConfigViewHelper;
 import com.github.rabid_fish.util.CommonUtil;
 
 public class QueueConfigViewHelperTest {

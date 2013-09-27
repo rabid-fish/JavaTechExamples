@@ -17,8 +17,8 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
 import com.github.rabid_fish.config.QueueConfigList;
-import com.github.rabid_fish.config.QueueConfigListHelper;
 import com.github.rabid_fish.config.QueueConfigView;
+import com.github.rabid_fish.config.helper.QueueConfigListHelper;
 import com.github.rabid_fish.jms.callback.Callback;
 import com.github.rabid_fish.model.MessageData;
 

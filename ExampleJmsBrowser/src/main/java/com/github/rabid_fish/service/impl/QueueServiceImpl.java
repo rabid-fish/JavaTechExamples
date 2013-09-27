@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.rabid_fish.config.QueueConfigList;
-import com.github.rabid_fish.config.QueueConfigViewHelper;
-import com.github.rabid_fish.config.QueueConfigListHelper;
+import com.github.rabid_fish.config.helper.QueueConfigListHelper;
+import com.github.rabid_fish.config.helper.QueueConfigSearchHelper;
+import com.github.rabid_fish.config.helper.QueueConfigViewHelper;
 import com.github.rabid_fish.jms.ActiveMqJmxBrowser;
 import com.github.rabid_fish.jms.JmsBrowser;
 import com.github.rabid_fish.jms.JmsQueueStats;
@@ -31,15 +32,14 @@ public class QueueServiceImpl implements QueueService {
 	@Autowired
 	private QueueConfigViewHelper configViewHelper;
 	
+//	@Autowired
+//	private QueueConfigSearchHelper configSearchHelper;
+	
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
-		
-		QueueConfigList queueConfigListForQueueName = configListHelper.getQueueConfigForQueueName(queueName);
-		if (queueConfigListForQueueName == null) {
-			throw new RuntimeException("Queue config not found for queue '" + queueName + "'");
-		}
-		
-		return jmsBrowser.browseTopMessages(queueConfigListForQueueName);
+//		configSearchHelper.getQueueConfigDetailView();
+//		return jmsBrowser.browseTopMessages(queueConfigListForQueueName);
+		return null;
 	}
 	
 	@Override
