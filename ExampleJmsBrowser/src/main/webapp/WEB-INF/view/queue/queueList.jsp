@@ -69,7 +69,7 @@
 			</table>
 			<c:if test="${queueData.jmsQueueStats.queueSize > queueData.queueConfigList.maxMessageCount}">
 			<div class="ellipseDiv">
-				<a class="button ellipseButton" href="#">more results ...</a>
+				<a class="button ellipseButton" href="queue/search?queueName=${fn:escapeXml(queueData.queueConfigList.name)}">more results ...</a>
 			</div>
 			</c:if>
 			</c:if>

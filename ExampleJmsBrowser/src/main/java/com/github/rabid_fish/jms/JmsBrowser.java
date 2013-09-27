@@ -16,6 +16,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
+import com.github.rabid_fish.config.Configuration;
 import com.github.rabid_fish.config.QueueConfigList;
 import com.github.rabid_fish.config.QueueConfigView;
 import com.github.rabid_fish.config.helper.QueueConfigListHelper;
@@ -38,19 +39,19 @@ public class JmsBrowser {
 	@Autowired
 	private QueueConfigListHelper configListHelper;
 	
-	public List<MessageData> browseTopMessages(QueueConfigList config) {
+	public List<MessageData> browseMessages(Configuration config, String queueName) {
 		
 		Callback callback = Callback.getCallbackForConfig(config);
-		List<MessageData> list = jmsTemplate.browseSelected(config.getName(), "", callback);
+		List<MessageData> list = jmsTemplate.browseSelected(queueName, "", callback);
 		return list;
 	}
 	
-	public List<List<MessageData>> browseTopMessagesForAllQueues() {
+	public List<List<MessageData>> browseMessagesForAllQueues() {
 		
 		List<List<MessageData>> listOfListOfQueueMessage = new ArrayList<List<MessageData>>();
 		
 		for (QueueConfigList queueConfigList : configListHelper.getQueueConfigListArray()) {
-			List<MessageData> top3Messages = browseTopMessages(queueConfigList);
+			List<MessageData> top3Messages = browseMessages(queueConfigList, queueConfigList.getName());
 			listOfListOfQueueMessage.add(top3Messages);
 		}
 		

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.rabid_fish.config.QueueConfigList;
+import com.github.rabid_fish.config.QueueConfigSearch;
 import com.github.rabid_fish.config.helper.QueueConfigListHelper;
 import com.github.rabid_fish.config.helper.QueueConfigSearchHelper;
 import com.github.rabid_fish.config.helper.QueueConfigViewHelper;
@@ -32,14 +33,24 @@ public class QueueServiceImpl implements QueueService {
 	@Autowired
 	private QueueConfigViewHelper configViewHelper;
 	
-//	@Autowired
-//	private QueueConfigSearchHelper configSearchHelper;
+	@Autowired
+	private QueueConfigSearchHelper configSearchHelper;
 	
 	@Override
 	public Iterable<MessageData> getMessageDataIterable(String queueName) {
-//		configSearchHelper.getQueueConfigDetailView();
-//		return jmsBrowser.browseTopMessages(queueConfigListForQueueName);
-		return null;
+		
+		QueueConfigList queueConfigForQueueName = configListHelper.getQueueConfigForQueueName(queueName);
+		List<MessageData> list = jmsBrowser.browseMessages(queueConfigForQueueName, queueName);
+		return list;
+	}
+	
+	@Override
+	public Iterable<MessageData> getMessageDataIterable(String queueName, String search) {
+		
+		QueueConfigSearchHelper configSearchHelperClone = configSearchHelper.clone(search);
+		QueueConfigSearch queueConfigSearch = configSearchHelperClone.getQueueConfigSearch();
+		List<MessageData> list = jmsBrowser.browseMessages(queueConfigSearch, queueName);
+		return list;
 	}
 	
 	@Override

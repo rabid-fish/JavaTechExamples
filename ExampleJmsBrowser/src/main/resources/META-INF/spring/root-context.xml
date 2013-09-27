@@ -58,11 +58,15 @@
 	</bean>
 
 	<bean class="com.github.rabid_fish.config.helper.QueueConfigListHelper">
-		<constructor-arg value="${json.queue-config}"/>
+		<constructor-arg value="${json.queue-config-list}"/>
 	</bean>
 
 	<bean class="com.github.rabid_fish.config.helper.QueueConfigViewHelper">
-		<constructor-arg value="${json.queue-config-detail-view}"/>
+		<constructor-arg value="${json.queue-config-view}"/>
+	</bean>
+
+	<bean class="com.github.rabid_fish.config.helper.QueueConfigSearchHelper">
+		<constructor-arg value="${json.queue-config-search}"/>
 	</bean>
 
 </beans>

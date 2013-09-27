@@ -50,7 +50,7 @@ public class QueueController {
 		return "queue/queueView";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String getSearch(
 			@RequestParam("queueName") String queueName, 
 			ModelMap model) {

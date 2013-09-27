@@ -52,7 +52,7 @@ public class JmsBrowserTest {
 		LOG.info("Running test");
 		QueueConfigList queueConfigList = configListHelper.getQueueConfigListArray()[0];
 		queueConfigList.setMaxMessageCount(3);
-		List<MessageData> messageDataList = browser.browseTopMessages(queueConfigList);
+		List<MessageData> messageDataList = browser.browseMessages(queueConfigList, queueConfigList.getName());
 		
 		LOG.info("Count of top messages on queue: " + messageDataList.size());
 		assertTrue(messageDataList.size() == 3);
@@ -75,7 +75,7 @@ public class JmsBrowserTest {
 	public void testBrowseMessageInDetail() {
 
 		QueueConfigList localConfig = cloneConfig(defaultQueueConfig, 1);
-		List<MessageData> messageDataList = browser.browseTopMessages(localConfig);
+		List<MessageData> messageDataList = browser.browseMessages(localConfig, localConfig.getName());
 		String queueName = localConfig.getName();
 		String messageId = messageDataList.get(0).getMessageId();
 		QueueConfigView configDetailView = configViewHelper.getQueueConfigDetailView();
@@ -88,13 +88,13 @@ public class JmsBrowserTest {
 	public void testDeleteMessage() {
 
 		QueueConfigList localConfig = cloneConfig(defaultQueueConfig, 100);
-		List<MessageData> messageDataListStart = browser.browseTopMessages(localConfig);
+		List<MessageData> messageDataListStart = browser.browseMessages(localConfig, localConfig.getName());
 		
 		String queueName = localConfig.getName();
 		String messageId = messageDataListStart.get(0).getMessageId();
 		browser.deleteMessage(queueName, messageId);
 		
-		List<MessageData> messageDataListEnd = browser.browseTopMessages(localConfig);
+		List<MessageData> messageDataListEnd = browser.browseMessages(localConfig, localConfig.getName());
 		
 		assertTrue(messageDataListStart.size() > messageDataListEnd.size());
 	}
