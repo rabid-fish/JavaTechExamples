@@ -1,0 +1,4 @@
+[
+	{ "question" : "Max value for byte",   "answer" : "255" },
+	{ "question" : "Max value for short",  "answer" : "32767" }
+]
