@@ -27,7 +27,13 @@
 <body>
 
 	<p>
-		The following table is an example fit RowFixture.  To learn more, please see:
+		The following table is an example fit RowFixture.  The methods called below must
+		return a value in order for a comparison to occur.  A RowFixture does NOT supply
+		source test data, it only does comparison after the query() method is called on
+		the fixture.
+	</p>
+	<p>
+		To learn more, please see:
 		<a href="http://fit.c2.com/wiki.cgi?RowFixture">The RowFixture Documentation</a>
 	</p>
 	
@@ -37,23 +43,15 @@
 				<td colspan="3">com.github.rabid_fish.MathOperationRowFixture</td>
 			</tr>
 			<tr>
-				<td>getArg1()</td>
-				<td>getArg2()</td>
 				<td>getResult()</td>
 			</tr>
 			<tr>
-				<td>4</td>
-				<td>4</td>
 				<td>8</td>
 			</tr>
 			<tr>
-				<td>3</td>
-				<td>5</td>
 				<td>8</td>
 			</tr>
 			<tr>
-				<td>6</td>
-				<td>9</td>
 				<td>15</td>
 			</tr>
 		</tbody>
