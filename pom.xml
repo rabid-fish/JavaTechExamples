@@ -15,16 +15,23 @@
 		<module>ExampleCkEditor</module>
 		<module>ExampleDrools</module>
 		<module>ExampleHibernate</module>
+		<!--
+		This will NEVER be included in the multimodule build
+		as all the junit tests rely on ActiveMQ running on
+		localhost.
+		<module>ExampleJmsBrowser</module>
+		-->
 		<module>ExampleJpa</module>
 		<module>ExampleJsonNavbar</module>
 		<module>ExampleJsTestDriver</module>
+		<module>ExampleRefit</module>
 		<module>ExampleReverseProxy</module>
-		<module>ExampleSpringMvc</module>
-		<module>ExampleTiles</module>
-
 		<module>ExampleSessionSharingLibrary</module>
 		<module>ExampleSessionSharing1</module>
 		<module>ExampleSessionSharing2</module>
+		<module>ExampleSpringMvc</module>
+		<module>ExampleTiles2</module>
+		<module>ExampleTiles3</module>
 	</modules>
 
 	<build>
