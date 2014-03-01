@@ -1,4 +1,4 @@
-package com.test;
+package com.github.rabid_fish;
 
 import fit.Fixture;
 
