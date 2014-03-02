@@ -95,8 +95,9 @@
 					<!-- 
 					<runnerMode>DEBUG</runnerMode>
 					<browser>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</browser>
+					<browser>/Applications/Google Chrome.app/Contents/MacOS/Google Chrome/browser</browser>
 					 -->
-					 <browser>chrome</browser>
+					<browser>/Applications/Firefox.app/Contents/MacOS/firefox</browser>
 				</configuration>
 				<executions>
 					<execution>

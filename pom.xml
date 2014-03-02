@@ -15,15 +15,25 @@
 		<module>ExampleCkEditor</module>
 		<module>ExampleDrools</module>
 		<module>ExampleHibernate</module>
+		
 		<!--
 		This will NEVER be included in the multimodule build
 		as all the junit tests rely on ActiveMQ running on
 		localhost.
 		<module>ExampleJmsBrowser</module>
 		-->
+		
 		<module>ExampleJpa</module>
 		<module>ExampleJsonNavbar</module>
+		
+		<!--
+		This will NEVER be included in the multimodule build
+		as all the junit tests rely on the browser path being
+		set in the ExampleJsTestDriver pom, and that path can
+		variable based on browser type and OS installed.
 		<module>ExampleJsTestDriver</module>
+		-->
+		
 		<module>ExampleRefit</module>
 		<module>ExampleReverseProxy</module>
 		<module>ExampleSessionSharingLibrary</module>
@@ -50,3 +60,4 @@
 	
 </project>
 
+	
