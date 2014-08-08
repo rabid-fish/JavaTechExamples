@@ -1,0 +1,51 @@
+{
+  "worklog": [
+    {
+      "key": "EXAMPLE-3",
+      "summary": "Example Epic",
+      "entries": [
+        {
+          "comment": "Initial work leading up to history discussion",
+          "timeSpent": 57600,
+          "author": "jdoe",
+          "authorFullName": "Jane Doe",
+          "created": 1401375605000,
+          "startDate": 1401375540000,
+          "updateAuthor": "jdoe",
+          "updateAuthorFullName": "Jane Doe",
+          "updated": 1401375605000
+        }
+      ]
+    },
+    {
+      "key": "EXAMPLE-244",
+      "summary": "Example Story",
+      "entries": [
+        {
+          "comment": "",
+          "timeSpent": 28800,
+          "author": "jdoe",
+          "authorFullName": "Jane Doe",
+          "created": 1400507985000,
+          "startDate": 1400248740000,
+          "updateAuthor": "jdoe",
+          "updateAuthorFullName": "Jane Doe",
+          "updated": 1400508034000
+        },
+        {
+          "comment": "",
+          "timeSpent": 28800,
+          "author": "jdoe",
+          "authorFullName": "Jane Doe",
+          "created": 1400508060000,
+          "startDate": 1399989600000,
+          "updateAuthor": "jdoe",
+          "updateAuthorFullName": "Jane Doe",
+          "updated": 1400508060000
+        }
+      ]
+    }
+  ],
+  "startDate": 1398920400000,
+  "endDate": 1401598800000
+}
