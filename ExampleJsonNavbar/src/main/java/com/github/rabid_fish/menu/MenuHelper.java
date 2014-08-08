@@ -23,7 +23,7 @@ public class MenuHelper {
 		createIndexAndMapDepth(menuItems[0], 0);
 	}
 	
-	private void setMenuItems(String resourcePath) {
+	protected void setMenuItems(String resourcePath) {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = getClass().getResourceAsStream(resourcePath);
