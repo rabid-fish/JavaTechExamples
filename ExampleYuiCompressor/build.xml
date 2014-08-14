@@ -1,0 +1,69 @@
+<project name="CompressJsAndCss" default="compressAndConcat" basedir=".">
+
+	<description>Use Yui Compressor to compress and concatenate js and css files into single js and css file</description>
+
+	<property name="src" location="source" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+	<property name="lib" location="lib" />
+
+	<path id="project.class.path">
+		<pathelement path="${classpath}" />
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="classes" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compressAndConcat" depends="clean,init">
+
+		<property name="js.dir" location="src/main/webapp/js" />
+		<property name="css.dir" location="src/main/webapp/css" />
+		
+		<tstamp>
+			<format property="compress.time" pattern="yyyy-MM-dd" locale="en,GB" />
+		</tstamp>
+
+		<taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
+			<classpath>
+				<pathelement path="${lib}/yuicompressor-2.4.8.jar" />
+				<pathelement path="${lib}/yuiant.jar" />
+			</classpath>
+		</taskdef>
+
+		<yuicompress linebreak="300" warn="false" munge="yes" preserveallsemicolons="true" outputfolder="${build}">
+			<fileset dir="${js.dir}">
+				<include name="**/*.js" />
+			</fileset>
+		</yuicompress>
+
+		<yuicompress linebreak="300" warn="false" munge="yes" preserveallsemicolons="true" outputfolder="${build}">
+			<fileset dir="${css.dir}">
+				<include name="**/*.css" />
+			</fileset>
+		</yuicompress>
+
+		<concat destfile="${dist}/compressed-${compress.time}.js" fixlastline="true">
+			<fileset dir="${build}">
+				<include name="**/*.js" />
+			</fileset>
+		</concat>
+
+		<concat destfile="${dist}/compressed-${compress.time}.css" fixlastline="true">
+			<fileset dir="${build}">
+				<include name="**/*.css" />
+			</fileset>
+		</concat>
+	</target>
+
+</project>
