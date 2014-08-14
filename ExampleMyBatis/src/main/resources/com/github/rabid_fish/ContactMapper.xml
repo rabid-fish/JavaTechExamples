@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.rabid_fish.ContactMapper">
+
+	<resultMap type="Contact" id="ContactResult">
+		<id property="contactId" column="contact_id" />
+		<result property="firstName" column="first_name" />
+		<result property="lastName" column="last_name" />
+		<result property="phoneNumber" column="phone_number" />
+	</resultMap>
+
+	<update id="createContactTable">
+		CREATE TABLE contact (
+		  contact_id INT NOT NULL auto_increment,
+		  first_name VARCHAR(45) NOT NULL,
+		  last_name VARCHAR(45) NOT NULL,
+		  phone_number VARCHAR(10) DEFAULT NULL,
+		  PRIMARY KEY (contact_id)
+		)
+	</update>
+	
+	<select id="getContacts" resultMap="ContactResult">
+		SELECT * FROM contact
+	</select>
+
+	<insert id="insertContact" parameterType="Contact" useGeneratedKeys="true" keyProperty="userId">
+		<selectKey keyProperty="contactId" resultType="int" order="AFTER">
+			CALL IDENTITY()
+		</selectKey>
+
+		INSERT INTO contact(first_name, last_name, phone_number)
+		VALUES(#{firstName}, #{lastName}, #{phoneNumber})
+	</insert>
+
+</mapper>
