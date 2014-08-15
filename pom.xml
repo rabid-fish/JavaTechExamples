@@ -13,8 +13,11 @@
 
 	<modules>
 		<module>ExampleCkEditor</module>
+		<module>ExampleCucumber</module>
 		<module>ExampleDrools</module>
 		<module>ExampleHibernate</module>
+		<module>ExampleJGit</module>
+		<module>ExampleJiraRestClient</module>
 		
 		<!--
 		This will NEVER be included in the multimodule build
@@ -34,6 +37,7 @@
 		<module>ExampleJsTestDriver</module>
 		-->
 		
+		<module>ExampleMyBatis</module>
 		<module>ExampleRefit</module>
 		<module>ExampleReverseProxy</module>
 		<module>ExampleSessionSharingLibrary</module>
@@ -42,6 +46,7 @@
 		<module>ExampleSpringMvc</module>
 		<module>ExampleTiles2</module>
 		<module>ExampleTiles3</module>
+		<module>ExampleXalan</module>
 	</modules>
 
 	<build>
