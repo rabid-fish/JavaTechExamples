@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>Datepicker Example Page</title>
+	
+	<link href="jquery-ui.css" rel="stylesheet">
+	<link href="jquery.qtip.min.css" rel="stylesheet">
+
+	<style type="text/css">
+
+		body{
+			font: 62.5% "Trebuchet MS", sans-serif;
+			margin: 50px;
+		}
+		
+		/* 
+			CSS changes needed by Annual Calendar to correct 
+			for visual defects caused by Date Picker 
+		*/
+		
+		div.hasDatepicker div.ui-widget-content {
+			background: transparent;
+		}
+		
+		.ui-datepicker-header {
+			border-radius: 4px 4px 0px 0px;
+		}
+		
+		.ui-datepicker-group {
+			border-radius: 4px;
+			margin: 8px;
+			border: 1px solid #dddddd;
+			width: 170px;
+			float: left;
+		}
+		
+		table.ui-datepicker-calendar td {
+			border: 1px solid transparent;
+		}
+		
+		.ui-datepicker a {
+			cursor: default;
+		}
+		
+		.ui-annualcalendar-button a {
+			cursor: pointer;
+		}
+		
+		a.ui-annualcalendar-highlight {
+			color: white;
+			background-color: #f6a828;
+		}
+
+	</style>
+</head>
+<body>
+
+<h1>Datepicker</h1>
+
+<div id="annualCalendar"></div>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery-ui.js"></script>
+<script type="text/javascript" src="jquery.qtip.min.js"></script>
+<script type="text/javascript" src="jquery-ui-annualcalendar.js"></script>
+
+<script type="text/javascript">
+
+	var payScheduleItems = [
+		{ date: '11/03/2013', amount: '$07' },
+		{ date: '11/15/2013', amount: '$08' },
+		{ date: '12/03/2013', amount: '$09' },
+		{ date: '01/03/2014', amount: '$10' },
+		{ date: '01/15/2014', amount: '$11' },
+		{ date: '02/03/2014', amount: '$12' },
+		{ date: '02/15/2014', amount: '$13' },
+		{ date: '03/03/2014', amount: '$14' }
+	];
+	
+	new AnnualCalendar('annualCalendar', {
+		dateArray: payScheduleItems,
+		dateFilter: function(item) {
+			return item.date;
+		},
+		mapDatesToValues: function(objectArray) {
+			var map = [];
+			for (var key in objectArray) {
+				var value = objectArray[key];
+				map[value.date] = 'Contribution amount: ' + value.amount;
+			}
+			return map;
+		} 
+	});
+
+</script>
+
+</body>
+</html>
