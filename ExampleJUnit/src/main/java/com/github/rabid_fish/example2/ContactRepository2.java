@@ -10,15 +10,11 @@ public class ContactRepository2 {
 
 	public List<Contact> contacts = new ArrayList<>();
 	
-	public String getFullName(Contact contact) {
-		return contact.getFirstName() + " " + contact.getLastName();
-	}
-
-	public void add(Contact contact) {
+	public void save(Contact contact) {
 		contacts.add(contact);
 	}
 	
-	public void remove(Contact contact) {
+	public void delete(Contact contact) {
 		contacts.remove(contact);
 	}
 	

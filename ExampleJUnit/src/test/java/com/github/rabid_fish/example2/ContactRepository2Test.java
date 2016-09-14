@@ -11,14 +11,13 @@ import com.github.rabid_fish.model.Contact;
 
 public class ContactRepository2Test {
 
-	// Note: start with coding these properties in the method, then move them out
 	ContactRepository2 repo;
 	Contact contact;
 
 	@Before
 	public void setUp() {
 		repo = new ContactRepository2();
-		contact = new Contact("Jane", "Doe");
+		contact = new Contact(null, "Jane", "Doe");
 	}
 	
 	@Test
@@ -32,7 +31,7 @@ public class ContactRepository2Test {
 	@Test
 	public void list_addOneContact() {
 		
-		repo.add(contact);
+		repo.save(contact);
 		
 		List<Contact> results = repo.list();
 		
@@ -43,8 +42,8 @@ public class ContactRepository2Test {
 	@Test
 	public void list_addAndRemoveContact() {
 		
-		repo.add(contact);
-		repo.remove(contact);
+		repo.save(contact);
+		repo.delete(contact);
 		
 		List<Contact> results = repo.list();
 		
