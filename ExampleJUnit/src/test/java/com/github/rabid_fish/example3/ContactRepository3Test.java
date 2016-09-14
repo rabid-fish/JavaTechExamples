@@ -18,7 +18,7 @@ public class ContactRepository3Test {
 	@Before
 	public void setUp() {
 		repo = new ContactRepository3();
-		contact = new Contact(null, "Jane", "Doe");
+		contact = new Contact(null, "Jane", "Doe", null);
 	}
 	
 	@Test

@@ -24,16 +24,26 @@ public class Contact implements Serializable {
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 	
+	@Column(name = "PHONE_NUMBER", nullable = true)
+	private String phoneNumber;
+	
 	public Contact() {
 		super();
 	}
 	
-	public Contact(Long id, String firstName, String lastName) {
+	public Contact(Long id, String firstName, String lastName, String phoneNumber) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -45,5 +55,11 @@ public class Contact implements Serializable {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 }
