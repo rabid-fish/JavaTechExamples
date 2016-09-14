@@ -1,30 +1,54 @@
 package com.github.rabid_fish.example3;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.rabid_fish.example3.ContactRepository3;
 import com.github.rabid_fish.model.Contact;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ContactConfiguration3.class)
 public class ContactRepository3Test {
 
-	@Autowired
 	ContactRepository3 repo;
+	Contact contact;
+
+	@Before
+	public void setUp() {
+		repo = new ContactRepository3();
+		contact = new Contact(null, "Jane", "Doe");
+	}
 	
 	@Test
-	@Transactional
-	public void test() {
-		List<Contact> contacts = repo.list();
-		assertEquals(2, contacts.size());
+	public void list_initializedToEmpty() {
+		
+		List<Contact> results = repo.list();
+		
+		assertEquals(0, results.size());
 	}
+	
+	@Test
+	public void list_addOneContact() {
+		
+		repo.save(contact);
+		
+		List<Contact> results = repo.list();
+		
+		assertEquals(1, results.size());
+		assertEquals(contact, results.get(0));
+	}
+	
+	@Test
+	public void list_addAndRemoveContact() {
+		
+		repo.save(contact);
+		repo.delete(contact);
+		
+		List<Contact> results = repo.list();
+		
+		assertEquals(0, results.size());
+	}
+	
 }

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.github.rabid_fish.model.Contact;
 
-public class ContactService1Test {
+public class ContactLogic1Test {
 
 	@Test
 	public void getFullName() {
@@ -15,7 +15,7 @@ public class ContactService1Test {
 		contact.setFirstName("Jane");
 		contact.setLastName("Doe");
 		
-		ContactService1 service = new ContactService1();
+		ContactLogic1 service = new ContactLogic1();
 		String fullName = service.getFullName(contact);
 		
 		assertEquals("Jane Doe", fullName);
@@ -26,7 +26,7 @@ public class ContactService1Test {
 		
 		Contact contact = new Contact();
 		
-		ContactService1 service = new ContactService1();
+		ContactLogic1 service = new ContactLogic1();
 		String fullName = service.getFullName(contact);
 		
 		assertEquals("null null", fullName);

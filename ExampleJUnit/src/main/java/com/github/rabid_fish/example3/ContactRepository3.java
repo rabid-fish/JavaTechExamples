@@ -1,39 +1,25 @@
 package com.github.rabid_fish.example3;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.github.rabid_fish.model.Contact;
 
-@Repository
 public class ContactRepository3 {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
+	public List<Contact> contacts = new ArrayList<>();
+	
 	public void save(Contact contact) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(contact);
-		session.close();
+		contacts.add(contact);
 	}
-
+	
 	public void delete(Contact contact) {
-		Session session = sessionFactory.getCurrentSession();
-		session.delete(contact);
-		session.close();
+		contacts.remove(contact);
 	}
-
+	
 	public List<Contact> list() {
-		Session session = sessionFactory.getCurrentSession();
-		
-		@SuppressWarnings("unchecked")
-		List<Contact> contacts = session.createQuery("from Contact").list();
-		
-		return contacts;
+		ArrayList<Contact> list = new ArrayList<>(contacts);
+		return Collections.unmodifiableList(list);
 	}
-
 }

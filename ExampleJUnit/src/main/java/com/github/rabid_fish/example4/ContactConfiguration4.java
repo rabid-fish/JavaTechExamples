@@ -1,4 +1,4 @@
-package com.github.rabid_fish.example3;
+package com.github.rabid_fish.example4;
 
 import java.util.Properties;
 
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class ContactConfiguration3 {
+public class ContactConfiguration4 {
 
 	@Bean
 	public DataSource dataSource() {
@@ -54,7 +54,7 @@ public class ContactConfiguration3 {
 	}
 	
 	@Bean
-	public ContactRepository3 contactRepository3() {
-		return new ContactRepository3();
+	public ContactRepository4 contactRepository3() {
+		return new ContactRepository4();
 	}
 }
