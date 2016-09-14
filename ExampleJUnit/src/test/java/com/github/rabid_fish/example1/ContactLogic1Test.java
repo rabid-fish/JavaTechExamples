@@ -15,8 +15,8 @@ public class ContactLogic1Test {
 		contact.setFirstName("Jane");
 		contact.setLastName("Doe");
 		
-		ContactLogic1 service = new ContactLogic1();
-		String fullName = service.getFullName(contact);
+		ContactLogic1 logic = new ContactLogic1();
+		String fullName = logic.getFullName(contact);
 		
 		assertEquals("Jane Doe", fullName);
 	}
@@ -26,8 +26,8 @@ public class ContactLogic1Test {
 		
 		Contact contact = new Contact();
 		
-		ContactLogic1 service = new ContactLogic1();
-		String fullName = service.getFullName(contact);
+		ContactLogic1 logic = new ContactLogic1();
+		String fullName = logic.getFullName(contact);
 		
 		assertEquals("null null", fullName);
 	}
