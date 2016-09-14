@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.github.rabid_fish.model.Contact;
 
-public class ContactService2 {
+public class ContactRepository2 {
 
 	public List<Contact> contacts = new ArrayList<>();
 	
