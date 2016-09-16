@@ -48,7 +48,7 @@ This will take some doing, so we're going to provide the assertContactLogicValid
 method so we don't spend the entire presentation writing this guy out.
 
 
-### ContacRepository3
+### ContactRepository3
 
 We have a faux database repository we want to test
 
