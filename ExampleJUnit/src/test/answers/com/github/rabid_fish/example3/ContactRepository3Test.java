@@ -45,15 +45,30 @@ public class ContactRepository3Test {
 	@Test
 	public void list_initializedToTwo() {
 		
+		List<Contact> results = repo.list();
+		
+		assertEquals(2, results.size());
 	}
 	
 	@Test
 	public void list_addOneContact() {
 		
+		repo.save(contact);
+		
+		List<Contact> results = repo.list();
+		
+		assertEquals(3, results.size());
+		assertEquals(contact, results.get(2));
 	}
 	
 	@Test
 	public void list_addAndRemoveContact() {
 		
+		repo.save(contact);
+		repo.delete(contact);
+		
+		List<Contact> results = repo.list();
+		
+		assertEquals(2, results.size());
 	}
 }

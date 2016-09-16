@@ -23,15 +23,18 @@ public class ContactService4Test {
 	@Test
 	public void updateContactFirstName() {
 		
-		// setup first
 		Contact contact = new Contact();
+		contact.setId(1l);
+		contact.setFirstName("Jane");
+		contact.setLastName("Doe");
 		
 		EasyMock.expect(repository.get(1l)).andReturn(contact).once();
 		repository.save(EasyMock.anyObject());
 		EasyMock.replay(repository);
 		
-		// call service
+		service.updateContactFirstName(1l, "John");
 		
-		// assert
+		assertEquals("John", contact.getFirstName());
+		assertEquals("Doe", contact.getLastName());
 	}
 }
