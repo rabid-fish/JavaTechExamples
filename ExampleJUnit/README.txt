@@ -50,6 +50,8 @@ method so we don't spend the entire presentation writing this guy out.
 
 ### ContacRepository3
 
+We have a faux database repository we want to test
+
 Tests we'll want to write to exercise the service at a higher level:
 - assert the initial state of the service
 - assert the service after loading up some state
