@@ -1,4 +1,4 @@
-package com.github.rabid_fish.example4;
+package com.github.rabid_fish.example3;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.github.rabid_fish.model.Contact;
 
 @Repository
-public class ContactRepository4 {
+public class ContactRepository3 {
 
 	@Autowired
 	private SessionFactory sessionFactory;

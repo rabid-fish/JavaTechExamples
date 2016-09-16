@@ -1,4 +1,4 @@
-package com.github.rabid_fish.example4;
+package com.github.rabid_fish.example3;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,16 +14,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.rabid_fish.example3.ContactConfiguration3;
+import com.github.rabid_fish.example3.ContactRepository3;
 import com.github.rabid_fish.model.Contact;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ContactConfiguration4.class)
+@ContextConfiguration(classes = ContactConfiguration3.class)
 @Transactional(transactionManager = "transactionManager")
 //@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class ContactRepository4Test {
+public class ContactRepository3Test {
 
 	@Autowired
-	ContactRepository4 repo;
+	ContactRepository3 repo;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
