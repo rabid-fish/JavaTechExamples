@@ -18,13 +18,11 @@ public class ContactRepository3 {
 	public void save(Contact contact) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(contact);
-		session.close();
 	}
 
 	public void delete(Contact contact) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(contact);
-		session.close();
 	}
 
 	public List<Contact> list() {
