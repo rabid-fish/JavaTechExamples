@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow 
+	xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow
+		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd
+">
+	<on-start>
+		<set name="conversationScope.init" value="contactComplexService.initializeTestData()" />
+	</on-start>
+
+	<view-state id="contactComplexList" view="/WEB-INF/webflow/ex2/contactComplexList">
+		<on-entry>
+			<set name="flowScope.contacts" value="contactComplexService.list()" />
+		</on-entry>
+		<transition on="createEdit" to="contactComplexCreateEdit">
+			<set name="flowScope.currentContactComplex" value="contactComplexService.findOrInitializeNewInstance(requestParameters.id)" />
+		</transition>
+	</view-state>
+
+	<view-state 
+		id="contactComplexCreateEdit" 
+		view="/WEB-INF/webflow/ex2/contactComplexCreateEdit" 
+		model="currentContactComplex"
+	>
+		<transition on="submit" to="contactComplexValidateAndSave" />
+	</view-state>
+
+	<action-state id="contactComplexValidateAndSave">
+		<evaluate expression="contactComplexService.save(currentContactComplex)"></evaluate>
+		<transition to="contactComplexList" />
+	</action-state>
+	
+</flow>
