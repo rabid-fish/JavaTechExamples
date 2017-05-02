@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class ContactSimple implements Serializable {
+import com.github.rabidfish.HasId;
+
+public class ContactSimple implements Serializable, HasId {
 
 	private static final long serialVersionUID = 1L;
 

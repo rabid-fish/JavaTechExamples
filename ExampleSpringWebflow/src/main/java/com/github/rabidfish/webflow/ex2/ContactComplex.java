@@ -10,7 +10,9 @@ import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.binding.validation.ValidationContext;
 
-public class ContactComplex implements Serializable {
+import com.github.rabidfish.HasId;
+
+public class ContactComplex implements Serializable, HasId {
 
 	private static final long serialVersionUID = 1L;
 

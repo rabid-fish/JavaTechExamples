@@ -1,23 +1,12 @@
 package com.github.rabidfish.webflow.ex2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.stereotype.Service;
 
-@Service
-public class ContactComplexService {
+import com.github.rabidfish.AbstractRepository;
 
-	private static final int INVALID_INDEX = -1;
-	
-	AtomicLong contactSequence = new AtomicLong(0);
-	List<ContactComplex> contacts = new ArrayList<>();
-	
-	public List<ContactComplex> list() {
-		return contacts;
-	}
-	
+@Service
+public class ContactComplexService extends AbstractRepository<ContactComplex> {
+
 	public ContactComplex findOrInitializeNewInstance(Long id) {
 		
 		int index = findObjectIndex(id);
@@ -27,7 +16,7 @@ public class ContactComplexService {
 			return contact;
 		}
 		
-		ContactComplex contact = contacts.get(index);
+		ContactComplex contact = list.get(index);
 		return contact;
 	}
 	
@@ -54,39 +43,9 @@ public class ContactComplexService {
 		return contact;
 	}
 	
-	public void reset() {
-		contacts.clear();
-	}
-	
 	public void save(ContactComplex contact) {
-		
-		if (contact.getId() != null) {
-			int index = findObjectIndex(contact.getId());
-			if (index == INVALID_INDEX) {
-				throw new RuntimeException("Unable to locate contact for update");
-			}
-			
-			contacts.remove(index);
-		} else {
-			long id = contactSequence.incrementAndGet();
-			contact.setId(id);
-		}
-		
-		contacts.add(contact);
-		contacts.sort((ContactComplex c1, ContactComplex c2) -> c1.getFirstName().compareTo(c2.getFirstName()));
+		super.save(contact);
+		list.sort((ContactComplex c1, ContactComplex c2) -> c1.getFirstName().compareTo(c2.getFirstName()));
 	}
 
-	int findObjectIndex(Long id) {
-		
-		int index = INVALID_INDEX;
-		
-		for (int i = 0; i < contacts.size(); i++) {
-			if (contacts.get(i).getId() == id) {
-				index = i;
-				break;
-			}
-		}
-		
-		return index;
-	}
 }
