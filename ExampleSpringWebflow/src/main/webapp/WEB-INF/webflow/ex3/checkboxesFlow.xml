@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow 
+	xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow
+		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd
+">
+	<on-start>
+		<set name="conversationScope.init" value="contactComplexService.initializeTestData()" />
+	</on-start>
+
+	<view-state 
+		id="contactRecommendationSelect" 
+		view="/WEB-INF/webflow/ex3/contactRecommendationSelect"
+		model="contactRecommendationCommand"
+	>
+		<on-entry>
+			<set name="flowScope.contactList" value="contactComplexService.list()" />
+			<set name="flowScope.contactRecommendationCommand" value="contactRecommendationService.initializeContactRecommendationCommand(contactList)" />
+		</on-entry>
+		<transition on="submit" to="contactRecommendationResults" />
+	</view-state>
+	
+	<view-state 
+		id="contactRecommendationResults" 
+		view="/WEB-INF/webflow/ex3/contactRecommendationResults" 
+	>
+		<transition on="submit" to="contactRecommendationSelect" />
+	</view-state>
+	
+</flow>

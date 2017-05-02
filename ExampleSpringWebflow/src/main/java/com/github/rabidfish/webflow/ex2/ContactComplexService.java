@@ -35,6 +35,8 @@ public class ContactComplexService {
 		reset();
 		save(createContact("Jane", "Doe", "515", "555-1212"));
 		save(createContact("John", "Deer", "515", "555-1234"));
+		save(createContact("John Jr", "Deer", "515", "555-4321"));
+		save(createContact("Joe", "Public", "123", "456-7890"));
 		return true;
 	}
 

@@ -44,12 +44,14 @@
 	>
 		<webflow:flow-location id="webflowExample1" path="/webflow/ex1/contactSimpleFlow.xml" />
 		<webflow:flow-location id="webflowExample2" path="/webflow/ex2/contactComplexFlow.xml" />
+		<webflow:flow-location id="webflowExample3" path="/webflow/ex3/checkboxesFlow.xml" />
 	</webflow:flow-registry>
 	
 	<webflow:flow-builder-services 
 		id="flowBuilderServices"
 		validator="validator"
 		view-factory-creator="viewFactoryCreator" 
+		development="true"
 		/>
 	
 	<bean id="viewFactoryCreator"
