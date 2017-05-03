@@ -28,7 +28,9 @@
 					</c:forEach>
 				</ul>
 			</div>
+			
 			<input name="_eventId_submit" type="submit" value="Submit" />
+			<a href="./">Home</a>
 		</sf:form>
 	</div>
 </body>

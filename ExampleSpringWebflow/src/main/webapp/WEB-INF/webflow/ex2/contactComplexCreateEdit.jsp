@@ -39,7 +39,9 @@
 				<sf:errors path="phone.areaCode" cssClass="error" /><sf:errors path="phone.number" cssClass="error" />
 				<span class="field"><sf:input path="phone.areaCode" /> - <sf:input path="phone.number" /></span>
 			</div>
+			
 			<input name="_eventId_submit" type="submit" value="Submit" />
+			<a href="./">Home</a>
 		</sf:form>
 	</div>
 </body>

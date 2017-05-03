@@ -35,7 +35,9 @@
 				<sf:errors path="phone" cssClass="error" />
 				<span class="field"><sf:input path="phone" /></span>
 			</div>
+			
 			<input name="_eventId_submit" type="submit" value="Submit" />
+			<a href="./">Home</a>
 		</sf:form>
 	</div>
 </body>

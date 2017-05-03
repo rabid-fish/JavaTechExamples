@@ -8,8 +8,8 @@
 ">
 	
 	<on-start>
-		<set name="conversationScope.init" value="contactComplexService.initializeTestData()" />
-		<set name="conversationScope.init" value="carService.initializeTestData()" />
+		<set name="conversationScope.initContacts" value="contactComplexService.initializeTestData()" />
+		<set name="conversationScope.initCars" value="carService.initializeTestData()" />
 	</on-start>
 
 	<view-state 
@@ -18,8 +18,6 @@
 		model="carSelectorCommand"
 	>
 		<on-entry>
-			<set name="flowScope.contactList" value="contactComplexService.list()" />
-			<set name="flowScope.carList" value="contactComplexService.list()" />
 			<set name="flowScope.carSelectorCommand" value="carSelectorService.initializeCarSelectorCommand()" />
 		</on-entry>
 		<transition on="submit" to="carResults" />

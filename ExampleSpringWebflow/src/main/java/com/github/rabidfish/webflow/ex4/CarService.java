@@ -9,16 +9,15 @@ public class CarService extends AbstractRepository<Car> {
 
 	public boolean initializeTestData() {
 		reset();
-		save(createCar(1L, "Dodge", "Neon"));
-		save(createCar(2L, "Mazda", "Miata"));
-		save(createCar(3L, "Volkswagen", "Golf"));
+		save(createCar("Dodge", "Neon"));
+		save(createCar("Mazda", "Miata"));
+		save(createCar("Volkswagen", "Golf"));
 		return true;
 	}
 	
-	Car createCar(long id, String make, String model) {
+	Car createCar(String make, String model) {
 		
 		Car car = new Car();
-		car.setId(id);
 		car.setMake(make);
 		car.setModel(model);
 		

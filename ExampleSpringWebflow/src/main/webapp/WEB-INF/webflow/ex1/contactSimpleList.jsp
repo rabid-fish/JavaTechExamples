@@ -24,6 +24,7 @@
 			</tr>
 		</c:forEach>
 		</table>
+		
 		<a href="${flowExecutionUrl}&_eventId=createEdit">Add Contact</a>
 		<a href="./">Home</a>
 	</div>

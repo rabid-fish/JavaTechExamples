@@ -25,6 +25,9 @@ public class Car implements Serializable, HasId {
 		super();
 	}
 
+	public String display() {
+		return make + " " + model;
+	}
 	
 	public Long getId() {
 		return id;

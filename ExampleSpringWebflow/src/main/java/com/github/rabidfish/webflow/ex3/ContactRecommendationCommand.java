@@ -47,8 +47,12 @@ public class ContactRecommendationCommand implements Serializable {
 		return matches;
 	}
 	
-	@AssertTrue(message = "Requred contacts are not selected")
+	@AssertTrue(message = "Required contacts are not selected")
 	public boolean isContactsSelectedHasRequiredNames() {
+		
+		if (selectedNames == null) {
+			return false;
+		}
 		
 		updateContactListsFromNameLists();
 		
