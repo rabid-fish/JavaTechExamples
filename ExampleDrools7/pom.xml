@@ -165,7 +165,7 @@
 							<sourceRoot>${basedir}/target/generated-sources/xsd</sourceRoot>
 							<xsdOptions>
 								<xsdOption>
-									<xsd>${basedir}/src/main/resources/com/github/rabidfish/contacts.xsd</xsd>
+									<xsd>${basedir}/src/main/resources/com/github/rabid_fish/contacts.xsd</xsd>
 								</xsdOption>
 							</xsdOptions>
 						</configuration>

@@ -11,7 +11,7 @@
 ">
 
 	<context:annotation-config/>
-	<context:component-scan base-package="com.github.rabidfish"/>
+	<context:component-scan base-package="com.github.rabid_fish"/>
 
 	<beans>
 		<camel:errorHandler 
@@ -31,12 +31,12 @@
 			<property name="logLevel" value="DEBUG" />
 		</bean>
 
-		<bean id="processor" class="com.github.rabidfish.example9.CamelStatelessSimpleExample" />
+		<bean id="processor" class="com.github.rabid_fish.example9.CamelStatelessSimpleExample" />
 
 		<camelContext xmlns="http://camel.apache.org/schema/spring" id="camelExampleProcessorCamelContext" trace="true">
 
 	        <dataFormats>
-	            <jaxb id="camelExampleJaxb" contextPath="https.github_com.rabidfish" prettyPrint="true" ignoreJAXBElement="false" />
+	            <jaxb id="camelExampleJaxb" contextPath="https.github.com.rabid_fish" prettyPrint="true" ignoreJAXBElement="false" />
 	        </dataFormats>
 
 			<route id="camelExampleProcessorRoute" errorHandlerRef="deadLetterErrorHandler">
