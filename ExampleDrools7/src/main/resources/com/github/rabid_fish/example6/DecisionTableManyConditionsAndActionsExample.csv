@@ -1,0 +1,13 @@
+RuleSet,com.github.rabid_fish.example5
+Import,com.github.rabid_fish.Number
+
+RuleTable Numbers
+CONDITION,CONDITION,CONDITION,CONDITION,CONDITION,ACTION
+n : Number...,n : Number...,n : Number...,n : Number...,n : Number...,
+value > $1,value < $1,even,odd,n.getDataType(),n.setMessage("$param");
+Lower Bound,Upper Bound,Even,Odd,Data Type,Message
+0,10,false,true,whole,Whole odd number
+0,10,true,false,whole,Whole even number
+0,10,false,false,decimal,Decimal
+10,,,,,Value exceeds upper bound
+,0,,,,Value exceeds lower bound
