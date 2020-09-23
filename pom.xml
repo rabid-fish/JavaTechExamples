@@ -15,6 +15,7 @@
 		<module>ExampleCkEditor</module>
 		<module>ExampleCucumber</module>
 		<module>ExampleDrools</module>
+		<module>ExampleDrools2</module>
 		<module>ExampleHibernate</module>
 		<module>ExampleJGit</module>
 		<module>ExampleJiraRestClient</module>
