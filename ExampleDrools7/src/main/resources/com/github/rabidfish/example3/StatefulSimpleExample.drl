@@ -1,0 +1,14 @@
+package com.github.rabidfish.example3
+
+import com.github.rabidfish.Number;
+import java.math.BigDecimal;
+
+rule "Stateful Simple Example Less Than 5"
+	when
+        number : Number( number.value < 5 )
+
+	then
+		System.out.println( "Value is less than 5" );
+		modify( number ) { addOneToValue() };
+	
+end

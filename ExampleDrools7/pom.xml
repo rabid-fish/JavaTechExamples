@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.rabid_fish</groupId>
-	<artifactId>ExampleDrools2</artifactId>
+	<artifactId>ExampleDrools7</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
@@ -39,11 +39,13 @@
 			<groupId>org.kie</groupId>
 			<artifactId>kie-internal</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-decisiontables</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-compiler</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		
 		<!-- Camel -->
@@ -163,7 +165,7 @@
 							<sourceRoot>${basedir}/target/generated-sources/xsd</sourceRoot>
 							<xsdOptions>
 								<xsdOption>
-									<xsd>${basedir}/src/main/resources/com/github/rabid_fish/contacts.xsd</xsd>
+									<xsd>${basedir}/src/main/resources/com/github/rabidfish/contacts.xsd</xsd>
 								</xsdOption>
 							</xsdOptions>
 						</configuration>
