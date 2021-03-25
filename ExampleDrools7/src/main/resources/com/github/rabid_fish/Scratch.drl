@@ -1,0 +1,15 @@
+package com.github.rabid_fish;
+
+import com.github.rabid_fish.Make;
+import com.github.rabid_fish.Model;
+import com.github.rabid_fish.Contact;
+
+rule "My First Rule"
+    dialect "mvel"
+when
+    $make : Make()
+    $model : Model()
+    Model(name != $make.name)
+then
+    System.out.println( "Rule ran successfully" )
+end
