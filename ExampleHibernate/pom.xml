@@ -13,7 +13,7 @@
 		<slf4j.version>1.6.6</slf4j.version>
 		<junit.version>4.8.2</junit.version>
 
-		<hibernate.version>4.1.5.Final</hibernate.version>
+		<hibernate.version>5.3.20.Final</hibernate.version>
 		<tiles.version>2.2.2</tiles.version>
 	</properties>
 
